@@ -11,30 +11,64 @@
             padding: 0;
             color: #ffffff;
             font-family: 'Arial', sans-serif;
-            background-color: #111111; /* Changer à une couleur sombre */
+            background-color: #0c0c0c; /* Fond sombre pour l'ensemble du site */
+        }
+
+        /* Header Section */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111111;
+            z-index: 1000;
+            padding: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        header nav a:hover {
+            color: #FFD700; /* Couleur dorée au survol */
         }
 
         /* Hero Section */
         .hero {
+            background-color: #111111;
+            padding: 150px 40px;
             text-align: center;
-            padding: 100px 20px;
             color: #ffffff;
+            margin-top: 80px; /* Espace pour le header fixe */
         }
 
         .hero h1 {
-            font-size: 48px;
-            margin: 20px 0;
+            font-size: 60px;
+            font-weight: bold;
+            color: #FFD700; /* Couleur dorée pour le titre */
         }
 
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 22px;
+            margin: 20px 0;
+            color: #cccccc;
         }
 
         .hero .cta-buttons a {
             display: inline-block;
             margin: 10px;
-            padding: 10px 20px;
+            padding: 15px 30px;
             background-color: #6A0DAD;
             color: #ffffff;
             font-size: 18px;
@@ -45,62 +79,73 @@
         }
 
         .hero .cta-buttons a:hover {
-            background-color: #FFD700;
+            background-color: #FFD700; /* Doré au survol */
             color: #000000;
         }
 
-        /* Section Styles */
-        .section {
-            padding: 60px 20px;
+        /* About Section */
+        .about {
+            padding: 80px 40px;
+            background-color: #222222;
             text-align: center;
         }
 
-        .section h2 {
+        .about h2 {
             font-size: 36px;
-            margin-bottom: 20px;
+            color: #FFD700; /* Doré pour l'accent */
         }
 
-        .section p {
+        .about p {
             font-size: 18px;
             color: #cccccc;
             line-height: 1.8;
         }
 
-        /* How to Buy Section */
-        .how-to-buy {
-            padding: 80px 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #ffffff;
+        /* Tokenomics Section */
+        .tokenomics {
+            padding: 80px 40px;
+            background-color: #333333;
+            text-align: center;
         }
 
-        .how-to-buy h2 {
+        .tokenomics h2 {
             font-size: 36px;
-            margin-bottom: 20px;
             color: #FFD700;
         }
 
-        .how-to-buy ol {
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto;
+        .tokenomics p {
             font-size: 18px;
+            color: #cccccc;
             line-height: 1.8;
         }
 
-        .how-to-buy ol li {
-            margin-bottom: 15px;
+        /* Roadmap Section */
+        .roadmap {
+            padding: 80px 40px;
+            background-color: #444444;
+            text-align: center;
+        }
+
+        .roadmap h2 {
+            font-size: 36px;
+            color: #FFD700;
+        }
+
+        .roadmap p {
+            font-size: 18px;
+            color: #cccccc;
+            line-height: 1.8;
         }
 
         /* Community Section */
         .community {
-            padding: 80px 20px;
+            padding: 80px 40px;
+            background-color: #555555;
             text-align: center;
-            color: #ffffff;
         }
 
         .community h2 {
             font-size: 36px;
-            margin-bottom: 20px;
             color: #FFD700;
         }
 
@@ -109,32 +154,78 @@
             color: #cccccc;
         }
 
+        .community a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .community a:hover {
+            color: #ffffff;
+        }
+
         /* Footer */
         footer {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: #111111;
             color: #ffffff;
             text-align: center;
             padding: 20px;
         }
+
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#tokenomics">Tokenomics</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#community">Community</a>
+        </nav>
+    </header>
+
     <!-- Hero Section -->
-    <div class="hero">
+    <div class="hero" id="home">
         <h1>YOU Token $YOU</h1>
         <p>Empowering YOU to take control of your future.</p>
         <div class="cta-buttons">
-            <a href="#how-to-buy">BUY $YOU NOW</a>
             <a href="#community">JOIN THE PACK</a>
         </div>
     </div>
 
-    <!-- How to Buy Section -->
-    <div class="how-to-buy" id="how-to-buy">
-        <h2>How to Buy $YOU</h2>
-        <ol>
-            <li><strong>Set up a wallet:</strong> Download and install a crypto wallet like Phantom.</li>
-            <li><strong>Buy the required base currency:</strong> Purchase the base cryptocurrency (SOL) on an exchange like Coinbase or Binance, then send it to your wallet.</li>
-            <li><strong>Send SOL to get $YOU:</strong> Send SOL (Min. 0.1 SOL Max. 1
+    <!-- About YOU Section -->
+    <div class="about" id="about">
+        <h2>About YOU</h2>
+        <p>YOU is a community-driven project aiming to empower individuals by utilizing decentralized finance (DeFi) and blockchain technology. Our mission is to create a platform where everyone has access to opportunities and financial independence.</p>
+    </div>
+
+    <!-- Tokenomics Section -->
+    <div class="tokenomics" id="tokenomics">
+        <h2>Tokenomics</h2>
+        <p>The $YOU token is designed to drive the YOU ecosystem. With a capped supply and strategic use cases, we ensure its value and utility grow over time, benefiting the entire community.</p>
+        <p>Supply: 1 Billion Tokens</p>
+    </div>
+
+    <!-- Roadmap Section -->
+    <div class="roadmap" id="roadmap">
+        <h2>Roadmap</h2>
+        <p>Our roadmap includes key phases, starting with token launch, community building, and expanding our ecosystem with staking and DeFi integrations.</p>
+    </div>
+
+    <!-- Community Section -->
+    <div class="community" id="community">
+        <h2>Join the Community</h2>
+        <p>Become part of the YOU movement. Join our community on:</p>
+        <p><a href="https://x.com/YOU">Twitter</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 YOU. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
 
