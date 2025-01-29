@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousemove', (e) => {
         cursor.style.left = `${e.clientX}px`;
         cursor.style.top = `${e.clientY}px`;
-        
+
         // Effet de traînée
         setTimeout(() => {
             cursor.style.transform = `translate(-50%, -50%) scale(0.8)`;
@@ -67,35 +67,41 @@ function holographicBorderEffect() {
 // Effet de parallaxe
 function setupParallax() {
     const hero = document.querySelector('.cyber-hero');
-    window.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 20;
-        const y = (e.clientY / window.innerHeight - 0.5) * 20;
-        hero.style.transform = `translate(${x}px, ${y}px)`;
-    });
+    if (hero) {
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            hero.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    }
 }
 
 // Menu mobile amélioré
 const menuToggle = document.getElementById('menu-toggle');
 const menu = document.getElementById('menu');
 
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    menu.classList.toggle('active');
-    
-    // Animation des lignes du hamburger
-    const lines = document.querySelectorAll('.hamburger-line');
-    lines.forEach(line => line.style.background = menu.classList.contains('active') ? '#fff' : '#00ff88');
-});
+if (menuToggle && menu) {
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        menu.classList.toggle('active');
+
+        // Animation des lignes du hamburger
+        const lines = document.querySelectorAll('.hamburger-line');
+        lines.forEach(line => line.style.background = menu.classList.contains('active') ? '#fff' : '#00ff88');
+    });
+}
 
 // Scroll dynamique fluide
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     });
 });
 
@@ -104,11 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
     applyRandomGlitch();
     holographicBorderEffect();
     setupParallax();
-    
+
     // Effet de chargement initial
-    gsap.from('body', { 
-        opacity: 0, 
-        duration: 1.5, 
-        ease: 'power4.out' 
+    gsap.from('body', {
+        opacity: 0,
+        duration: 1.5,
+        ease: 'power4.out'
     });
 });
