@@ -3,89 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOU - Empowering Decentralization</title>
-    <meta name="description" content="$YOU is the token for the YOU ecosystem, driving innovation and community-driven governance.">
+    <title>You - Landing Page</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="you-favicon.png">
+    <script defer src="scripts.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-logo">
-                <a href="/"><img src="you-logo.png" alt="YOU Logo"></a>
+    <header>
+        <div class="menu-container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/tokenomics">Tokenomics</a></li>
-                <li><a href="/roadmap">Roadmap</a></li>
-                <li><a href="/community">Community</a></li>
-                <li><a href="/whitepaper">Whitepaper</a></li>
-                <li><a href="/contact" class="nav-btn">Join Now</a></li>
-            </ul>
-        </nav>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#tokenomics">Tokenomics</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    
+
     <main>
-        <section class="hero">
-            <div class="container">
-                <h1>$YOU Token</h1>
-                <p>Empowering the future of decentralization with cutting-edge technology and community-driven governance.</p>
-                <a href="/join" class="btn-primary">Join the Pack</a>
+        <section id="home" class="hero">
+            <div class="logo-container">
+                <h1 class="neon-text">YOU</h1>
+                <button class="cta-button" id="buy-token">Buy Token</button>
             </div>
         </section>
 
-        <section class="about">
-            <div class="container">
-                <h2>About YOU</h2>
-                <p>A revolutionary force in decentralized finance, combining blockchain innovation with community-led initiatives.</p>
-            </div>
+        <section id="about" class="content-section">
+            <h2>About</h2>
         </section>
 
-        <section class="tokenomics">
-            <div class="container">
-                <h2>Tokenomics</h2>
-                <div class="tokenomics-card">
-                    <div>
-                        <h3>1B</h3>
-                        <p>Total Supply</p>
-                    </div>
-                    <div>
-                        <h3>0%</h3>
-                        <p>Tax</p>
-                    </div>
-                </div>
-            </div>
+        <section id="tokenomics" class="content-section">
+            <h2>Tokenomics</h2>
         </section>
 
-        <section class="roadmap">
-            <div class="container">
-                <h2>Roadmap</h2>
-                <p>Explore our milestones as we bring YOU to life. Check our detailed roadmap to see what's next for the YOU ecosystem.</p>
-                <a href="/roadmap" class="btn-secondary">View Roadmap</a>
-            </div>
-        </section>
-
-        <section class="cta">
-            <div class="container">
-                <h2>Be part of the future</h2>
-                <p>Join the YOU community and help shape the future of decentralized finance.</p>
-                <a href="/join" class="btn-primary">Get Started</a>
-            </div>
+        <section id="roadmap" class="content-section">
+            <h2>Roadmap</h2>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">
-                <a href="/"><img src="you-logo-footer.png" alt="YOU Logo"></a>
-            </div>
-            <ul class="footer-links">
-                <li><a href="/terms">Terms of Use</a></li>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/community">Community</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-            <p>© 2025 YOU Token. All rights reserved.</p>
+    <footer>
+        <div class="cta-footer">
+            <a href="#" class="cta-link">Join Twitter</a>
+            <a href="#" class="cta-link">Join Telegram</a>
         </div>
     </footer>
 </body>
