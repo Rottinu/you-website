@@ -29,7 +29,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px; /* Correction du padding */
+    padding: 15px 30px; /* Ajustement du padding */
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
 }
@@ -47,19 +47,20 @@ header .logo {
     letter-spacing: 2px;
 }
 
-/* Conteneur général pour aligner le menu et le bouton */
+/* Navigation et alignement */
 .menu-container {
     display: flex;
-    flex-grow: 1;
-    justify-content: center; /* Centre le menu */
     align-items: center;
-    margin-left: auto;
+    justify-content: space-between;
+    flex-grow: 1;
+    margin: 0 20px; /* Ajuste les espaces autour du menu */
 }
 
-/* Navigation */
 header nav {
     display: flex;
     gap: 25px;
+    flex-grow: 1;
+    justify-content: center; /* Centre le menu */
 }
 
 header nav a {
@@ -76,7 +77,7 @@ header nav a:hover {
 
 /* Bouton "Join Now" */
 header .cta {
-    margin-left: auto; /* S'assure que le bouton est bien aligné à droite */
+    margin-left: auto;
 }
 
 header .cta a {
