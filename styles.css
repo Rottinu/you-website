@@ -15,13 +15,32 @@ body {
   position: relative;
 }
 
+/* === Scanline Effect === */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 136, 0.05) 0px,
+    rgba(0, 255, 136, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
 /* === Header Styles === */
 .cyber-header {
   position: fixed;
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Répartition égale */
   align-items: center;
   padding: 1.5rem 5%;
   backdrop-filter: blur(12px);
@@ -31,37 +50,23 @@ body {
   z-index: 1000;
 }
 
-/* === Logo === */
+/* === Structure du Header === */
 .logo-glitch {
-  font-size: 2rem;
-  font-weight: 700;
-  text-shadow: 0 0 15px var(--neon-green);
-  position: relative;
-  animation: glitch-anim 2s infinite;
+  flex: 0 1 auto; /* Empêche l'étirement */
 }
 
-.logo-glitch::before {
-  content: "YOU";
-  position: absolute;
-  left: -2px;
-  text-shadow: 2px 0 #ff00c1;
-  clip: rect(24px, 550px, 90px, 0);
-  animation: glitch-anim 3s infinite linear alternate-reverse;
+.cyber-nav {
+  flex: 1; /* Prend l'espace disponible */
+  max-width: 600px; /* Limite la largeur */
+  margin: 0 2rem; /* Espacement latéral */
+}
+
+.cta-container {
+  flex: 0 0 auto; /* Garde sa taille originale */
+  margin-left: auto; /* Pousse à droite */
 }
 
 /* === Navigation === */
-.cyber-nav {
-  display: flex;
-  gap: 2.5rem;
-  flex-grow: 1;
-  justify-content: center;
-}
-
-/* Fixe le problème d'espace et empêche le débordement */
-.cyber-header .cyber-nav {
-  flex-grow: 2;
-}
-
 .nav-link {
   color: #fff !important;
   text-transform: uppercase;
@@ -85,27 +90,39 @@ body {
   width: 100%;
 }
 
-/* === Bouton "Join Now" === */
-.cta {
-  display: flex;
-  justify-content: flex-end; /* Garde le bouton bien à droite */
-  flex-grow: 1; /* Permet de bien équilibrer */
+/* === Cyber Button === */
+.cyber-button {
+  position: relative;
+  padding: 1rem 2.5rem;
+  border: 2px solid var(--neon-green);
+  background: transparent;
+  color: var(--neon-green);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s;
+  overflow: hidden;
 }
 
-.cta a {
-  background: linear-gradient(90deg, #00ff00, #008000);
-  color: #000;
-  padding: 12px 25px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  display: inline-block;
+.cyber-button:hover {
+  box-shadow: 0 0 25px var(--neon-shadow);
+  transform: translateY(-2px);
 }
 
-.cta a:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-green),
+    transparent
+  );
+  animation: button-glow 1.5s infinite;
 }
 
 /* === Hero Section === */
@@ -138,39 +155,29 @@ body {
 }
 
 /* === Mobile Responsive === */
-@media (max-width: 1024px) {
-  .cyber-header {
-    padding: 1rem 4%;
-  }
-
-  .cyber-nav {
-    flex-grow: 1;
-  }
-
-  .cta {
-    flex-grow: 0;
-  }
-}
-
 @media (max-width: 768px) {
   .cyber-header {
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+    flex-wrap: wrap; /* Permet le retour à la ligne */
+    gap: 1rem;
+  }
+
+  .logo-glitch {
+    order: 1; /* Position 1 */
+  }
+
+  .menu-toggle {
+    order: 3; /* Position 3 */
   }
 
   .cyber-nav {
-    flex-direction: column;
-    align-items: center;
+    order: 4; /* Position 4 */
+    width: 100%;
+    margin: 1rem 0 0;
   }
 
-  .cyber-title {
-    font-size: 3rem;
-  }
-
-  .cta {
-    margin-top: 10px; /* Ajustement pour mobile */
+  .cta-container {
+    order: 2; /* Position 2 */
+    margin-left: 0;
   }
 }
-
 
