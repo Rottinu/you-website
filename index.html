@@ -3,122 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOU - Crypto Project</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap">
+    <title>YOU - Empowering Decentralization</title>
+    <meta name="description" content="$YOU is the token for the YOU ecosystem, driving innovation and community-driven governance.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="you-favicon.png">
 </head>
 <body>
-    <!-- Header avec effet de flou -->
-    <header class="cyber-header">
-        <div class="logo-glitch">
-            <span class="glitch-layer">YOU</span>
-            <span class="glitch-layer">YOU</span>
-        </div>
-        
-        <!-- Menu Hamburger version cyberpunk -->
-        <div class="menu-toggle" id="menu-toggle">
-            <div class="hamburger-line"></div>
-            <div class="hamburger-line"></div>
-            <div class="hamburger-line"></div>
-        </div>
-
-        <!-- Navigation avec effet néon -->
-        <nav class="cyber-nav" id="menu">
-            <a href="#home" class="nav-link"><span class="neon-underline">HOME</span></a>
-            <a href="#about" class="nav-link"><span class="neon-underline">ABOUT</span></a>
-            <a href="#tokenomics" class="nav-link"><span class="neon-underline">TOKENOMICS</span></a>
-            <a href="#roadmap" class="nav-link"><span class="neon-underline">ROADMAP</span></a>
-            <a href="#community" class="nav-link"><span class="neon-underline">COMMUNITY</span></a>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="/"><img src="you-logo.png" alt="YOU Logo"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tokenomics">Tokenomics</a></li>
+                <li><a href="/roadmap">Roadmap</a></li>
+                <li><a href="/community">Community</a></li>
+                <li><a href="/whitepaper">Whitepaper</a></li>
+                <li><a href="/contact" class="nav-btn">Join Now</a></li>
+            </ul>
         </nav>
-
-        <!-- CTA avec effet holographique -->
-        <div class="cta-container">
-            <a href="#join" class="cyber-button">
-                <span class="cyber-text">JOIN NOW</span>
-                <div class="cyber-glow"></div>
-            </a>
-        </div>
     </header>
-
-    <!-- Hero Section avec effet de glow -->
-    <section class="cyber-hero" id="home">
-        <div class="particles-overlay"></div>
-        <div class="scanline"></div>
-        <h1 class="cyber-title">
-            <span class="cyber-text-glitch">$YOU</span>
-            <span class="cyber-glitch">TOKEN</span>
-        </h1>
-        <p class="cyber-subtitle">EMPOWERING THE FUTURE OF DECENTRALIZATION</p>
-        
-        <!-- Bouton avec effet de pulsation -->
-        <a href="#community" class="cyber-pulse-button">
-            <span class="pulse-text">JOIN THE PACK</span>
-            <div class="pulse-effect"></div>
-        </a>
-    </section>
-
-    <!-- Sections avec bordure néon -->
-    <section class="cyber-section" id="about">
-        <div class="cyber-border"></div>
-        <h2 class="section-title">ABOUT <span class="neon-highlight">YOU</span></h2>
-        <p class="cyber-text">A revolutionary force in decentralized finance, combining cutting-edge blockchain technology with community-driven governance.</p>
-    </section>
-
-    <section class="cyber-section dark-bg" id="tokenomics">
-        <div class="cyber-border"></div>
-        <h2 class="section-title"><span class="neon-highlight">TOKENOMICS</span></h2>
-        <div class="cyber-grid">
-            <div class="cyber-card">
-                <h3 class="card-title">1B</h3>
-                <p class="card-subtitle">TOTAL SUPPLY</p>
-                <div class="cyber-divider"></div>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>$YOU Token</h1>
+                <p>Empowering the future of decentralization with cutting-edge technology and community-driven governance.</p>
+                <a href="/join" class="btn-primary">Join the Pack</a>
             </div>
-            <div class="cyber-card">
-                <h3 class="card-title">0%</h3>
-                <p class="card-subtitle">TAX</p>
-                <div class="cyber-divider"></div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Roadmap avec timeline cyberpunk -->
-    <section class="cyber-section" id="roadmap">
-        <div class="cyber-border"></div>
-        <h2 class="section-title">ROAD<span class="neon-highlight">MAP</span></h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">Q3 2024</div>
-                <div class="timeline-content">
-                    <h3>ECOSYSTEM LAUNCH</h3>
-                    <p>Decentralized exchange integration and staking platform release</p>
+        <section class="about">
+            <div class="container">
+                <h2>About YOU</h2>
+                <p>A revolutionary force in decentralized finance, combining blockchain innovation with community-led initiatives.</p>
+            </div>
+        </section>
+
+        <section class="tokenomics">
+            <div class="container">
+                <h2>Tokenomics</h2>
+                <div class="tokenomics-card">
+                    <div>
+                        <h3>1B</h3>
+                        <p>Total Supply</p>
+                    </div>
+                    <div>
+                        <h3>0%</h3>
+                        <p>Tax</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Community Section avec effets de liens -->
-    <section class="cyber-section dark-bg" id="community">
-        <div class="cyber-border"></div>
-        <h2 class="section-title">JOIN THE <span class="neon-highlight">PACK</span></h2>
-        <div class="social-grid">
-            <a href="https://x.com/You_Solana" class="social-link" target="_blank">
-                <span class="link-text">TWITTER/X</span>
-                <div class="link-hover"></div>
-            </a>
-            <a href="https://t.me/+8zoG6FTV364yNDAx" class="social-link" target="_blank">
-                <span class="link-text">TELEGRAM</span>
-                <div class="link-hover"></div>
-            </a>
-        </div>
-    </section>
+        <section class="roadmap">
+            <div class="container">
+                <h2>Roadmap</h2>
+                <p>Explore our milestones as we bring YOU to life. Check our detailed roadmap to see what's next for the YOU ecosystem.</p>
+                <a href="/roadmap" class="btn-secondary">View Roadmap</a>
+            </div>
+        </section>
 
-    <!-- Footer avec effet de scanline -->
-    <footer class="cyber-footer">
-        <div class="footer-scanline"></div>
-        <p class="cyber-text-small">© 2024 YOU NETWORK - DECENTRALIZED AND COMMUNITY-OWNED</p>
+        <section class="cta">
+            <div class="container">
+                <h2>Be part of the future</h2>
+                <p>Join the YOU community and help shape the future of decentralized finance.</p>
+                <a href="/join" class="btn-primary">Get Started</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <a href="/"><img src="you-logo-footer.png" alt="YOU Logo"></a>
+            </div>
+            <ul class="footer-links">
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/community">Community</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <p>© 2025 YOU Token. All rights reserved.</p>
+        </div>
     </footer>
-
-    <script src="scripts.js"></script>
 </body>
 </html>
 
