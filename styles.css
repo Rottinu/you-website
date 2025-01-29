@@ -1,118 +1,125 @@
-/* === Global Styles === */
-:root {
-  --neon-green: #00ff88;
-  --neon-shadow: rgba(0, 255, 136, 0.4);
-  --cyber-black: #000207;
-  --cyber-bg: linear-gradient(45deg, #000207 0%, #00111d 100%);
-  --cyber-border: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
 }
 
-/* === Animations === */
-@keyframes glitch-anim {
-  0% { transform: translate(0); opacity: 0.8; }
-  20% { transform: translate(-3px, 3px); opacity: 0.6; }
-  40% { transform: translate(3px, -3px); opacity: 0.4; }
-  60% { transform: translate(-3px, 3px); opacity: 0.6; }
-  80% { transform: translate(3px, -3px); opacity: 0.4; }
-  100% { transform: translate(0); opacity: 0.8; }
+/* Neon Text Effect */
+.neon-text {
+    font-size: 4rem;
+    text-align: center;
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
 }
 
-@keyframes button-glow {
-  0% { opacity: 0; }
-  50% { opacity: 0.5; }
-  100% { opacity: 0; }
+/* Header and Navigation */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
 }
 
-@keyframes text-flicker {
-  0%, 100% { opacity: 0.9; text-shadow: 0 0 30px var(--neon-shadow); }
-  50% { opacity: 0.7; text-shadow: 0 0 50px var(--neon-shadow); }
+.menu-container {
+    position: relative;
 }
 
-/* === Cartes améliorées === */
-.cyber-card {
-  background: rgba(0, 15, 30, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--neon-green);
-  border-radius: 8px;
-  transform-style: preserve-3d;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.cyber-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    var(--neon-green),
-    transparent
-  );
-  animation: button-glow 3s infinite;
-}
-
-.cyber-card:hover {
-  transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
-  box-shadow: 0 0 50px var(--neon-shadow);
-}
-
-/* === Header Mobile amélioré === */
-@media (max-width: 768px) {
-  .cyber-header {
-    padding: 1rem 5%;
-    gap: 0.5rem;
+.hamburger {
+    width: 30px;
+    height: 25px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-  }
+    justify-content: space-between;
+    cursor: pointer;
+}
 
-  .cta-container {
-    margin: 10px auto 0;
+.hamburger span {
     width: 100%;
-    text-align: center;
-  }
-
-  .cyber-nav {
-    margin-top: 1.5rem;
-  }
-
-  .cyber-title {
-    font-size: 2.5rem;
-    line-height: 1.2;
-  }
+    height: 4px;
+    background: #0ff;
+    box-shadow: 0 0 10px #0ff;
+    transition: 0.3s;
 }
 
-/* === Effet Parallaxe === */
-.cyber-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%2300ff88"/></svg>');
-  opacity: 0.1;
-  z-index: -1;
-  animation: parallax 20s linear infinite;
+.nav-menu {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-@keyframes parallax {
-  from { background-position: 0 0; }
-  to { background-position: 100% 100%; }
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
 }
 
-/* === Optimisations Générales === */
-.cyber-button, .cyber-card, .nav-link {
-  will-change: transform, opacity;
+.nav-menu ul li {
+    margin: 10px 0;
 }
 
-.logo-glitch {
-  animation: glitch-anim 2s infinite alternate;
+.nav-menu ul li a {
+    color: #0ff;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cta-button {
+    background: #0ff;
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px #0ff;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    box-shadow: 0 0 20px #0ff;
+}
+
+/* Footer */
+.cta-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.cta-link {
+    color: #0ff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    box-shadow: 0 0 10px #0ff;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.cta-link:hover {
+    box-shadow: 0 0 20px #0ff;
 }
 
