@@ -4,7 +4,8 @@
 :root {
   --neon-cyan: #0ff;
   --bg-dark: #0a0a0a;
-  --nav-bg: rgba(0, 0, 0, 0.9);
+  --nav-bg: rgba(0, 0, 0, 0.95);
+  --header-height: 70px;
 }
 
 /* Base */
@@ -23,6 +24,7 @@ body {
   background: var(--bg-dark);
   color: #fff;
   font-family: 'Poppins', sans-serif;
+  padding-top: var(--header-height);
 }
 
 /* Effets Néon */
@@ -42,10 +44,11 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.9);
   z-index: 1000;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--neon-cyan);
 }
 
 .menu-container {
@@ -60,6 +63,11 @@ header {
   position: relative;
   cursor: pointer;
   z-index: 1001;
+  transition: transform 0.3s;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
 }
 
 .hamburger span {
@@ -72,11 +80,12 @@ header {
 }
 
 .hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 10px; }
+.hamburger span:nth-child(2) { top: 10px; width: 80%; }
 .hamburger span:nth-child(3) { top: 20px; }
 
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(8px, 8px);
+  width: 100%;
 }
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) {
@@ -86,48 +95,67 @@ header {
 /* Navigation */
 .nav-menu {
   position: fixed;
-  top: -100%;
+  top: 0;
   left: 0;
   width: 100%;
+  height: 100vh;
   background: var(--nav-bg);
-  padding: 20px 0;
-  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 30px 20px;
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 999;
+  overflow-y: auto;
 }
 
 .nav-menu.open {
-  top: 70px;
+  transform: translateY(0);
+  top: var(--header-height);
 }
 
 .nav-menu ul {
   list-style: none;
   text-align: center;
+  margin-top: 40px;
 }
 
 .nav-menu ul li {
-  margin: 25px 0;
+  margin: 35px 0;
 }
 
 .nav-menu ul li a {
   color: var(--neon-cyan);
   text-decoration: none;
   font-size: 1.4rem;
-  padding: 10px 20px;
-  transition: text-shadow 0.3s;
+  padding: 12px 25px;
+  transition: all 0.3s;
+  display: inline-block;
+  position: relative;
 }
 
-.nav-menu ul li a:hover {
-  text-shadow: 0 0 10px var(--neon-cyan);
+.nav-menu ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background: var(--neon-cyan);
+  transition: all 0.3s;
+}
+
+.nav-menu ul li a:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 /* Sections */
 .hero {
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 80px;
+  padding: 20px;
 }
 
 .content-section {
@@ -145,28 +173,17 @@ header {
   font-size: 2.5rem;
   margin-bottom: 30px;
   color: var(--neon-cyan);
+  text-shadow: 0 0 15px var(--neon-cyan);
 }
 
-/* Boutons */
-.cta-button {
-  background: var(--neon-cyan);
-  color: #000;
-  border: none;
-  padding: 15px 40px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 30px;
-  transition: 
-    box-shadow 0.3s,
-    transform 0.3s;
-}
-
+/* Footer */
 .cta-footer {
   display: flex;
   justify-content: center;
   gap: 30px;
   padding: 40px 20px;
   background: var(--nav-bg);
+  flex-wrap: wrap;
 }
 
 .cta-link {
@@ -175,28 +192,52 @@ header {
   padding: 15px 30px;
   border: 2px solid var(--neon-cyan);
   border-radius: 30px;
-  transition: 
-    box-shadow 0.3s,
-    transform 0.3s;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.cta-link:hover::before {
+  left: 100%;
 }
 
 /* Animations */
 @keyframes neon-pulse {
   from { opacity: 0.8; }
-  to { opacity: 1; text-shadow: 0 0 20px var(--neon-cyan); }
+  to { opacity: 1; text-shadow: 0 0 25px var(--neon-cyan); }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .neon-text {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   
-  .content-section h2 {
-    font-size: 2rem;
+  .nav-menu ul li {
+    margin: 25px 0;
   }
   
-  .cta-button {
-    padding: 12px 30px;
+  .nav-menu ul li a {
+    font-size: 1.2rem;
+  }
+  
+  .cta-link {
+    padding: 12px 25px;
   }
 }
