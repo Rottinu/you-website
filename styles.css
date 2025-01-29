@@ -44,13 +44,11 @@ header {
 }
 
 .hamburger span {
-    display: block;
     width: 100%;
     height: 4px;
-    background: #0ff; /* Neon effect color */
-    margin: 4px 0;
-    border-radius: 2px;
-    box-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    background: #0ff;
+    box-shadow: 0 0 10px #0ff;
+    transition: 0.3s;
 }
 
 .nav-menu {
@@ -128,5 +126,27 @@ header {
 
 .cta-link:hover {
     box-shadow: 0 0 20px #0ff;
+}
+
+/* Sections Styling */
+.content-section {
+    padding: 100px 20px;
+    text-align: center;
+    background: #111;
+    color: #fff;
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+}
+
+.content-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #ddd;
 }
 
