@@ -1,33 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Elements DOM
+  // Éléments DOM
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
   const navLinks = document.querySelectorAll(".nav-menu ul li a");
+  const ctaButtons = document.querySelectorAll(".cta-button, .cta-link");
 
-  // Toggle Menu
-  hamburger.addEventListener("click", () => {
+  // Gestion du menu
+  const toggleMenu = () => {
     hamburger.classList.toggle("active");
     navMenu.classList.toggle("open");
-  });
+  };
 
-  // Fermeture Menu au Scroll
-  window.addEventListener("scroll", () => {
-    if (navMenu.classList.contains("open")) {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("open");
+  // Fermeture menu
+  const closeMenu = () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("open");
+  };
+
+  // Clic sur hamburger
+  hamburger.addEventListener("click", toggleMenu);
+
+  // Clic extérieur
+  document.addEventListener("click", (e) => {
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+      closeMenu();
     }
   });
 
-  // Smooth Scroll
+  // Navigation
   navLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const targetId = link.getAttribute("href").substring(1);
       const targetSection = document.getElementById(targetId);
 
+      closeMenu();
+
       if (targetSection) {
         window.scrollTo({
-          top: targetSection.offsetTop - 80,
+          top: targetSection.offsetTop - 70,
           behavior: "smooth"
         });
       }
@@ -37,41 +48,44 @@ document.addEventListener("DOMContentLoaded", () => {
   // Animations GSAP
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animation Hero
+  // Animation principale
   gsap.from(".neon-text", {
-    duration: 2,
+    duration: 1.5,
     y: -100,
     opacity: 0,
-    ease: "power4.out"
+    ease: "power4.out",
+    delay: 0.3
   });
 
   gsap.from(".cta-button", {
-    duration: 1.5,
+    duration: 1.2,
     scale: 0,
     opacity: 0,
     ease: "elastic.out(1, 0.5)",
-    delay: 0.5
+    delay: 0.8
   });
 
-  // Animations Sections
-  gsap.utils.toArray(".content-section").forEach(section => {
+  // Animations sections
+  gsap.utils.toArray(".content-section").forEach((section, i) => {
     gsap.from(section, {
       scrollTrigger: {
         trigger: section,
-        start: "top center"
+        start: "top center+=100",
+        toggleActions: "play none none reverse"
       },
       opacity: 0,
-      y: 100,
-      duration: 1
+      y: 80,
+      duration: 1,
+      delay: i * 0.2
     });
   });
 
-  // Hover Effects
-  document.querySelectorAll(".cta-button, .cta-link").forEach(btn => {
+  // Effets hover
+  ctaButtons.forEach(btn => {
     btn.addEventListener("mouseenter", () => {
       gsap.to(btn, {
         duration: 0.3,
-        boxShadow: `0 0 20px ${getComputedStyle(btn).color}`,
+        boxShadow: `0 0 25px ${getComputedStyle(btn).color}`,
         scale: 1.05
       });
     });
@@ -83,5 +97,16 @@ document.addEventListener("DOMContentLoaded", () => {
         scale: 1
       });
     });
+  });
+
+  // Fermeture au scroll
+  let lastScroll = 0;
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (Math.abs(currentScroll - lastScroll) > 50) {
+      closeMenu();
+      lastScroll = currentScroll;
+    }
   });
 });
