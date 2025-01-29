@@ -15,41 +15,23 @@ body {
   position: relative;
 }
 
-/* === Scanline Effect === */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 255, 136, 0.05) 0px,
-    rgba(0, 255, 136, 0.05) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 999;
-}
-
 /* === Header Styles === */
 .cyber-header {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1.5rem 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
   backdrop-filter: blur(12px);
   background: rgba(0, 8, 15, 0.85);
   border-bottom: 1px solid var(--neon-green);
   box-shadow: 0 0 30px var(--neon-shadow);
   z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
+/* === Logo === */
 .logo-glitch {
   font-size: 2rem;
   font-weight: 700;
@@ -72,6 +54,8 @@ body::after {
   display: flex;
   gap: 2.5rem;
   position: relative;
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .nav-link {
@@ -97,39 +81,26 @@ body::after {
   width: 100%;
 }
 
-/* === Cyber Button === */
-.cyber-button {
-  position: relative;
-  padding: 1rem 2.5rem;
-  border: 2px solid var(--neon-green);
-  background: transparent;
-  color: var(--neon-green);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.3s;
-  overflow: hidden;
+/* === Bouton "Join Now" === */
+.cta {
+  margin-left: auto; /* Pousse le bouton à droite */
+  display: flex;
 }
 
-.cyber-button:hover {
-  box-shadow: 0 0 25px var(--neon-shadow);
-  transform: translateY(-2px);
+.cta a {
+  background: linear-gradient(90deg, #00ff00, #008000);
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
-.cyber-button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--neon-green),
-    transparent
-  );
-  animation: button-glow 1.5s infinite;
+.cta a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
 }
 
 /* === Hero Section === */
@@ -164,8 +135,9 @@ body::after {
 /* === Mobile Responsive === */
 @media (max-width: 768px) {
   .cyber-header {
-    padding: 1rem;
     flex-direction: column;
+    align-items: center;
+    padding: 1rem;
   }
 
   .cyber-nav {
@@ -177,33 +149,8 @@ body::after {
     font-size: 3rem;
   }
 
-  /* Bouton "Join Now" */
-.cta {
-    margin-left: auto; /* Pousse le bouton à droite sans déborder */
-    padding-right: 20px; /* Ajoute un peu d'espace à droite */
-}
-
-.cta a {
-    background: linear-gradient(90deg, #00ff00, #008000);
-    color: #000;
-    padding: 12px 25px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.cta a:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-}
-
-/* Ajustement global du header */
-.cyber-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px; /* Ajuste le padding pour équilibrer */
+  .cta {
+    margin-top: 10px; /* Ajustement pour mobile */
+  }
 }
 
