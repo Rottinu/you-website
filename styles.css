@@ -29,7 +29,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 40px; /* Augmente l’espace à gauche et à droite */
+    padding: 10px 20px;
     transition: all 0.3s ease-in-out;
 }
 
@@ -45,10 +45,9 @@ header .logo {
     letter-spacing: 2px;
 }
 
-/* Navigation */
 header nav {
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 header nav a {
@@ -63,24 +62,18 @@ header nav a:hover {
     border-bottom: 2px solid #00ff00;
 }
 
-/* Bouton "Join Now" */
 header .cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: auto; /* Permet au bouton d’être à droite */
-    margin-right: 20px; /* Éloigne du bord droit */
+    margin-left: auto;
 }
 
 header .cta a {
     background: linear-gradient(90deg, #00ff00, #008000);
     color: #000;
-    padding: 12px 25px; /* Ajuste la taille du bouton */
+    padding: 10px 20px;
     border-radius: 20px;
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
-    display: inline-block;
 }
 
 header .cta a:hover {
@@ -106,29 +99,17 @@ header .cta a:hover {
     color: #cccccc;
 }
 
-/* Boutons Call to Action */
-.cta-buttons {
-    margin-top: 20px;
-}
-
 .cta-buttons a {
     padding: 10px 20px;
     background: #00ff00;
     color: #000;
     border-radius: 10px;
     text-decoration: none;
-    font-weight: bold;
 }
 
 .cta-buttons a:hover {
     background: #008000;
     color: #fff;
-}
-
-/* Sections générales */
-section {
-    padding: 100px 20px;
-    text-align: center;
 }
 
 /* Footer */
@@ -138,4 +119,3 @@ footer {
     background: #111;
     color: #fff;
 }
-
