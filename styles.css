@@ -2,111 +2,100 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #111111; /* Couleur de fond sombre */
-    color: #ffffff; /* Texte blanc */
-    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Fond noir profond */
+    color: #fff; /* Texte blanc */
+    font-family: 'Poppins', sans-serif; /* Typographie moderne */
     overflow-x: hidden; /* Empêche le défilement horizontal */
-}
-
-h1, h2, h3, p {
-    margin: 0;
-    padding: 0;
 }
 
 /* ---------------------------------- Hero Section ---------------------------------- */
 .hero {
     text-align: center;
-    padding: 150px 20px;
-    color: #ffffff;
+    padding: 180px 20px;
+    color: #fff;
 }
 
 .hero h1 {
-    font-size: 60px;
-    font-weight: bold;
+    font-size: 65px;
+    font-weight: 700;
     margin-bottom: 20px;
     letter-spacing: 2px;
+    color: #00FF00; /* Texte néon vert */
+    text-shadow: 0px 0px 20px rgba(0, 255, 0, 0.8);
 }
 
 .hero p {
-    font-size: 20px;
-    margin-bottom: 40px;
+    font-size: 22px;
     font-weight: lighter;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+    color: #cccccc;
 }
 
+/* ---------------------------------- Call-To-Action (CTA) Buttons ---------------------------------- */
 .hero .cta-buttons a {
     display: inline-block;
     margin: 10px;
     padding: 15px 30px;
-    background-color: #6A0DAD; /* Purple */
-    color: #ffffff;
+    background: linear-gradient(90deg, #00FF00, #008000);
+    color: #000;
     font-size: 18px;
     font-weight: bold;
     border-radius: 5px;
     text-decoration: none;
     transition: 0.3s;
+    box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.6);
 }
 
 .hero .cta-buttons a:hover {
-    background-color: #FFD700; /* Yellow */
-    color: #000000;
+    background: #fff;
+    color: #000;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
 }
 
 /* ---------------------------------- Section Styles ---------------------------------- */
 .section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     text-align: center;
 }
 
 .section h2 {
-    font-size: 36px;
+    font-size: 38px;
     margin-bottom: 20px;
     font-weight: bold;
+    color: #00FF00;
+    text-shadow: 0px 0px 15px rgba(0, 255, 0, 0.8);
 }
 
 .section p {
-    font-size: 18px;
+    font-size: 20px;
     color: #cccccc;
     line-height: 1.8;
-}
-
-/* ---------------------------------- Animations ---------------------------------- */
-.fade-in {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.fade-in.visible {
-    opacity: 1;
-}
-
-/* ---------------------------------- Parallax Effect ---------------------------------- */
-.parallax {
-    background-image: url('image.jpg');
-    height: 500px;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    transition: background-position 0.3s ease;
+    max-width: 800px;
+    margin: auto;
 }
 
 /* ---------------------------------- How to Buy Section ---------------------------------- */
 .how-to-buy {
-    padding: 80px 20px;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #ffffff;
+    padding: 100px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-top: 1px solid #00FF00;
+    border-bottom: 1px solid #00FF00;
 }
 
 .how-to-buy h2 {
-    font-size: 36px;
+    font-size: 38px;
     margin-bottom: 20px;
-    color: #FFD700; /* Yellow */
+    color: #00FF00;
 }
 
 .how-to-buy ol {
     text-align: left;
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.8;
 }
 
@@ -114,28 +103,59 @@ h1, h2, h3, p {
     margin-bottom: 15px;
 }
 
+/* ---------------------------------- Community Section ---------------------------------- */
+.community {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 80px 20px;
+    border-radius: 10px;
+}
+
+.community a {
+    color: #00FF00;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.community a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
 /* ---------------------------------- Footer Section ---------------------------------- */
 footer {
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #ffffff;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
     text-align: center;
     padding: 20px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 footer a {
-    color: #FFD700; /* Yellow */
+    color: #00FF00;
     text-decoration: none;
 }
 
 footer a:hover {
-    color: #6A0DAD; /* Purple */
+    color: #fff;
 }
 
-/* ---------------------------------- Media Queries for Responsiveness ---------------------------------- */
+/* ---------------------------------- Scroll Animations ---------------------------------- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------------------------------- Responsive Design ---------------------------------- */
 @media screen and (max-width: 768px) {
     .hero h1 {
-        font-size: 40px;
+        font-size: 45px;
     }
 
     .hero p {
@@ -156,36 +176,7 @@ footer a:hover {
     }
 
     .how-to-buy ol {
-        font-size: 16px;
+        font-size: 18px;
     }
-}
-
-/* ---------------------------------- Scroll Animations ---------------------------------- */
-body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.fade-in {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.fade-in.visible {
-    opacity: 1;
-}
-
-.window-width {
-    position: relative;
-    margin: auto;
-    max-width: 1200px;
-}
-
-.parallax {
-    background-image: url('path/to/your/image.jpg');
-    height: 100vh;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
 }
 
