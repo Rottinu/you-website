@@ -279,3 +279,26 @@ body::after {
     font-size: 3rem;
   }
 }
+/* Curseur cyberpunk */
+.cyber-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00ff88;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.3s, opacity 0.3s;
+    box-shadow: 0 0 15px #00ff88;
+}
+
+.cursor-hover {
+    transform: scale(3);
+    background: rgba(0, 255, 136, 0.2);
+}
+
+/* Animation GSAP */
+body {
+    opacity: 0;
+}
