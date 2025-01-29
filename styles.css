@@ -29,7 +29,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 50px; /* Ajustement du padding pour équilibre */
+    padding: 15px 15px; /* Ajustement du padding pour équilibre */
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
 }
@@ -78,7 +78,7 @@ header nav a:hover {
 
 /* Correction du bouton "Join Now" */
 header .cta {
-    margin-left: auto;
+    margin-left: 25px;
     margin-right: 0; /* Empêche le bouton de bouger */
 }
 
