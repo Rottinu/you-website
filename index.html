@@ -4,62 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YOU - Crypto Project</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header avec effet de flou -->
+    <header class="cyber-header">
+        <div class="logo-glitch">YOU</div>
+        
+        <!-- Menu Hamburger version cyberpunk -->
+        <div class="menu-toggle" id="menu-toggle">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
 
-    <!-- Header Section -->
-    <header>
-        <div class="logo">YOU</div>
-        <div class="menu-toggle" id="menu-toggle">☰</div> <!-- Menu Hamburger -->
-        <nav class="menu-container" id="menu">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#tokenomics">Tokenomics</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#community">Community</a>
+        <!-- Navigation avec effet néon -->
+        <nav class="cyber-nav" id="menu">
+            <a href="#home" class="nav-link"><span class="neon-underline">HOME</span></a>
+            <a href="#about" class="nav-link"><span class="neon-underline">ABOUT</span></a>
+            <a href="#tokenomics" class="nav-link"><span class="neon-underline">TOKENOMICS</span></a>
+            <a href="#roadmap" class="nav-link"><span class="neon-underline">ROADMAP</span></a>
+            <a href="#community" class="nav-link"><span class="neon-underline">COMMUNITY</span></a>
         </nav>
-        <div class="cta">
-            <a href="#join">Join Now</a>
+
+        <!-- CTA avec effet holographique -->
+        <div class="cta-container">
+            <a href="#join" class="cyber-button">
+                <span class="cyber-text">JOIN NOW</span>
+                <div class="cyber-glow"></div>
+            </a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>YOU Token $YOU</h1>
-        <p>Empowering YOU to take control of your future.</p>
-        <div class="cta-buttons">
-            <a href="#community">JOIN THE PACK</a>
+    <!-- Hero Section avec effet de glow -->
+    <section class="cyber-hero" id="home">
+        <div class="scanline"></div>
+        <h1 class="cyber-title">
+            <span class="cyber-text-glitch">$YOU</span>
+            <span class="cyber-glitch">TOKEN</span>
+        </h1>
+        <p class="cyber-subtitle">EMPOWERING THE FUTURE OF DECENTRALIZATION</p>
+        
+        <!-- Bouton avec effet de pulsation -->
+        <a href="#community" class="cyber-pulse-button">
+            <span class="pulse-text">JOIN THE PACK</span>
+            <div class="pulse-effect"></div>
+        </a>
+    </section>
+
+    <!-- Sections avec bordure néon -->
+    <section class="cyber-section" id="about">
+        <div class="cyber-border"></div>
+        <h2 class="section-title">ABOUT <span class="neon-highlight">YOU</span></h2>
+        <p class="cyber-text">A revolutionary force in decentralized finance, combining cutting-edge blockchain technology with community-driven governance.</p>
+    </section>
+
+    <section class="cyber-section dark-bg" id="tokenomics">
+        <div class="cyber-border"></div>
+        <h2 class="section-title"><span class="neon-highlight">TOKENOMICS</span></h2>
+        <div class="cyber-grid">
+            <div class="cyber-card">
+                <h3 class="card-title">1B</h3>
+                <p class="card-subtitle">TOTAL SUPPLY</p>
+                <div class="cyber-divider"></div>
+            </div>
+            <div class="cyber-card">
+                <h3 class="card-title">0%</h3>
+                <p class="card-subtitle">TAX</p>
+                <div class="cyber-divider"></div>
+            </div>
         </div>
     </section>
 
-    <!-- Other Sections -->
-    <section class="about" id="about">
-        <h2>About YOU</h2>
-        <p>YOU is a community-driven project aiming to empower individuals by utilizing decentralized finance (DeFi) and blockchain technology. Our mission is to create a platform where everyone has access to opportunities and financial independence.</p>
+    <!-- Roadmap avec timeline cyberpunk -->
+    <section class="cyber-section" id="roadmap">
+        <div class="cyber-border"></div>
+        <h2 class="section-title">ROAD<span class="neon-highlight">MAP</span></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Q3 2024</div>
+                <div class="timeline-content">
+                    <h3>ECOSYSTEM LAUNCH</h3>
+                    <p>Decentralized exchange integration and staking platform release</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="tokenomics" id="tokenomics">
-        <h2>Tokenomics</h2>
-        <p>The $YOU token is designed to drive the YOU ecosystem. With a capped supply and strategic use cases, we ensure its value and utility grow over time, benefiting the entire community.</p>
-        <p>Supply: 1 Billion Tokens</p>
+    <!-- Community Section avec effets de liens -->
+    <section class="cyber-section dark-bg" id="community">
+        <div class="cyber-border"></div>
+        <h2 class="section-title">JOIN THE <span class="neon-highlight">PACK</span></h2>
+        <div class="social-grid">
+            <a href="https://x.com/You_Solana" class="social-link" target="_blank">
+                <span class="link-text">TWITTER/X</span>
+                <div class="link-hover"></div>
+            </a>
+            <a href="https://t.me/+8zoG6FTV364yNDAx" class="social-link" target="_blank">
+                <span class="link-text">TELEGRAM</span>
+                <div class="link-hover"></div>
+            </a>
+        </div>
     </section>
 
-    <section class="roadmap" id="roadmap">
-        <h2>Roadmap</h2>
-        <p>Our roadmap includes key phases, starting with token launch, community building, and expanding our ecosystem with staking and DeFi integrations.</p>
-    </section>
-
-    <section class="community" id="community">
-        <h2>Join the Community</h2>
-        <p>Become part of the YOU movement. Join our community on:</p>
-        <p><a href="https://x.com/You_Solana" target="_blank">Twitter</a></p>
-        <p><a href="https://t.me/+8zoG6FTV364yNDAx" target="_blank">Telegram</a></p>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 YOU. All rights reserved.</p>
+    <!-- Footer avec effet de scanline -->
+    <footer class="cyber-footer">
+        <div class="footer-scanline"></div>
+        <p class="cyber-text-small">© 2024 YOU NETWORK - DECENTRALIZED AND COMMUNITY-OWNED</p>
     </footer>
 
     <script src="scripts.js"></script>
