@@ -67,6 +67,9 @@
   .cyber-header {
     padding: 1rem 5%;
     gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .cta-container {
@@ -112,3 +115,4 @@
 .logo-glitch {
   animation: glitch-anim 2s infinite alternate;
 }
+
