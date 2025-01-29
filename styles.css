@@ -1,223 +1,79 @@
-/* ---------------------------------- General Styles ---------------------------------- */
-* {
-    box-sizing: border-box;
-    transition: all 0.3s ease-in-out; /* Transitions fluides */
-}
-
+/* General Styles */
 body {
     margin: 0;
     padding: 0;
-    background-color: #111; /* Fond noir profond légèrement atténué */
+    background-color: #111; /* Fond noir */
     color: #fff; /* Texte blanc */
-    font-family: 'Poppins', sans-serif; /* Typographie moderne */
-    overflow-x: hidden; /* Empêche le défilement horizontal */
+    font-family: Arial, sans-serif;
 }
 
-/* Suppression des marges pour les sections globales */
-section {
-    margin: 0;
-    padding: 0;
+/* Header Section */
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* Ajout d'une règle pour les images */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-/* ---------------------------------- Hero Section ---------------------------------- */
+header a {
+    color: #00ff00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ffd700;
+}
+
+/* Hero Section */
 .hero {
     text-align: center;
-    padding: 180px 20px;
-    color: #fff;
-    background-color: #000; /* Assure un fond même si aucune image n'est ajoutée */
+    padding: 150px 20px;
+    background-color: #333;
+    color: #00ff00;
 }
 
 .hero h1 {
-    font-size: 65px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    color: #00FF00; /* Texte néon vert */
-    text-shadow: 0px 0px 20px rgba(0, 255, 0, 0.8);
+    font-size: 2.5rem;
 }
 
 .hero p {
-    font-size: 22px;
-    font-weight: lighter;
-    max-width: 700px;
-    margin: 0 auto 40px auto;
-    line-height: 1.6;
-    color: #cccccc;
+    font-size: 1.2rem;
+    margin: 20px 0;
 }
 
-/* ---------------------------------- Call-To-Action (CTA) Buttons ---------------------------------- */
 .hero .cta-buttons a {
     display: inline-block;
-    margin: 10px;
-    padding: 15px 30px;
-    background: linear-gradient(90deg, #00FF00, #008000);
+    background-color: #00ff00;
     color: #000;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 50px; /* Coins arrondis arrondis */
+    padding: 10px 20px;
+    border-radius: 5px;
     text-decoration: none;
-    box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.6);
-    transition: all 0.3s ease-in-out;
 }
 
 .hero .cta-buttons a:hover {
-    background: #fff;
-    color: #000;
-    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.8);
-    transform: scale(1.1); /* Effet d’agrandissement au survol */
+    background-color: #ffd700;
 }
 
-/* ---------------------------------- Section Styles ---------------------------------- */
+/* Section Styles */
 .section {
-    padding: 80px 20px;
+    padding: 50px 20px;
     text-align: center;
 }
 
-.section h2 {
-    font-size: 38px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #00FF00;
-    text-shadow: 0px 0px 15px rgba(0, 255, 0, 0.8);
-}
-
-.section p {
-    font-size: 20px;
-    color: #cccccc;
-    line-height: 1.8;
-    max-width: 800px;
-    margin: auto;
-}
-
-/* ---------------------------------- How to Buy Section ---------------------------------- */
-.how-to-buy {
-    padding: 100px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
-    border-top: 1px solid #00FF00;
-    border-bottom: 1px solid #00FF00;
-}
-
-.how-to-buy h2 {
-    font-size: 38px;
-    margin-bottom: 20px;
-    color: #00FF00;
-}
-
-.how-to-buy ol {
-    text-align: left;
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 20px;
-    line-height: 1.8;
-}
-
-.how-to-buy ol li {
-    margin-bottom: 15px;
-}
-
-/* ---------------------------------- Community Section ---------------------------------- */
-.community {
-    background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(50, 50, 50, 0.8));
-    padding: 80px 20px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.4); /* Halo vert */
-}
-
-.community h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #00FF00;
-    text-shadow: 0px 0px 10px rgba(0, 255, 0, 0.7);
-}
-
-.community a {
-    color: #00FF00;
-    font-weight: bold;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.community a:hover {
-    text-decoration: underline;
-    color: #fff;
-    transform: scale(1.1);
-}
-
-/* ---------------------------------- Footer Section ---------------------------------- */
 footer {
-    background: rgba(0, 0, 0, 0.9);
+    background-color: #222;
     color: #fff;
-    text-align: center;
     padding: 20px;
-    font-size: 16px;
-}
-
-footer a {
-    color: #00FF00;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: #fff;
-}
-
-/* ---------------------------------- Scroll Animations ---------------------------------- */
-.fade-in {
-    opacity: 0;
-    transform: translateY(50px);
-    animation: fadeIn 1s ease-in-out forwards; /* Ajout d’une animation keyframe */
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ---------------------------------- Responsive Design ---------------------------------- */
-@media screen and (max-width: 768px) {
-    body {
-        padding: 0 10px; /* Espacement réduit */
-    }
-
-    .hero h1 {
-        font-size: 45px;
-    }
-
-    .hero p {
-        font-size: 18px;
-    }
-
-    .cta-buttons a {
-        font-size: 14px;
-        padding: 10px 20px;
-    }
-
-    .section h2 {
-        font-size: 28px;
-    }
-
-    .section p {
-        font-size: 16px;
-    }
-
-    .how-to-buy ol {
-        font-size: 16px;
-    }
+    text-align: center;
 }
 
 
