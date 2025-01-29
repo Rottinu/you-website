@@ -65,15 +65,15 @@ function holographicBorderEffect() {
 }
 
 // Effet de parallaxe
-function setupParallax() {
-    const hero = document.querySelector('.cyber-hero');
-    if (hero) {
-        window.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+function initParallax() {
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 30;
+        const y = (e.clientY / window.innerHeight - 0.5) * 30;
+        const hero = document.querySelector('.cyber-hero');
+        if (hero) {
             hero.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    }
+        }
+    });
 }
 
 // Menu mobile amélioré
@@ -107,9 +107,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Initialisation des effets
 document.addEventListener('DOMContentLoaded', () => {
+    initParallax();
     applyRandomGlitch();
     holographicBorderEffect();
-    setupParallax();
 
     // Effet de chargement initial
     gsap.from('body', {
@@ -118,3 +118,4 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power4.out'
     });
 });
+
