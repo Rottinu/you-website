@@ -1,33 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Éléments DOM
+  // ÉLÉMENTS DOM
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
   const navLinks = document.querySelectorAll(".nav-menu ul li a");
-  const ctaButtons = document.querySelectorAll(".cta-button, .cta-link");
+  const ctaButton = document.getElementById("buy-token");
+  const sections = document.querySelectorAll(".content-section");
+  
+  // ÉTATS
+  let isMenuOpen = false;
+  let lastScroll = 0;
 
-  // Gestion du menu
-  const toggleMenu = () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("open");
-  };
-
-  // Fermeture menu
+  // FERMETURE MENU
   const closeMenu = () => {
     hamburger.classList.remove("active");
     navMenu.classList.remove("open");
+    isMenuOpen = false;
   };
 
-  // Clic sur hamburger
+  // TOGGLE MENU
+  const toggleMenu = () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("open");
+    isMenuOpen = !isMenuOpen;
+  };
+
+  // GESTION CLIC HAMBURGER
   hamburger.addEventListener("click", toggleMenu);
 
-  // Clic extérieur
+  // GESTION CLIC EXTÉRIEUR
   document.addEventListener("click", (e) => {
-    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+    if (!hamburger.contains(e.target) && 
+        !navMenu.contains(e.target) && 
+        isMenuOpen) {
       closeMenu();
     }
   });
 
-  // Navigation
+  // GESTION SCROLL
+  window.addEventListener("scroll", () => {
+    // Fermeture menu au scroll
+    if (isMenuOpen) closeMenu();
+    
+    // Animation au scroll
+    const currentScroll = window.pageYOffset;
+    const scrollDelta = Math.abs(currentScroll - lastScroll);
+    
+    if (scrollDelta > 50) {
+      lastScroll = currentScroll;
+    }
+  });
+
+  // NAVIGATION SMOOTH
   navLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -45,43 +68,55 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Animations GSAP
+  // INITIALISATION GSAP
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animation principale
+  // ANIMATIONS PRINCIPALES
   gsap.from(".neon-text", {
-    duration: 1.5,
-    y: -100,
+    duration: 1.8,
+    y: -80,
     opacity: 0,
     ease: "power4.out",
-    delay: 0.3
+    delay: 0.4
   });
 
   gsap.from(".cta-button", {
-    duration: 1.2,
-    scale: 0,
+    duration: 1.4,
+    scale: 0.7,
     opacity: 0,
-    ease: "elastic.out(1, 0.5)",
-    delay: 0.8
+    ease: "elastic.out(1.2, 0.4)",
+    delay: 1
   });
 
-  // Animations sections
-  gsap.utils.toArray(".content-section").forEach((section, i) => {
+  // ANIMATIONS SECTIONS
+  sections.forEach((section, index) => {
     gsap.from(section, {
       scrollTrigger: {
         trigger: section,
-        start: "top center+=100",
+        start: "top center+=150",
         toggleActions: "play none none reverse"
       },
       opacity: 0,
-      y: 80,
-      duration: 1,
-      delay: i * 0.2
+      y: 60,
+      duration: 1.2,
+      delay: index * 0.15
+    });
+
+    gsap.from(section.querySelectorAll("p"), {
+      scrollTrigger: {
+        trigger: section,
+        start: "top center+=200"
+      },
+      opacity: 0,
+      y: 30,
+      stagger: 0.2,
+      duration: 0.8,
+      delay: 0.3
     });
   });
 
-  // Effets hover
-  ctaButtons.forEach(btn => {
+  // EFFETS HOVER
+  document.querySelectorAll(".cta-button, .cta-link").forEach(btn => {
     btn.addEventListener("mouseenter", () => {
       gsap.to(btn, {
         duration: 0.3,
@@ -93,20 +128,18 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("mouseleave", () => {
       gsap.to(btn, {
         duration: 0.3,
-        boxShadow: "0 0 10px #0ff",
+        boxShadow: "0 0 15px #0ff",
         scale: 1
       });
     });
   });
 
-  // Fermeture au scroll
-  let lastScroll = 0;
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (Math.abs(currentScroll - lastScroll) > 50) {
-      closeMenu();
-      lastScroll = currentScroll;
-    }
+  // GESTION BOUTON BUY
+  ctaButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.open("https://votre-lien-d-achat.xyz", "_blank");
   });
+
+  // INITIALISATION FINALE
+  gsap.set([".cta-button", sections], { visibility: "visible" });
 });
