@@ -53,9 +53,13 @@ body {
 .cyber-nav {
   display: flex;
   gap: 2.5rem;
-  position: relative;
   flex-grow: 1;
   justify-content: center;
+}
+
+/* Fixe le problème d'espace et empêche le débordement */
+.cyber-header .cyber-nav {
+  flex-grow: 2;
 }
 
 .nav-link {
@@ -83,8 +87,9 @@ body {
 
 /* === Bouton "Join Now" === */
 .cta {
-  margin-left: auto; /* Pousse le bouton à droite */
   display: flex;
+  justify-content: flex-end; /* Garde le bouton bien à droite */
+  flex-grow: 1; /* Permet de bien équilibrer */
 }
 
 .cta a {
@@ -133,6 +138,20 @@ body {
 }
 
 /* === Mobile Responsive === */
+@media (max-width: 1024px) {
+  .cyber-header {
+    padding: 1rem 4%;
+  }
+
+  .cyber-nav {
+    flex-grow: 1;
+  }
+
+  .cta {
+    flex-grow: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .cyber-header {
     flex-direction: column;
@@ -153,4 +172,5 @@ body {
     margin-top: 10px; /* Ajustement pour mobile */
   }
 }
+
 
