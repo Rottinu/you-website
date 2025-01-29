@@ -53,7 +53,7 @@ header {
 
 .nav-menu {
     position: absolute;
-    top: 50px;
+    top: 60px;
     left: 0;
     background: rgba(0, 0, 0, 0.9);
     display: none;
@@ -62,9 +62,14 @@ header {
     border-radius: 5px;
 }
 
+.nav-menu.open {
+    display: flex;
+}
+
 .nav-menu ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .nav-menu ul li {
