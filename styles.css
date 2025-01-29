@@ -7,177 +7,108 @@
   --cyber-border: linear-gradient(90deg, transparent, var(--neon-green), transparent);
 }
 
-body {
-  background: var(--cyber-bg);
-  color: #ffffff;
-  font-family: 'Space Grotesk', sans-serif;
-  overflow-x: hidden;
+/* === Animations === */
+@keyframes glitch-anim {
+  0% { transform: translate(0); opacity: 0.8; }
+  20% { transform: translate(-3px, 3px); opacity: 0.6; }
+  40% { transform: translate(3px, -3px); opacity: 0.4; }
+  60% { transform: translate(-3px, 3px); opacity: 0.6; }
+  80% { transform: translate(3px, -3px); opacity: 0.4; }
+  100% { transform: translate(0); opacity: 0.8; }
+}
+
+@keyframes button-glow {
+  0% { opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
+@keyframes text-flicker {
+  0%, 100% { opacity: 0.9; text-shadow: 0 0 30px var(--neon-shadow); }
+  50% { opacity: 0.7; text-shadow: 0 0 50px var(--neon-shadow); }
+}
+
+/* === Cartes améliorées === */
+.cyber-card {
+  background: rgba(0, 15, 30, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--neon-green);
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 2rem;
   position: relative;
-}
-
-/* === Scanline Effect === */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 255, 136, 0.05) 0px,
-    rgba(0, 255, 136, 0.05) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 999;
-}
-
-/* === Header Styles === */
-.cyber-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between; /* Répartition égale */
-  align-items: center;
-  padding: 1.5rem 5%;
-  backdrop-filter: blur(12px);
-  background: rgba(0, 8, 15, 0.85);
-  border-bottom: 1px solid var(--neon-green);
-  box-shadow: 0 0 30px var(--neon-shadow);
-  z-index: 1000;
-}
-
-/* === Structure du Header === */
-.logo-glitch {
-  flex: 0 1 auto; /* Empêche l'étirement */
-}
-
-.cyber-nav {
-  flex: 1; /* Prend l'espace disponible */
-  max-width: 600px; /* Limite la largeur */
-  margin: 0 2rem; /* Espacement latéral */
-}
-
-.cta-container {
-  flex: 0 0 auto; /* Garde sa taille originale */
-  margin-left: auto; /* Pousse à droite */
-}
-
-/* === Navigation === */
-.nav-link {
-  color: #fff !important;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  position: relative;
-  padding: 0.5rem 0;
-}
-
-.neon-underline::before {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--neon-green);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover .neon-underline::before {
-  width: 100%;
-}
-
-/* === Cyber Button === */
-.cyber-button {
-  position: relative;
-  padding: 1rem 2.5rem;
-  border: 2px solid var(--neon-green);
-  background: transparent;
-  color: var(--neon-green);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.3s;
   overflow: hidden;
 }
 
-.cyber-button:hover {
-  box-shadow: 0 0 25px var(--neon-shadow);
-  transform: translateY(-2px);
-}
-
-.cyber-button::before {
+.cyber-card::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300%;
-  height: 100%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background: linear-gradient(
-    90deg,
+    45deg,
     transparent,
     var(--neon-green),
     transparent
   );
-  animation: button-glow 1.5s infinite;
+  animation: button-glow 3s infinite;
 }
 
-/* === Hero Section === */
-.cyber-hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 5%;
-  position: relative;
-  overflow: hidden;
+.cyber-card:hover {
+  transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 0 0 50px var(--neon-shadow);
 }
 
-.cyber-title {
-  font-size: 4.5rem;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  position: relative;
-  text-shadow: 0 0 30px var(--neon-shadow);
-  animation: text-flicker 3s infinite;
-}
-
-.cyber-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 3rem;
-  opacity: 0.9;
-  letter-spacing: 0.1em;
-}
-
-/* === Mobile Responsive === */
+/* === Header Mobile amélioré === */
 @media (max-width: 768px) {
   .cyber-header {
-    flex-wrap: wrap; /* Permet le retour à la ligne */
-    gap: 1rem;
-  }
-
-  .logo-glitch {
-    order: 1; /* Position 1 */
-  }
-
-  .menu-toggle {
-    order: 3; /* Position 3 */
-  }
-
-  .cyber-nav {
-    order: 4; /* Position 4 */
-    width: 100%;
-    margin: 1rem 0 0;
+    padding: 1rem 5%;
+    gap: 0.5rem;
   }
 
   .cta-container {
-    order: 2; /* Position 2 */
-    margin-left: 0;
+    margin: 10px auto 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .cyber-nav {
+    margin-top: 1.5rem;
+  }
+
+  .cyber-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
   }
 }
 
+/* === Effet Parallaxe === */
+.cyber-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%2300ff88"/></svg>');
+  opacity: 0.1;
+  z-index: -1;
+  animation: parallax 20s linear infinite;
+}
+
+@keyframes parallax {
+  from { background-position: 0 0; }
+  to { background-position: 100% 100%; }
+}
+
+/* === Optimisations Générales === */
+.cyber-button, .cyber-card, .nav-link {
+  will-change: transform, opacity;
+}
+
+.logo-glitch {
+  animation: glitch-anim 2s infinite alternate;
+}
