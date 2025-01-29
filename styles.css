@@ -13,11 +13,25 @@ body {
     overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
+/* Suppression des marges pour les sections globales */
+section {
+    margin: 0;
+    padding: 0;
+}
+
+/* Ajout d'une règle pour les images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* ---------------------------------- Hero Section ---------------------------------- */
 .hero {
     text-align: center;
     padding: 180px 20px;
     color: #fff;
+    background-color: #000; /* Assure un fond même si aucune image n'est ajoutée */
 }
 
 .hero h1 {
