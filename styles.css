@@ -161,144 +161,19 @@ body::after {
   letter-spacing: 0.1em;
 }
 
-/* === Cyber Sections === */
-.cyber-section {
-  padding: 8rem 5%;
-  position: relative;
-  border-bottom: 1px solid rgba(0, 255, 136, 0.1);
-}
-
-.cyber-border::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--cyber-border);
-  animation: border-glow 2s infinite;
-}
-
-/* === Tokenomics Grid === */
-.cyber-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 4rem;
-}
-
-.cyber-card {
-  background: rgba(0, 15, 30, 0.6);
-  padding: 2.5rem;
-  border: 1px solid var(--neon-green);
-  border-radius: 5px;
-  position: relative;
-  transition: all 0.3s;
-}
-
-.cyber-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 40px var(--neon-shadow);
-}
-
-/* === Animations === */
-@keyframes glitch-anim {
-  0% { transform: translate(0) }
-  20% { transform: translate(-2px, 2px) }
-  40% { transform: translate(-2px, -2px) }
-  60% { transform: translate(2px, 2px) }
-  80% { transform: translate(2px, -2px) }
-  100% { transform: translate(0) }
-}
-
-@keyframes border-glow {
-  0% { opacity: 0.2; }
-  50% { opacity: 1; }
-  100% { opacity: 0.2; }
-}
-
-@keyframes text-flicker {
-  0% { opacity: 0.9; }
-  5% { opacity: 0.8; }
-  10% { opacity: 0.95; }
-  15% { opacity: 0.85; }
-  25% { opacity: 1; }
-  100% { opacity: 0.9; }
-}
-
 /* === Mobile Responsive === */
 @media (max-width: 768px) {
   .cyber-header {
     padding: 1rem;
+    flex-direction: column;
   }
 
   .cyber-nav {
-    position: fixed;
-    top: 70px;
-    right: -100%;
     flex-direction: column;
-    background: rgba(0, 8, 15, 0.95);
-    backdrop-filter: blur(15px);
-    width: 70%;
-    padding: 2rem;
-    border: 1px solid var(--neon-green);
-    transition: right 0.3s ease;
-  }
-
-  .cyber-nav.active {
-    right: 0;
-  }
-
-  .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    z-index: 1001;
-  }
-
-  .hamburger-line {
-    width: 25px;
-    height: 2px;
-    background: var(--neon-green);
-    transition: all 0.3s;
-  }
-
-  .menu-toggle.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .menu-toggle.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    align-items: center;
   }
 
   .cyber-title {
     font-size: 3rem;
   }
-}
-/* Curseur cyberpunk */
-.cyber-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #00ff88;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transition: transform 0.3s, opacity 0.3s;
-    box-shadow: 0 0 15px #00ff88;
-}
-
-.cursor-hover {
-    transform: scale(3);
-    background: rgba(0, 255, 136, 0.2);
-}
-
-/* Animation GSAP */
-body {
-    opacity: 0;
 }
