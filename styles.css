@@ -1,79 +1,136 @@
-/* General Styles */
+/* ---------------------------------- General Styles ---------------------------------- */
 body {
     margin: 0;
     padding: 0;
-    background-color: #111; /* Fond noir */
-    color: #fff; /* Texte blanc */
-    font-family: Arial, sans-serif;
+    background-color: #0c0c0c; /* Fond noir profond */
+    color: #ffffff; /* Texte blanc */
+    font-family: 'Roboto', sans-serif; /* Typographie moderne */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
-/* Header Section */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #00ff00; /* Couleur d'accent au survol */
+}
+
+/* ---------------------------------- Header Section ---------------------------------- */
 header {
-    background-color: #222;
-    color: #fff;
-    padding: 10px 20px;
     position: sticky;
     top: 0;
+    background: linear-gradient(90deg, #222, #333); /* Dégradé moderne */
+    color: #fff;
+    padding: 15px 30px;
     z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 header nav {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
 }
 
-header a {
-    color: #00ff00;
-    text-decoration: none;
+header nav a {
+    color: #fff;
+    font-size: 16px;
     font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-header a:hover {
-    color: #ffd700;
+header nav a:hover {
+    background-color: #00ff00;
+    color: #000;
 }
 
-/* Hero Section */
+/* ---------------------------------- Hero Section ---------------------------------- */
 .hero {
     text-align: center;
     padding: 150px 20px;
-    background-color: #333;
+    background: linear-gradient(180deg, #111, #333);
     color: #00ff00;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 15px rgba(0, 255, 0, 0.8);
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin: 20px 0;
+    font-size: 1.5rem;
+    margin: 20px 0 40px;
+    color: #cccccc;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero .cta-buttons a {
     display: inline-block;
-    background-color: #00ff00;
+    margin: 10px;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, #00ff00, #008000);
     color: #000;
-    padding: 10px 20px;
-    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 25px;
     text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.6);
 }
 
 .hero .cta-buttons a:hover {
-    background-color: #ffd700;
+    background: #ffffff;
+    color: #000;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
 }
 
-/* Section Styles */
+/* ---------------------------------- Section Styles ---------------------------------- */
 .section {
-    padding: 50px 20px;
+    padding: 80px 20px;
     text-align: center;
 }
 
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #00ff00;
+    text-shadow: 0px 0px 10px rgba(0, 255, 0, 0.8);
+}
+
+.section p {
+    font-size: 1.2rem;
+    color: #cccccc;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* ---------------------------------- Footer Section ---------------------------------- */
 footer {
-    background-color: #222;
-    color: #fff;
-    padding: 20px;
+    background-color: #111;
+    color: #ffffff;
     text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    border-top: 1px solid #333;
+}
+
+footer a {
+    color: #00ff00;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ffffff;
 }
 
 
