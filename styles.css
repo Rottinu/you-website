@@ -29,17 +29,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px; /* Ajustement du padding */
+    padding: 15px 50px;
     box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
 }
 
-header.scrolled {
-    background: #111;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
-}
-
-/* Logo */
 header .logo {
     font-size: 24px;
     font-weight: bold;
@@ -47,40 +40,28 @@ header .logo {
     letter-spacing: 2px;
 }
 
-/* Navigation et alignement */
+/* Navigation */
 .menu-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-grow: 1;
-    margin: 0 20px; /* Ajuste les espaces autour du menu */
+    gap: 30px; /* Espacement entre les liens */
 }
 
-header nav {
-    display: flex;
-    gap: 25px;
-    flex-grow: 1;
-    justify-content: center; /* Centre le menu */
-}
-
-header nav a {
+.menu-container a {
     font-size: 16px;
     font-weight: bold;
     padding: 10px 15px;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
-header nav a:hover {
+.menu-container a:hover {
     color: #00ff00;
     border-bottom: 2px solid #00ff00;
 }
 
 /* Bouton "Join Now" */
-header .cta {
-    margin-left: auto;
-}
-
-header .cta a {
+.cta a {
     background: linear-gradient(90deg, #00ff00, #008000);
     color: #000;
     padding: 12px 25px;
@@ -88,37 +69,10 @@ header .cta a {
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
-    display: inline-block;
 }
 
-header .cta a:hover {
+.cta a:hover {
     transform: scale(1.1);
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-}
-
-/* Hero Section */
-.hero {
-    text-align: center;
-    padding: 150px 20px;
-    background: linear-gradient(180deg, #111, #333);
-    color: #00ff00;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    color: #cccccc;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #111;
-    color: #fff;
 }
 
