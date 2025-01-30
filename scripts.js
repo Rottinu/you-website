@@ -81,12 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   gsap.from(".cta-button", {
-    duration: 1.4,
-    scale: 0.7,
-    opacity: 0,
-    ease: "elastic.out(1.2, 0.4)",
-    delay: 1
-  });
+  duration: 1.4,
+  scale: 0.9, // Réduire l'effet de zoom initial
+  opacity: 0,
+  y: 50, // Animation depuis le bas
+  ease: "power4.out",
+  delay: 0.8
+});
 
   // ANIMATIONS SECTIONS
   sections.forEach((section, index) => {
