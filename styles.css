@@ -33,12 +33,8 @@ body {
 .neon-text {
   font-size: 4.5rem;
   text-align: center;
-  color: var(--neon-cyan);
-  text-shadow: 
-    0 0 10px var(--neon-cyan),
-    0 0 20px var(--neon-cyan),
-    0 0 40px var(--neon-cyan);
-  animation: neon-pulse 2s ease-in-out infinite alternate;
+  line-height: 1; /* Empêche l'espacement supplémentaire */
+  margin-bottom: 0; /* Supprime la marge par défaut */
 }
 
 /* ================ HEADER ================ */
@@ -152,7 +148,7 @@ header {
 
 /* ================ SECTIONS ================ */
 .hero {
-  height: calc(100vh - var(--header-height));
+ height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,6 +156,7 @@ header {
   padding: 25px;
   position: relative;
   z-index: 500;
+  gap: 40px; /* Ajout d'espace entre les éléments */
 }
 
 .content-section {
@@ -210,6 +207,11 @@ header {
     0 0 30px rgba(0, 255, 255, 0.2);
   display: inline-block;
   text-decoration: none;
+}
+.cta-button {
+  position: relative;
+  transform: translateY(0); /* Annule toute transformation */
+  opacity: 1 !important; /* Force la visibilité */
 }
 
 .cta-button:hover {
