@@ -453,3 +453,63 @@ header {
         top: 60%; /* Réajuste après l’agrandissement du header */
     }
 }
+
+/* ================ SECTIONS TEXT + IMAGE ================ */
+.content-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 5%;
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.section-text {
+    flex: 1;
+    max-width: 50%;
+}
+
+.section-image {
+    flex: 1;
+    max-width: 50%;
+    text-align: center;
+}
+
+.section-image img {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+/* Alternance des sections */
+.section-odd .section-text {
+    text-align: left;
+}
+
+.section-even .section-text {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .content-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section-text, .section-image {
+        max-width: 100%;
+    }
+
+    .section-text {
+        text-align: center;
+    }
+}
