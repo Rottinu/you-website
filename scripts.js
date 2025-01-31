@@ -80,13 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     delay: 0.4
   });
 
-  gsap.from(".cta-button", {
+ gsap.from(".cta-button", {
   duration: 1.4,
-  scale: 0.9, // Réduire l'effet de zoom initial
-  opacity: 0,
-  y: 50, // Animation depuis le bas
+  scale: 0.8,
+  autoAlpha: 0, // Gère simultanément l'opacité ET la visibilité
+  y: 40,
   ease: "power4.out",
-  delay: 0.8
+  delay: 0.5,
+  overwrite: true // Empêche les conflits d'animation
 });
 
   // ANIMATIONS SECTIONS
