@@ -80,28 +80,27 @@ header {
   left: 50%; /* Centré horizontalement */
   transform: translate(-50%, -50%);
   width: 100%; /* Prend toute la largeur du header */
-  text-align: center; /* Texte centré */
+  text-align: center; /* Centre le texte */
   z-index: 10;
-  overflow: hidden; /* Empêche les débordements */
+  overflow: hidden;
 }
 
-/* Phrases individuelles */
+/* Style des phrases individuelles */
 .motivational-text {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   opacity: 0; /* Texte caché par défaut */
-  position: absolute; /* Permet d'empiler les phrases */
-  width: 100%; /* Chaque phrase prend toute la largeur */
+  position: absolute;
+  width: 100%;
   transition: opacity 0.5s ease-in-out;
 }
 
-/* Apparition du texte */
+/* Apparition des phrases */
 .motivational-text.show {
-  opacity: 50;
+  opacity: 1;
 }
-
 
 /* ================ MENU HAMBURGER ================ */
 .hamburger {
