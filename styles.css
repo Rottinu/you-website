@@ -417,4 +417,9 @@ header {
     .nav-menu ul li a {
         font-size: 1.5rem;
     }
+
+  .hamburger {
+    position: absolute !important;
+    top: 15px !important; /* Remet en haut */
+    left: 15px !important; /* Remet à gauche */
 }
