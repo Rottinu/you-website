@@ -143,3 +143,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // INITIALISATION FINALE
   gsap.set([".cta-button", sections], { visibility: "visible" });
 });
+
+const texts = document.querySelectorAll('.motivational-text');
+let index = 0;
+
+function showNextText() {
+  texts.forEach((text, i) => {
+    text.classList.remove('show'); // Cacher toutes les phrases
+    if (i === index) {
+      text.classList.add('show'); // Montrer la phrase actuelle
+    }
+  });
+
+  index = (index + 1) % texts.length; // Passer à la phrase suivante
+}
+
+// Initialiser l'animation
+showNextText();
+setInterval(showNextText, 2000); // Changer de phrase toutes les 2 secondes
