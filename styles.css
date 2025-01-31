@@ -75,25 +75,35 @@ header {
 
 .motivational-text-container {
     position: absolute;
-    top: 50%; /* Centré verticalement */
-    left: 50%; /* Centré horizontalement */
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
     transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
-    z-index: 1000;
+    width: 100%; /* Largeur du header */
+    text-align: center; /* Texte centré */
+    z-index: 10;
+    height: 2rem; /* Hauteur fixe pour éviter le décalage */
 }
 
 .motivational-text {
-    font-size: 2rem;
+    font-size: 2rem; /* Taille uniforme */
     font-weight: bold;
-    color: #fff;
-    opacity: 0;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    opacity: 0; /* Caché par défaut */
+    position: absolute; /* Fixe chaque phrase à la même position */
+    top: 0; /* Fixe chaque phrase en haut du conteneur */
+    left: 50%; /* Centre horizontalement */
+    transform: translateX(-50%); /* Ajuste horizontalement */
+    width: 100%; /* S'étend sur toute la largeur */
     transition: opacity 0.5s ease-in-out;
+    height: 2rem; /* Hauteur uniforme */
+    line-height: 2rem; /* Aligne verticalement le texte */
 }
 
 .motivational-text.show {
-    opacity: 1;
+    opacity: 1; /* Visible avec la classe "show" */
 }
+
 
 /* ================ MENU HAMBURGER ================ */
 .hamburger {
