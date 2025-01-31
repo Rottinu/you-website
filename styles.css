@@ -235,10 +235,11 @@ header {
 }
 
 .hero-character {
-  max-width: 10%;
-  margin-left: 20px;
-  animation: fade-in 1.5s ease-in-out;
-  transform: scale(1);
+    max-width: 10%;
+    max-height: auto; /* Ajuste la hauteur proportionnellement */
+    margin-left: 20px;
+    animation: fade-in 1.5s ease-in-out;
+    transform: scale(1);
 }
 
 @media (max-width: 768px) {
