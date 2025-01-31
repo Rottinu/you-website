@@ -197,9 +197,10 @@ header {
   font-size: 1.3rem;
   cursor: pointer;
   border-radius: 35px;
-  transition: all 0.3s;
+  transition: 
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transition spécifique */
   position: relative;
-  overflow: visible;
   z-index: 500;
   margin-top: 40px;
   box-shadow: 
@@ -207,6 +208,8 @@ header {
     0 0 30px rgba(0, 255, 255, 0.2);
   display: inline-block;
   text-decoration: none;
+  opacity: 1 !important; /* Force l'opacité */
+  visibility: visible !important; /* Force la visibilité */
 }
 .cta-button {
   position: relative;
