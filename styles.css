@@ -238,12 +238,13 @@ header {
 }
 
 .cta-link {
-  color: var(--neon-cyan);
-  text-decoration: none;
-  padding: 16px 35px;
-  border: 2px solid var(--neon-cyan);
+  background: none !important;
+  border: 2px solid var(--neon-cyan); /* Garde juste un contour bleu cyan */
   border-radius: 35px;
-  transition: all 0.3s;
+  text-decoration: none;
+  color: var(--neon-cyan);
+  padding: 16px 35px;
+  transition: all 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
 }
@@ -270,6 +271,31 @@ header {
 
 .cta-link:hover {
   box-shadow: 0 0 25px var(--neon-cyan);
+  background: rgba(0, 255, 255, 0.1); /* Effet de lumière au survol */
+}
+
+.cta-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 15px;
+  background: rgba(0, 255, 255, 0.15); /* Fond cyan transparent */
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  width: fit-content;
+  max-width: 500px;
+  margin: 50px auto;
+  backdrop-filter: blur(10px);
+}
+
+.cta-container h2 {
+  font-size: 2rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+  margin-bottom: 20px;
 }
 
 /* ================ ANIMATIONS ================ */
