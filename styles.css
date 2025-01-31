@@ -37,34 +37,22 @@ body {
   margin-bottom: 0;
 }
 
-/* Conteneur des phrases motivantes */
-.motivational-text-container {
-  position: absolute;
-  top: 50%; /* Centré verticalement */
-  left: 50%; /* Centré horizontalement */
-  transform: translate(-50%, -50%);
-  width: 100%; /* Prend toute la largeur */
-  text-align: center; /* Centre le texte */
-  z-index: 10;
-  overflow: hidden; /* Cache le surplus */
-  height: 50px; /* Hauteur pour les phrases */
+.intro-text {
+  font-size: 2.5rem; /* Taille du texte */
+  font-weight: bold; /* Texte en gras */
+  color: #ffffff; /* Couleur blanche */
+  text-align: center; /* Centré */
+  margin-bottom: 20px; /* Espacement avec "YOU" */
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Effet lumineux blanc */
 }
 
-/* Style des phrases individuelles */
-.motivational-text {
-  font-size: 1.8rem; /* Taille du texte */
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Lumière blanche */
-  opacity: 0; /* Texte caché par défaut */
-  position: absolute;
-  width: 100%;
-  transition: opacity 0.5s ease-in-out; /* Animation fluide */
-}
-
-/* Apparition des phrases */
-.motivational-text.show {
-  opacity: 1; /* Affichage */
+.subtitle {
+  font-size: 2rem; /* Taille du texte */
+  font-weight: bold; /* Texte en gras */
+  color: #ffffff; /* Couleur blanche */
+  text-align: center; /* Centré */
+  margin-top: 30px; /* Espacement avec le bouton */
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Effet lumineux blanc */
 }
 
 /* ================ HEADER ================ */
@@ -83,6 +71,35 @@ header {
 .menu-container {
   display: flex;
   justify-content: flex-end;
+}
+
+/* Conteneur des phrases motivantes */
+.motivational-text-container {
+  position: absolute;
+  top: 50%; /* Centré verticalement */
+  left: 50%; /* Centré horizontalement */
+  transform: translate(-50%, -50%);
+  width: 100%; /* Prend toute la largeur du header */
+  text-align: center; /* Centre le texte */
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Style des phrases individuelles */
+.motivational-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  opacity: 0; /* Texte caché par défaut */
+  position: absolute;
+  width: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Apparition des phrases */
+.motivational-text.show {
+  opacity: 1;
 }
 
 /* ================ MENU HAMBURGER ================ */
@@ -325,4 +342,4 @@ header {
     font-size: 1rem;
   }
 }
-  
+
