@@ -42,12 +42,31 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isMenuOpen) closeMenu();
     
     // Animation au scroll
-    const currentScroll = window.pageYOffset;
-    const scrollDelta = Math.abs(currentScroll - lastScroll);
-    
-    if (scrollDelta > 50) {
-      lastScroll = currentScroll;
-    }
+   gsap.utils.toArray(".content-section").forEach((section, index) => {
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top 80%",
+      onEnter: () => {
+        gsap.to(section, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power4.out",
+          overwrite: "auto"
+        });
+        
+        gsap.from(section.querySelectorAll("p"), {
+          opacity: 0,
+          y: 30,
+          stagger: 0.15,
+          duration: 0.8,
+          delay: 0.2
+        });
+      },
+      markers: false // Mettre à true pour debug
+    });
+
+    ScrollTrigger.addEventListener("refresh", () => section.style.opacity = 0);
   });
 
   // NAVIGATION SMOOTH
@@ -89,6 +108,20 @@ document.addEventListener("DOMContentLoaded", () => {
   delay: 0.5,
   overwrite: true // Empêche les conflits d'animation
 });
+
+   const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+  
+  tl.from(".neon-text", {
+    duration: 1.8,
+    y: -80,
+    opacity: 0
+  }).from(".cta-button", {
+    duration: 1.4,
+    scale: 0.7,
+    opacity: 0,
+    ease: "elastic.out(1.2, 0.4)"
+  }, "-=0.5");
+  });
 
   // ANIMATIONS SECTIONS
   sections.forEach((section, index) => {
