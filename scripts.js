@@ -119,22 +119,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // EFFETS HOVER
   document.querySelectorAll(".cta-button, .cta-link").forEach(btn => {
-    btn.addEventListener("mouseenter", () => {
-      gsap.to(btn, {
-        duration: 0.3,
-        boxShadow: `0 0 25px ${getComputedStyle(btn).color}`,
-        scale: 1.05
-      });
-    });
-
-    btn.addEventListener("mouseleave", () => {
-      gsap.to(btn, {
-        duration: 0.3,
-        boxShadow: "0 0 15px #0ff",
-        scale: 1
-      });
-    });
+   btn.addEventListener("mouseenter", () => {
+  gsap.to(btn, {
+    duration: 0.3,
+    scale: 1.05,
+    boxShadow: `0 0 25px ${getComputedStyle(btn).color}`,
+    overwrite: true
   });
+});
+
+btn.addEventListener("mouseleave", () => {
+  gsap.to(btn, {
+    duration: 0.3,
+    scale: 1,
+    boxShadow: "0 0 15px #0ff",
+    overwrite: true
+  });
+});
 
   // GESTION BOUTON BUY
   ctaButton.addEventListener("click", (e) => {
