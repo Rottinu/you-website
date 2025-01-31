@@ -457,24 +457,25 @@ header {
 /* ================ SECTIONS TEXT + IMAGE ================ */
 .content-section {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 100px 5%;
+    align-items: center; /* Aligne verticalement les éléments */
+    justify-content: space-between; /* Sépare les éléments horizontalement */
+    padding: 100px 5%; /* Espacement intérieur */
     color: white;
     font-size: 1.2rem;
     line-height: 1.8;
-    text-align: left;
 }
 
 .content-section h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: var(--neon-cyan);
-    text-shadow: 0 0 15px var(--neon-cyan);
+    text-shadow: 0 0 20px var(--neon-cyan);
+    margin-bottom: 20px; /* Espacement entre le titre et le texte */
 }
 
 .section-text {
     flex: 1;
     max-width: 50%;
+    text-align: left; /* Aligne le texte à gauche */
 }
 
 .section-image {
@@ -484,33 +485,44 @@ header {
 }
 
 .section-image img {
-    width: 90%;
-    max-width: 500px;
+    width: 90%; /* Taille de l'image */
+    max-width: 500px; /* Taille maximale */
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
 }
 
 /* Alternance des sections */
 .section-odd .section-text {
-    text-align: left;
+    text-align: left; /* Texte à gauche */
+    order: 1; /* Ordre du texte */
+}
+
+.section-odd .section-image {
+    order: 2; /* Image à droite */
 }
 
 .section-even .section-text {
-    text-align: right;
+    text-align: right; /* Texte à droite */
+    order: 2; /* Ordre du texte */
 }
 
+.section-even .section-image {
+    order: 1; /* Image à gauche */
+}
+
+/* ================ RÉPONSIVE ================ */
 @media (max-width: 768px) {
     .content-section {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: column; /* Empile les éléments en colonne */
+        text-align: center; /* Centre tout le texte */
     }
 
     .section-text, .section-image {
-        max-width: 100%;
-        margin-bottom: 20px;
+        max-width: 100%; /* Pleine largeur */
+        margin-bottom: 20px; /* Espacement entre le texte et l'image */
     }
 
     .section-text {
-        text-align: center;
+        text-align: center; /* Centre le texte */
     }
 }
