@@ -360,42 +360,48 @@ header {
         padding: 60px 20px;
     }
 
+    /* ✅ Fix des boutons Telegram/Twitter */
     .cta-container {
         display: flex;
         flex-direction: column; /* Passe en colonne */
         align-items: center;
         justify-content: center;
-        gap: 20px; /* Ajoute un bon espace entre les boutons */
+        gap: 15px; /* Espacement amélioré */
+        width: 100%;
+        max-width: 400px; /* Limite la largeur */
     }
 
     .cta-link {
-        width: 90%; /* Prend bien l'espace */
+        width: 100%; /* Remplit la largeur disponible */
         text-align: center;
-        font-size: 1.3rem;
-        padding: 15px;
+        font-size: 1.2rem;
+        padding: 12px;
     }
 
-     .motivational-text {
-        font-size: 1.3rem !important; /* Réduit la taille du texte */
-        height: 1.5rem; /* Ajuste la hauteur pour éviter le décalage */
-        line-height: 1.5rem; /* Garde l'alignement correct */
+    /* ✅ Fix des phrases motivantes */
+    .motivational-text {
+        font-size: 1.2rem !important; /* Taille plus petite */
+        height: 1.2rem; /* Hauteur fixe */
+        line-height: 1.2rem; /* Alignement parfait */
     }
 
     .motivational-text-container {
-        height: 1.5rem !important; /* Uniformise la hauteur */
+        height: 1.5rem !important; /* Uniformise */
     }
 
+    /* ✅ Fix du menu hamburger */
     .menu-container {
-        justify-content: center;
+        justify-content: flex-start; /* Le remet à gauche */
     }
 
     .hamburger {
         position: fixed;
         top: 15px;
-        left: 15px; /* Remet le menu à gauche */
+        left: 15px;
         z-index: 1002;
     }
 
+    /* ✅ Fix du menu qui défile trop loin */
     .nav-menu {
         width: 100%;
         height: 100vh;
@@ -409,9 +415,9 @@ header {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        overflow-y: auto; /* Permet de scroller si trop grand */
-        max-height: 100vh;
-        padding-top: 80px; /* Évite que les liens collent au haut */
+        overflow-y: auto; /* Ajoute un scroll */
+        max-height: 95vh; /* Empêche le débordement */
+        padding-top: 60px; /* Ajuste l’espace en haut */
     }
 
     .nav-menu.open {
@@ -421,8 +427,8 @@ header {
     .nav-menu ul {
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        padding: 20px;
+        gap: 10px;
+        padding: 10px;
     }
 
     .nav-menu ul li {
@@ -430,8 +436,8 @@ header {
     }
 
     .nav-menu ul li a {
-        font-size: 1.3rem;
-        padding: 12px 20px;
+        font-size: 1.2rem;
+        padding: 10px 15px;
         color: var(--neon-cyan);
         text-decoration: none;
     }
