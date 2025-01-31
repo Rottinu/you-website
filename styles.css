@@ -235,7 +235,7 @@ header {
 }
 
 .hero-character {
-    max-width: 10%;
+    max-width: 100px;
     max-height: auto; /* Ajuste la hauteur proportionnellement */
     margin-left: 20px;
     animation: fade-in 1.5s ease-in-out;
