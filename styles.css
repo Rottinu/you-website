@@ -186,9 +186,9 @@ header {
   align-items: center;
   text-align: center;
   background: linear-gradient(rgba(17, 17, 17, 0.95), rgba(17, 17, 17, 0.95));
-  opacity: 0; /* Ajouté pour l'animation */
-  transform: translateY(20px); /* Départ légèrement décalé */
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
 .content-section.visible {
