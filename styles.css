@@ -23,10 +23,18 @@ html {
 
 body {
     background-image: url('background.webp'); /* Mets le bon chemin */
-    background-size: cover; /* Ajuste l’image pour couvrir tout l'écran */
+    background-size: cover; /* Ajuste pour couvrir tout l'écran */
     background-position: center; /* Centre l’image */
-    background-attachment: fixed; /* Fixe l’image pour un effet de défilement */
-    background-repeat: no-repeat; /* Empêche la répétition de l’image */
+    background-attachment: fixed; /* Effet de défilement */
+    background-repeat: no-repeat; /* Empêche la répétition */
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 768px) {
+    body {
+        background-size: contain; /* Ajuste mieux pour petits écrans */
+        background-attachment: scroll; /* Désactive l’effet fixe sur mobile */
+    }
 }
 
 /* ================ EFFETS NÉON ================ */
@@ -346,3 +354,70 @@ header {
   }
 }
 
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 15px; /* Réduit l’espace */
+        text-align: center;
+    }
+
+    .neon-text {
+        font-size: 3rem; /* Réduit la taille du titre */
+    }
+
+    .cta-button {
+        font-size: 1.2rem;
+        padding: 15px 30px; /* Adapte la taille */
+    }
+
+    .content-section {
+        padding: 60px 20px; /* Moins d’espace pour éviter les scrolls longs */
+    }
+
+    .cta-container {
+        flex-direction: column; /* Met les boutons Twitter & Telegram en colonne */
+    }
+
+    .cta-link {
+        width: 80%; /* Agrandit les boutons pour le mobile */
+        text-align: center;
+    }
+
+    .motivational-text {
+        font-size: 1.3rem; /* Réduit la taille des phrases motivantes */
+    }
+
+    .menu-container {
+        justify-content: center; /* Centre le menu hamburger */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+        transition: transform 0.5s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-menu.open {
+        transform: translateY(0);
+    }
+
+    .nav-menu ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-menu ul li a {
+        font-size: 1.5rem;
+    }
+}
