@@ -22,20 +22,20 @@ html {
 }
 
 body {
-    background-image: url('background.webp'); /* Mets le bon chemin */
-    background-size: cover; /* Ajuste pour couvrir tout l'écran */
-    background-position: center; /* Centre l’image */
-    background-attachment: fixed; /* Effet de défilement */
-    background-repeat: no-repeat; /* Empêche la répétition */
+    background-image: url('background.webp'); /* Mets ici le bon chemin */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 @media (max-width: 768px) {
     body {
         background-size: cover !important; 
         background-position: center !important; 
-        background-attachment: scroll !important; /* Désactive fixed pour mobile */
+        background-attachment: scroll !important;
     }
-  }
+}
 
 /* ================ EFFETS NÉON ================ */
 .neon-text {
