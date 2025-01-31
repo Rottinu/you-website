@@ -342,56 +342,41 @@ header {
 
 /* ================ RESPONSIVE ================ */
 @media (max-width: 768px) {
-  .cta-footer {
-    padding: 40px;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .cta-link {
-    padding: 15px 40px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
     .hero {
-        padding: 40px 15px; /* Réduit l’espace */
+        padding: 40px 15px;
         text-align: center;
     }
 
     .neon-text {
-        font-size: 3rem; /* Réduit la taille du titre */
+        font-size: 3rem;
     }
 
     .cta-button {
         font-size: 1.2rem;
-        padding: 15px 30px; /* Adapte la taille */
+        padding: 15px 30px;
     }
 
     .content-section {
-        padding: 60px 20px; /* Moins d’espace pour éviter les scrolls longs */
+        padding: 60px 20px;
     }
 
     .cta-container {
-        flex-direction: column; /* Met les boutons Twitter & Telegram en colonne */
+        flex-direction: column;
     }
 
     .cta-link {
-        width: 80%; /* Agrandit les boutons pour le mobile */
+        width: 80%;
         text-align: center;
     }
 
     .motivational-text {
-        font-size: 1.3rem; /* Réduit la taille des phrases motivantes */
+        font-size: 1.3rem;
     }
 
     .menu-container {
-        justify-content: center; /* Centre le menu hamburger */
+        justify-content: center;
     }
-}
 
-@media (max-width: 768px) {
     .nav-menu {
         width: 100%;
         height: 100vh;
