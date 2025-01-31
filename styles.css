@@ -235,15 +235,16 @@ header {
 }
 
 .hero-character {
-    max-width: 15%; /* Taille relative au conteneur */
-    height: auto; /* Préserve les proportions */
+    max-width: 10vw; /* Taille basée sur la largeur de l'écran */
+    height: auto; /* Maintient les proportions */
     margin-left: 20px;
     animation: fade-in 1.5s ease-in-out;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
     .hero-character {
-        max-width: 10%; /* Réduction de la taille sur les très grands écrans */
+        max-width: 8vw; /* Réduit encore plus pour très grands écrans */
+        height: auto;
     }
 }
 
