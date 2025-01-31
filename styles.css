@@ -233,14 +233,14 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px;
+  padding: 80px;
   gap: 20px;
   border: 3px solid var(--neon-cyan);
   border-radius: 20px;
-  width: 95%;
+  width: 90%;
   max-width: 1200px;
-  margin: 30px auto;
-  background: rgba(0, 255, 255, 0.08);
+  margin: 50px auto;
+  background: rgba(0, 255, 255, 0.1);
   box-shadow: 0 0 30px var(--neon-cyan);
 }
 
@@ -281,3 +281,4 @@ header {
     font-size: 1rem;
   }
 }
+
