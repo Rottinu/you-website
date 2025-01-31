@@ -268,6 +268,10 @@ header {
   left: 100%;
 }
 
+.cta-link:hover {
+  box-shadow: 0 0 25px var(--neon-cyan);
+}
+
 /* ================ ANIMATIONS ================ */
 @keyframes neon-pulse {
   0% { opacity: 0.9; text-shadow: 0 0 10px var(--neon-cyan); }
