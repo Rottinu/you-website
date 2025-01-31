@@ -177,15 +177,23 @@ header {
   text-shadow: 0 0 20px var(--neon-cyan);
 }
 
-.content-section p {
-  color: #ffffff;
-  font-size: 1.2rem;
-  line-height: 1.8;
-  max-width: 800px;
-  margin: 0 auto 30px;
-  padding: 0 20px;
-  opacity: 0.9;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+.content-section {
+  min-height: 100vh;
+  padding: var(--section-spacing) 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(rgba(17, 17, 17, 0.95), rgba(17, 17, 17, 0.95));
+  opacity: 0; /* Ajouté pour l'animation */
+  transform: translateY(20px); /* Départ légèrement décalé */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.content-section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ================ BOUTONS ================ */
