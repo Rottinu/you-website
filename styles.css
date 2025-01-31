@@ -389,7 +389,7 @@ header {
         justify-content: center;
     }
 
-    .nav-menu {
+     .nav-menu {
         width: 100%;
         height: 100vh;
         background: rgba(0, 0, 0, 0.9);
@@ -400,22 +400,22 @@ header {
         transition: transform 0.5s ease-in-out;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-    }
-
-    .nav-menu.open {
-        transform: translateY(0);
+        overflow-y: auto; /* Permet de scroller si le menu est trop grand */
+        max-height: 100vh; /* Empêche qu'il soit plus grand que l'écran */
     }
 
     .nav-menu ul {
         display: flex;
         flex-direction: column;
         gap: 20px;
+        padding: 20px; /* Ajoute un espace pour éviter que ça colle */
     }
 
     .nav-menu ul li a {
         font-size: 1.5rem;
+        padding: 10px 15px; /* Ajoute de l’espace autour des liens */
     }
 
   .hamburger {
