@@ -79,27 +79,26 @@ header {
   top: 50%; /* Centré verticalement */
   left: 50%; /* Centré horizontalement */
   transform: translate(-50%, -50%);
-  display: flex; /* Affiche les phrases en ligne */
-  justify-content: center; /* Centré horizontalement */
-  align-items: center; /* Centré verticalement */
-  gap: 10px; /* Espacement entre les phrases */
-  z-index: 10;
   text-align: center;
+  z-index: 10;
 }
 
-/* Phrases individuelles */
 .motivational-text {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   opacity: 0; /* Texte caché par défaut */
+  position: absolute;
+  width: 100%;
   transition: opacity 0.5s ease-in-out;
 }
 
 /* Apparition du texte */
 .motivational-text.show {
   opacity: 1;
+}
+
 
 /* ================ MENU HAMBURGER ================ */
 .hamburger {
