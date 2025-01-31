@@ -73,24 +73,27 @@ header {
   justify-content: flex-end;
 }
 
-/* ================ MOTIVATIONAL TEXT ================ */
+/* Conteneur des phrases motivantes */
 .motivational-text-container {
   position: absolute;
   top: 50%; /* Centré verticalement */
   left: 50%; /* Centré horizontalement */
   transform: translate(-50%, -50%);
-  text-align: center;
+  width: 100%; /* Prend toute la largeur du header */
+  text-align: center; /* Texte centré */
   z-index: 10;
+  overflow: hidden; /* Empêche les débordements */
 }
 
+/* Phrases individuelles */
 .motivational-text {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   opacity: 0; /* Texte caché par défaut */
-  position: absolute;
-  width: 100%;
+  position: absolute; /* Permet d'empiler les phrases */
+  width: 100%; /* Chaque phrase prend toute la largeur */
   transition: opacity 0.5s ease-in-out;
 }
 
