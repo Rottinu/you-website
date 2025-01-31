@@ -235,10 +235,10 @@ header {
 }
 
 .hero-character {
-  max-width: 30%;
+  max-width: 15%;
   margin-left: 20px;
   animation: fade-in 1.5s ease-in-out;
-  transform: scale(1.05);
+  transform: scale(1);
 }
 
 @media (max-width: 768px) {
@@ -248,7 +248,7 @@ header {
 
   .hero-logo,
   .hero-character {
-    max-width: 25%;
+    max-width: 15%;
     margin: 20px 0;
   }
 
