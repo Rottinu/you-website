@@ -73,33 +73,26 @@ header {
   justify-content: flex-end;
 }
 
-/* Conteneur des phrases motivantes */
 .motivational-text-container {
-  position: absolute;
-  top: 50%; /* Centré verticalement */
-  left: 50%; /* Centré horizontalement */
-  transform: translate(-50%, -50%);
-  width: 100%; /* Prend toute la largeur du header */
-  text-align: center; /* Centre le texte */
-  z-index: 10;
-  overflow: hidden;
+    position: absolute;
+    top: 50%; /* Centré verticalement */
+    left: 50%; /* Centré horizontalement */
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
 }
 
-/* Style des phrases individuelles */
 .motivational-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  opacity: 0; /* Texte caché par défaut */
-  position: absolute;
-  width: 100%;
-  transition: opacity 0.5s ease-in-out;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
-/* Apparition des phrases */
 .motivational-text.show {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* ================ MENU HAMBURGER ================ */
