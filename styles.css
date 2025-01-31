@@ -22,11 +22,11 @@ html {
 }
 
 body {
-  background: var(--bg-dark);
-  color: #ffffff;
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  padding-top: var(--header-height);
+    background-image: url('assets/background.png'); /* Mets le bon chemin */
+    background-size: cover; /* Ajuste l’image pour couvrir tout l'écran */
+    background-position: center; /* Centre l’image */
+    background-attachment: fixed; /* Fixe l’image pour un effet de défilement */
+    background-repeat: no-repeat; /* Empêche la répétition de l’image */
 }
 
 /* ================ EFFETS NÉON ================ */
