@@ -241,16 +241,6 @@ header {
   transform: scale(1.05);
 }
 
-#character-image {
-    width: 15%; /* Ajustez à 30%, 25%, ou une autre valeur selon vos besoins */
-    max-width: 300px; /* Limite maximale pour empêcher qu'il devienne trop grand */
-    height: auto; /* Conserve le ratio de l'image */
-    position: absolute; /* Permet de positionner l'image où vous voulez */
-    bottom: 0; /* Alignez vers le bas */
-    left: 10%; /* Ajustez la position horizontale */
-    z-index: 10; /* Assurez-vous que l'image est au bon niveau par rapport aux autres éléments */
-}
-
 @media (max-width: 768px) {
   .hero-content {
     flex-direction: column;
@@ -258,7 +248,7 @@ header {
 
   .hero-logo,
   .hero-character {
-    max-width: 50%;
+    max-width: 25%;
     margin: 20px 0;
   }
 
