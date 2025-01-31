@@ -29,13 +29,13 @@ body {
     background-repeat: no-repeat; /* Empêche la répétition */
 }
 
-/* Mobile-friendly adjustments */
 @media (max-width: 768px) {
     body {
-        background-size: contain; /* Ajuste mieux pour petits écrans */
-        background-attachment: scroll; /* Désactive l’effet fixe sur mobile */
+        background-size: cover !important; 
+        background-position: center !important; 
+        background-attachment: scroll !important; /* Désactive fixed pour mobile */
     }
-}
+  }
 
 /* ================ EFFETS NÉON ================ */
 .neon-text {
@@ -361,16 +361,26 @@ header {
     }
 
     .cta-container {
-        flex-direction: column;
+        flex-direction: column !important; /* Passe les boutons en colonne */
+        align-items: center !important;
+        gap: 15px; /* Ajoute un espacement entre les boutons */
     }
 
     .cta-link {
-        width: 80%;
+        width: 80%; /* Agrandit les boutons pour qu'ils prennent plus de place */
         text-align: center;
+        font-size: 1.3rem; /* Augmente la taille du texte */
+        padding: 15px; /* Ajuste la taille du bouton */
     }
 
-    .motivational-text {
-        font-size: 1.3rem;
+     .motivational-text {
+        font-size: 1.3rem !important; /* Réduit la taille du texte */
+        height: 1.5rem; /* Ajuste la hauteur pour éviter le décalage */
+        line-height: 1.5rem; /* Garde l'alignement correct */
+    }
+
+    .motivational-text-container {
+        height: 1.5rem !important; /* Uniformise la hauteur */
     }
 
     .menu-container {
