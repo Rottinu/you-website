@@ -361,16 +361,18 @@ header {
     }
 
     .cta-container {
-        flex-direction: column !important; /* Passe les boutons en colonne */
-        align-items: center !important;
-        gap: 15px; /* Ajoute un espacement entre les boutons */
+        display: flex;
+        flex-direction: column; /* Passe en colonne */
+        align-items: center;
+        justify-content: center;
+        gap: 20px; /* Ajoute un bon espace entre les boutons */
     }
 
     .cta-link {
-        width: 80%; /* Agrandit les boutons pour qu'ils prennent plus de place */
+        width: 90%; /* Prend bien l'espace */
         text-align: center;
-        font-size: 1.3rem; /* Augmente la taille du texte */
-        padding: 15px; /* Ajuste la taille du bouton */
+        font-size: 1.3rem;
+        padding: 15px;
     }
 
      .motivational-text {
