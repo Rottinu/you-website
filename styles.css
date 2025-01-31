@@ -99,7 +99,7 @@ header {
 
 /* Apparition du texte */
 .motivational-text.show {
-  opacity: 1;
+  opacity: 50;
 }
 
 
