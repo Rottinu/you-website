@@ -22,7 +22,7 @@ html {
 }
 
 body {
-    background-image: url('assets/background.png'); /* Mets le bon chemin */
+    background-image: url('background.webp'); /* Mets le bon chemin */
     background-size: cover; /* Ajuste l’image pour couvrir tout l'écran */
     background-position: center; /* Centre l’image */
     background-attachment: fixed; /* Fixe l’image pour un effet de défilement */
