@@ -33,8 +33,8 @@ body {
 .neon-text {
   font-size: 4.5rem;
   text-align: center;
-  line-height: 1; /* Empêche l'espacement supplémentaire */
-  margin-bottom: 0; /* Supprime la marge par défaut */
+  line-height: 1;
+  margin-bottom: 0;
 }
 
 /* ================ HEADER ================ */
@@ -148,7 +148,7 @@ header {
 
 /* ================ SECTIONS ================ */
 .hero {
- height: calc(100vh - var(--header-height));
+  height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -156,7 +156,7 @@ header {
   padding: 25px;
   position: relative;
   z-index: 500;
-  gap: 40px; /* Ajout d'espace entre les éléments */
+  gap: 40px;
 }
 
 .content-section {
@@ -193,13 +193,13 @@ header {
   background: var(--neon-cyan);
   color: #000000 !important;
   border: none;
-  padding: 18px 45px;
-  font-size: 1.3rem;
+  padding: 20px 50px; /* Taille augmentée */
+  font-size: 1.4rem; /* Taille de police augmentée */
   cursor: pointer;
   border-radius: 35px;
   transition: 
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transition spécifique */
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative;
   z-index: 500;
   margin-top: 40px;
@@ -208,17 +208,13 @@ header {
     0 0 30px rgba(0, 255, 255, 0.2);
   display: inline-block;
   text-decoration: none;
-  opacity: 1 !important; /* Force l'opacité */
-  visibility: visible !important; /* Force la visibilité */
-}
-.cta-button {
-  position: relative;
-  transform: translateY(0); /* Annule toute transformation */
-  opacity: 1 !important; /* Force la visibilité */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1) !important; /* État initial forcé */
 }
 
 .cta-button:hover {
-  transform: translateY(-3px);
+  transform: scale(1.05) translateY(-2px) !important; /* Animation combinée */
   box-shadow: 
     0 0 25px var(--neon-cyan),
     0 0 45px rgba(0, 255, 255, 0.3);
@@ -295,8 +291,8 @@ header {
   }
   
   .cta-button {
-    padding: 15px 35px;
-    font-size: 1.1rem;
+    padding: 18px 40px; /* Ajustement mobile */
+    font-size: 1.2rem;
     margin-top: 30px;
   }
   
