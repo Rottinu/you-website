@@ -5,61 +5,61 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-menu ul li a");
   const ctaButton = document.getElementById("buy-token");
   const sections = document.querySelectorAll(".content-section");
-  
+  const motivationalTexts = document.querySelectorAll(".motivational-text");
+
   // ÉTATS
   let isMenuOpen = false;
-  let lastScroll = 0;
+  let currentTextIndex = 0;
+
+  // GSAP INITIALISATION
+  gsap.registerPlugin(ScrollTrigger);
 
   // FERMETURE MENU
   const closeMenu = () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("open");
-    isMenuOpen = false;
+    if (hamburger && navMenu) {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("open");
+      isMenuOpen = false;
+    }
   };
 
   // TOGGLE MENU
   const toggleMenu = () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("open");
-    isMenuOpen = !isMenuOpen;
+    if (hamburger && navMenu) {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("open");
+      isMenuOpen = !isMenuOpen;
+    }
   };
 
-  // GESTION CLIC HAMBURGER
-  hamburger.addEventListener("click", toggleMenu);
+  // ROTATION TEXTES MOTIVANTS
+  const showNextText = () => {
+    if (motivationalTexts.length) {
+      motivationalTexts.forEach((text, index) => {
+        text.classList.toggle("show", index === currentTextIndex);
+      });
+      currentTextIndex = (currentTextIndex + 1) % motivationalTexts.length;
+    }
+  };
 
-  // GESTION CLIC EXTÉRIEUR
+  // GESTION ÉVÉNEMENTS
+  if (hamburger) {
+    hamburger.addEventListener("click", toggleMenu);
+  }
+
   document.addEventListener("click", (e) => {
-    if (!hamburger.contains(e.target) && 
-        !navMenu.contains(e.target) && 
-        isMenuOpen) {
+    if (isMenuOpen && !hamburger?.contains(e.target) && !navMenu?.contains(e.target)) {
       closeMenu();
     }
   });
 
-  // GESTION SCROLL
-  window.addEventListener("scroll", () => {
-    // Fermeture menu au scroll
-    if (isMenuOpen) closeMenu();
-    
-    // Animation au scroll
-    const currentScroll = window.pageYOffset;
-    const scrollDelta = Math.abs(currentScroll - lastScroll);
-    
-    if (scrollDelta > 50) {
-      lastScroll = currentScroll;
-    }
-  });
-
-  // NAVIGATION SMOOTH
   navLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const targetId = link.getAttribute("href").substring(1);
       const targetSection = document.getElementById(targetId);
-
-      closeMenu();
-
       if (targetSection) {
+        closeMenu();
         window.scrollTo({
           top: targetSection.offsetTop - 70,
           behavior: "smooth"
@@ -68,13 +68,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // INITIALISATION GSAP
-  gsap.registerPlugin(ScrollTrigger);
+  if (ctaButton) {
+    ctaButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      // Remplacez par une vraie action (ex: wallet connect ou lien presale)
+      window.open("https://dexscreener.com/solana/your-token-address", "_blank");
+    });
+  }
 
-  // ANIMATIONS PRINCIPALES
+  // ANIMATIONS GSAP
   const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-  
-  tl.from(".neon-text", {
+  tl.from(".intro-text", {
     duration: 1.8,
     y: -80,
     opacity: 0
@@ -85,31 +89,27 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "elastic.out(1.2, 0.4)"
   }, "-=0.5");
 
-  // ANIMATIONS SECTIONS
-  sections.forEach((section, index) => {
-    gsap.set(section, { opacity: 0, y: 60 }); // État initial
-
+  sections.forEach((section) => {
+    gsap.set(section, { opacity: 0, y: 60 });
     ScrollTrigger.create({
       trigger: section,
       start: "top 80%",
+      once: true, // Animation unique pour perf
       onEnter: () => {
         gsap.to(section, {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          ease: "power4.out",
-          overwrite: "auto"
+          duration: 1,
+          ease: "power4.out"
         });
-
         gsap.from(section.querySelectorAll("p"), {
           opacity: 0,
           y: 30,
           stagger: 0.2,
-          duration: 0.8,
-          delay: 0.3
+          duration: 0.6,
+          delay: 0.2
         });
-      },
-      markers: false // Mettre à true pour debug
+      }
     });
   });
 
@@ -119,43 +119,26 @@ document.addEventListener("DOMContentLoaded", () => {
       gsap.to(btn, {
         duration: 0.3,
         scale: 1.05,
-        boxShadow: `0 0 25px ${getComputedStyle(btn).color}`,
+        boxShadow: "0 0 25px #00ffff",
         overwrite: true
       });
     });
-
     btn.addEventListener("mouseleave", () => {
       gsap.to(btn, {
         duration: 0.3,
         scale: 1,
-        boxShadow: "0 0 15px #0ff",
+        boxShadow: "0 0 15px #00ffff",
         overwrite: true
       });
     });
   });
 
-  // GESTION BOUTON BUY
-  ctaButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.open("https://votre-lien-d-achat.xyz", "_blank");
-  });
+  // INITIALISATION TEXTES MOTIVANTS
+  if (motivationalTexts.length) {
+    showNextText();
+    setInterval(showNextText, 2000);
+  }
 
-  // INITIALISATION FINALE
-  gsap.set([".cta-button", sections], { visibility: "visible" });
+  // VISIBILITÉ INITIALE
+  gsap.set([".cta-button", ...sections], { visibility: "visible" });
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const motivationalTexts = document.querySelectorAll('.motivational-text');
-    let currentIndex = 0;
-
-    function showNextText() {
-        motivationalTexts.forEach((text, index) => {
-            text.classList.toggle('show', index === currentIndex);
-        });
-        currentIndex = (currentIndex + 1) % motivationalTexts.length;
-    }
-
-    setInterval(showNextText, 2000); // Change toutes les 2 secondes
-    showNextText(); // Lancer immédiatement
-});
-
