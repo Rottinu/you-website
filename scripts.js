@@ -243,23 +243,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // COUNTDOWN (SET YOUR LAUNCH DATE) - FIXED TO ENSURE VISIBILITY
     if (countdown) {
-        const launchDate = new Date("2025-06-01T00:00:00Z").getTime(); // Ensure launch date is correct
-        const updateCountdown = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = launchDate - now;
-            if (distance < 0) {
-                clearInterval(updateCountdown);
-                countdown.textContent = "Launch Now Live!";
+        try {
+            const launchDate = new Date("2025-06-01T00:00:00Z").getTime(); // Ensure launch date is correct
+            const updateCountdown = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = launchDate - now;
+                if (distance < 0) {
+                    clearInterval(updateCountdown);
+                    countdown.textContent = "Launch Now Live!";
+                    countdown.style.display = 'block'; // Ensure visibility
+                    return;
+                }
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                countdown.textContent = `Launch in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
                 countdown.style.display = 'block'; // Ensure visibility
-                return;
-            }
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            countdown.textContent = `Launch in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-            countdown.style.display = 'block'; // Ensure visibility
-        }, 1000);
+            }, 1000);
+        } catch (error) {
+            console.error("Countdown error:", error);
+            countdown.textContent = "Error loading countdown—please refresh.";
+            countdown.style.display = 'block';
+        }
     }
 
     // HERO ANIMATION
