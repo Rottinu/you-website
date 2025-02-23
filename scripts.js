@@ -1,18 +1,23 @@
+// Fallback for older browsers
+if (!window.addEventListener) {
+    window.addEventListener = window.attachEvent || function() { console.error("Browser does not support events"); };
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM fully loaded - starting $YOU scripts");
 
     // ÉLÉMENTS DOM
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu");
-    const navLinks = document.querySelectorAll(".nav-menu ul li a");
+    const navLinks = document.querySelectorAll(".nav-menu ul li a") || [];
     const connectWalletBtn = document.getElementById("connect-wallet");
-    const sections = document.querySelectorAll(".section, .community");
-    const stories = document.querySelectorAll(".story");
+    const sections = document.querySelectorAll(".section, .community") || [];
+    const stories = document.querySelectorAll(".story") || [];
     const powerForm = document.querySelector(".power-form");
     const powerMessage = document.getElementById("power-message");
     const countdown = document.getElementById("countdown");
-    const featureCards = document.querySelectorAll(".feature-card");
-    const visuals = document.querySelectorAll(".section-visual.large");
+    const featureCards = document.querySelectorAll(".feature-card") || [];
+    const visuals = document.querySelectorAll(".section-visual.large") || [];
     const userComment = document.getElementById("user-comment");
     const walletCounter = document.getElementById("wallet-counter");
     const communityStories = document.getElementById("community-stories");
@@ -52,12 +57,14 @@ document.addEventListener("DOMContentLoaded", () => {
         "“$YOU’s movement is mine—Nathan, Toronto, Canada”"
     ];
 
-    // GSAP INITIALISATION
-    console.log("Initializing GSAP");
-    if (typeof gsap !== 'undefined') {
+    // GSAP INITIALISATION WITH FALLBACK
+    let gsapLoaded = false;
+    if (typeof window.gsap !== 'undefined') {
+        gsapLoaded = true;
+        console.log("Initializing GSAP");
         gsap.registerPlugin(ScrollTrigger);
     } else {
-        console.error("GSAP not loaded");
+        console.error("GSAP not loaded, animations disabled");
     }
 
     // FERMETURE MENU
@@ -68,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isMenuOpen = false;
             console.log("Menu closed");
         } else {
-            console.warn("Hamburger or nav menu not found");
+            console.warn("Hamburger or nav menu not found for close");
         }
     };
 
@@ -127,9 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // GESTION ÉVÉNEMENTS
+    // EVENT LISTENERS WITH FALLBACKS
     if (hamburger) {
-        hamburger.addEventListener("click", toggleMenu);
+        hamburger.addEventListener("click", toggleMenu, false);
         console.log("Hamburger menu event listener added");
     } else {
         console.warn("Hamburger not found");
@@ -142,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             console.log("Click event, menu state:", isMenuOpen);
         }
-    });
+    }, false);
 
     // NAVIGATION SMOOTH
     if (navLinks.length > 0) {
@@ -161,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn(`Target section ${targetId} not found`);
                 }
-            });
+            }, false);
         });
     } else {
         console.warn("No navigation links found");
@@ -179,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         await wallet.connect();
                         const publicKey = wallet.publicKey.toString();
                         connectWalletBtn.textContent = `Connected: ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
-                        connectWalletBtn.disabled = false; // Keep active for future actions
+                        connectWalletBtn.disabled = false;
                         console.log(`Wallet connected: ${publicKey}`);
                         alert(`Wallet connected! Engage with $YOU using ${publicKey}. Stay tuned for launch perks.`);
                     } catch (error) {
@@ -192,13 +199,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     window.open('https://phantom.app', '_blank');
                 }
             }
-        });
+        }, false);
 
-        // Tooltip on hover
         connectWalletBtn.addEventListener("mouseover", () => {
             connectWalletBtn.title = "Connect to join $YOU’s movement and prepare for launch benefits!";
             console.log("Wallet button hover");
-        });
+        }, false);
     } else {
         console.warn("Connect wallet button not found");
     }
@@ -226,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 powerMessage.textContent = "Please enter your name or wallet address.";
                 console.warn("No user input for power claim");
             }
-        });
+        }, false);
     } else {
         console.warn("Power form not found");
     }
@@ -235,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (featureCards.length > 0) {
         featureCards.forEach(card => {
             card.addEventListener("mouseover", () => {
-                if (typeof gsap !== 'undefined') {
+                if (gsapLoaded) {
                     gsap.to(card, {
                         duration: 0.3,
                         scale: 1.05,
@@ -246,10 +252,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("GSAP not loaded for feature card hover");
                 }
-            });
+            }, false);
 
             card.addEventListener("mouseleave", () => {
-                if (typeof gsap !== 'undefined') {
+                if (gsapLoaded) {
                     gsap.to(card, {
                         duration: 0.3,
                         scale: 1,
@@ -260,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("GSAP not loaded for feature card leave");
                 }
-            });
+            }, false);
         });
     } else {
         console.warn("No feature cards found");
@@ -270,21 +276,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (visuals.length > 0) {
         visuals.forEach(visual => {
             visual.addEventListener("mouseover", () => {
-                if (typeof gsap !== 'undefined') {
+                if (gsapLoaded) {
                     gsap.to(visual, { duration: 0.3, scale: 1.05, opacity: 1, overwrite: true });
                     console.log("Visual hovered");
                 } else {
                     console.warn("GSAP not loaded for visual hover");
                 }
-            });
+            }, false);
+
             visual.addEventListener("mouseleave", () => {
-                if (typeof gsap !== 'undefined') {
+                if (gsapLoaded) {
                     gsap.to(visual, { duration: 0.3, scale: 1, opacity: 0.8, overwrite: true });
                     console.log("Visual left");
                 } else {
                     console.warn("GSAP not loaded for visual leave");
                 }
-            });
+            }, false);
         });
     } else {
         console.warn("No visuals found");
@@ -294,21 +301,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (interactiveElements.length > 0) {
         interactiveElements.forEach(element => {
             element.addEventListener("mouseover", () => {
-                if (typeof gsap !== 'undefined') {
+                if (gsapLoaded) {
                     gsap.to(element, { duration: 0.3, color: '#fff', textShadow: '0 0 10px rgba(0, 224, 255, 0.5)', overwrite: true });
                     console.log("Interactive element hovered");
                 } else {
                     console.warn("GSAP not loaded for interactive element hover");
                 }
-            });
+            }, false);
+
             element.addEventListener("mouseleave", () => {
-                if (typeof gsap !== 'undefined') {
+                if (gsapLoaded) {
                     gsap.to(element, { duration: 0.3, color: '#ccc', textShadow: 'none', overwrite: true });
                     console.log("Interactive element left");
                 } else {
                     console.warn("GSAP not loaded for interactive element leave");
                 }
-            });
+            }, false);
         });
     } else {
         console.warn("No interactive elements found");
@@ -353,8 +361,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (distance < 0) {
                     clearInterval(updateCountdown);
                     countdown.textContent = "Launch Now Live!";
-                    countdown.style.display = 'block'; // Ensure visibility
-                    countdown.style.visibility = 'visible'; // Additional safeguard
+                    countdown.style.display = 'block';
+                    countdown.style.visibility = 'visible';
                     console.log("Launch now live");
                     return;
                 }
@@ -363,8 +371,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 countdown.textContent = `Launch in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-                countdown.style.display = 'block'; // Ensure visibility
-                countdown.style.visibility = 'visible'; // Additional safeguard
+                countdown.style.display = 'block';
+                countdown.style.visibility = 'visible';
                 console.log("Countdown updated:", countdown.textContent);
             }, 1000);
         } catch (error) {
@@ -394,55 +402,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // HERO ANIMATION
-    if (document.querySelector(".hero-content h1")) {
-        if (typeof gsap !== 'undefined') {
-            gsap.to(".hero-content h1", {
-                duration: 2,
-                repeat: -1,
-                yoyo: true,
-                textShadow: `0 0 15px ${getComputedStyle(document.documentElement).getPropertyValue('--neon-cyan').trim()}`,
-                ease: "power1.inOut",
-                onComplete: () => console.log("Hero animation complete")
-            });
-        } else {
-            console.warn("GSAP not loaded for hero animation");
-        }
+    if (document.querySelector(".hero-content h1") && gsapLoaded) {
+        gsap.to(".hero-content h1", {
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            textShadow: `0 0 15px ${getComputedStyle(document.documentElement).getPropertyValue('--neon-cyan').trim()}`,
+            ease: "power1.inOut",
+            onComplete: () => console.log("Hero animation complete")
+        });
     } else {
-        console.warn("Hero content h1 not found");
+        console.warn("Hero content h1 or GSAP not found for animation");
     }
 
     // SECTION ANIMATIONS
-    if (sections.length > 0) {
+    if (sections.length > 0 && gsapLoaded && typeof ScrollTrigger !== 'undefined') {
         sections.forEach((section) => {
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                gsap.set(section, { opacity: 0, y: 60 });
-                ScrollTrigger.create({
-                    trigger: section,
-                    start: "top 80%",
-                    once: true,
-                    onEnter: () => {
-                        gsap.to(section, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 1,
-                            ease: "power4.out",
-                            onComplete: () => console.log(`Section ${section.id} animated`)
-                        });
-                        gsap.from(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story, .stat"), {
-                            opacity: 0,
-                            y: 30,
-                            stagger: 0.2,
-                            duration: 0.6,
-                            delay: 0.2,
-                            onComplete: () => console.log(`Section ${section.id} elements animated`)
-                        });
-                    }
-                });
-            } else {
-                console.warn("GSAP or ScrollTrigger not loaded for section animations");
-            }
+            gsap.set(section, { opacity: 0, y: 60 });
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top 80%",
+                once: true,
+                onEnter: () => {
+                    gsap.to(section, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "power4.out",
+                        onComplete: () => console.log(`Section ${section.id} animated`)
+                    });
+                    gsap.from(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story, .stat"), {
+                        opacity: 0,
+                        y: 30,
+                        stagger: 0.2,
+                        duration: 0.6,
+                        delay: 0.2,
+                        onComplete: () => console.log(`Section ${section.id} elements animated`)
+                    });
+                }
+            });
         });
     } else {
-        console.warn("No sections found");
+        console.warn("Sections, GSAP, or ScrollTrigger not found for animations");
     }
 });
