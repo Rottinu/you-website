@@ -336,16 +336,25 @@ body::after {
 
 @media (min-width: 769px) {
     .dynamic-bubbles {
-        flex-direction: row;
+        flex-direction: row; /* Force side by side on desktop */
         align-items: center;
         justify-content: center;
+    }
+
+    .bubble {
+        flex: 1; /* Allow bubbles to grow and share space equally */
+        max-width: 45%; /* Limit width to prevent overcrowding */
     }
 }
 
 @media (max-width: 768px) {
     .dynamic-bubbles {
-        flex-direction: column;
+        flex-direction: column; /* Stacked on mobile */
         align-items: center;
+    }
+
+    .bubble {
+        width: 100%; /* Full width on mobile */
     }
 }
 
