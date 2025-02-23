@@ -10,7 +10,8 @@
     <meta property="og:description" content="Join the $YOU movement and take control of your destiny on Solana.">
     <meta property="og:image" content="https://youonsol.space/background.webp">
     <meta property="og:url" content="https://youonsol.space">
-    <link rel="stylesheet" href="styles.css?v=1.6" onerror="console.error('Styles.css failed to load. Check file path or GitHub Pages config: ' + this.href); document.body.innerHTML += '<p style=\"color: red;\">Styles.css failed to load. Check file path or GitHub Pages configuration at ' + this.href + '</p>'">
+    <link rel="stylesheet" href="styles.css?v=1.6" onerror="console.error('Styles.css failed to load. Check file path or GitHub Pages config at:', this.href)">
+    <link rel="icon" type="image/png" href="favicon.png"> <!-- Optional: Add if you have a favicon -->
 </head>
 <body>
     <!-- Hamburger Menu -->
@@ -38,7 +39,7 @@
     <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <img src="/you-logo.png" alt="$YOU Logo" class="hero-logo" onerror="console.error('Logo image failed to load'); this.style.display = 'none';">
+            <img src="you-logo.png" alt="$YOU Logo" class="hero-logo" onerror="console.error('Logo image failed to load'); this.style.display = 'none';">
             <h1>YOU Decide. $YOU Leads.</h1>
             <div class="countdown" id="countdown">Loading countdown...</div>
             <button class="cta-button" id="connect-wallet">Connect Wallet</button>
@@ -156,10 +157,10 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" 
             onload="console.log('Confetti loaded')" 
             onerror="console.error('Confetti failed to load'); this.remove();"></script>
-    <script src="https://unpkg.com/@solana/wallet-adapter@0.15.4/dist/wallet-adapter.umd.min.js" 
+    <script src="https://unpkg.com/@solana/wallet-adapter@latest/dist/umd/wallet-adapter.umd.min.js" 
             onload="console.log('Wallet Adapter loaded')" 
             onerror="console.error('Wallet Adapter failed to load'); this.remove();"></script>
-    <script src="/scripts.js?v=1.6" 
+    <script src="scripts.js?v=1.6" 
             onload="console.log('Scripts.js loaded')" 
             onerror="console.error('Scripts.js failed to load'); document.body.innerHTML += '<p style=\"color: red;\">Scripts.js failed to load. Check file path or server.</p>'"></script>
 </body>
