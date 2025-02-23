@@ -241,15 +241,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 10000); // Update every 10 seconds
     }
 
-    // COUNTDOWN (SET YOUR LAUNCH DATE)
+    // COUNTDOWN (SET YOUR LAUNCH DATE) - FIXED TO ENSURE VISIBILITY
     if (countdown) {
-        const launchDate = new Date("2025-06-01T00:00:00Z").getTime(); // Restore launch date
+        const launchDate = new Date("2025-06-01T00:00:00Z").getTime(); // Ensure launch date is correct
         const updateCountdown = setInterval(() => {
             const now = new Date().getTime();
             const distance = launchDate - now;
             if (distance < 0) {
                 clearInterval(updateCountdown);
                 countdown.textContent = "Launch Now Live!";
+                countdown.style.display = 'block'; // Ensure visibility
                 return;
             }
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -257,6 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             countdown.textContent = `Launch in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            countdown.style.display = 'block'; // Ensure visibility
         }, 1000);
     }
 
