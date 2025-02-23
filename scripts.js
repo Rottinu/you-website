@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const visuals = document.querySelectorAll(".section-visual.large");
     const userComment = document.getElementById("user-comment");
     const walletCounter = document.getElementById("wallet-counter");
+    const communityStories = document.getElementById("community-stories");
 
     // ÉTATS
     let isMenuOpen = false;
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let userStoryIndex = 0;
     let walletConnects = 10;
 
-    // LISTE DES COMMENTAIRES DES UTILISATEURS (15 AU TOTAL)
+    // LISTE DES COMMENTAIRES DES UTILISATEURS POUR "OUR COMMUNITY" (15 AU TOTAL)
     const userStories = [
         "I’m leading with $YOU—Sarah’s Wallet",
         "$YOU is my move—Mike’s Power Unleashed",
@@ -37,6 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
         "I’m driving $YOU forward—William’s Momentum",
         "$YOU’s my lead—Charlotte’s Edge",
         "THE movement is mine—Daniel’s Impact"
+    ];
+
+    // LISTE DES COMMENTAIRES DES UTILISATEURS POUR "COMMUNITY" (6 AU TOTAL)
+    const communityStoriesList = [
+        "“$YOU transformed my vision—now I lead my path!” – Rachel, LA",
+        "“I felt the $YOU power instantly—David, Tokyo”",
+        "“Joining $YOU changed everything—Emma, Paris”",
+        "“$YOU is my future—Lucas, Berlin”",
+        "“Leading with $YOU feels unstoppable—Sophie, Sydney”",
+        "“$YOU’s movement is mine—Nathan, Toronto”"
     ];
 
     // GSAP INITIALISATION
@@ -68,11 +79,27 @@ document.addEventListener("DOMContentLoaded", () => {
         storyIndex = (storyIndex + 1) % stories.length;
     };
 
-    // ROTATE USER COMMENTS
+    // ROTATE USER COMMENTS FOR "OUR COMMUNITY"
     const rotateUserComments = () => {
         if (userComment) {
             userComment.textContent = `"${userStories[userStoryIndex]}"`;
             userStoryIndex = (userStoryIndex + 1) % userStories.length;
+        }
+    };
+
+    // ROTATE USER COMMENTS FOR "COMMUNITY" (SHOW TWO AT A TIME)
+    const rotateCommunityStories = () => {
+        if (communityStories && communityStoriesList.length > 0) {
+            const storiesContainer = communityStories;
+            const totalStories = communityStoriesList.length;
+            const index = Math.floor(Date.now() / 5000) % Math.ceil(totalStories / 2); // Rotate every 5 seconds, show 2 at a time
+            storiesContainer.innerHTML = ''; // Clear existing stories
+            for (let i = 0; i < 2 && index * 2 + i < totalStories; i++) {
+                const storyDiv = document.createElement('div');
+                storyDiv.className = 'story';
+                storyDiv.textContent = communityStoriesList[index * 2 + i];
+                storiesContainer.appendChild(storyDiv);
+            }
         }
     };
 
@@ -157,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
             gsap.to(card, {
                 duration: 0.3,
                 scale: 1.05,
-                boxShadow: `0 0 15px ${getComputedStyle(card).borderColor}`,
+                box-shadow: `0 0 15px ${getComputedStyle(card).borderColor}`,
                 overwrite: true
             });
         });
@@ -166,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
             gsap.to(card, {
                 duration: 0.3,
                 scale: 1,
-                boxShadow: `0 0 5px ${getComputedStyle(card).borderColor}`,
+                box-shadow: `0 0 5px ${getComputedStyle(card).borderColor}`,
                 overwrite: true
             });
         });
@@ -267,9 +294,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ROTATE USER COMMENTS
+    // ROTATE USER COMMENTS FOR "OUR COMMUNITY"
     if (userComment) {
         setInterval(rotateUserComments, 5000); // Rotate every 5 seconds
         rotateUserComments(); // Start immediately
+    }
+
+    // ROTATE USER COMMENTS FOR "COMMUNITY" (SHOW TWO AT A TIME)
+    if (communityStories) {
+        setInterval(rotateCommunityStories, 5000); // Rotate every 5 seconds
+        rotateCommunityStories(); // Start immediately
     }
 });
