@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const powerMessage = document.getElementById("power-message");
     const countdown = document.getElementById("countdown");
     const featureCards = document.querySelectorAll(".feature-card");
-    const stats = document.querySelectorAll(".stat");
 
     // ÉTATS
     let isMenuOpen = false;
@@ -152,18 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
             volume += Math.random() * 100 - 50; // Simulate volume fluctuation
             holders += Math.floor(Math.random() * 5) - 2; // Simulate holder change
             ticker.textContent = `$YOU Price: $${price.toFixed(4)} | Volume (24h): $${volume.toFixed(2)} | Holders: ${holders}`;
-        }, 5000); // Update every 5 seconds
-    }
-
-    // COMMUNITY STATS (MOCK DATA UNTIL COIN LAUNCH)
-    if (stats.length) {
-        setInterval(() => {
-            const values = [1234, 500, 'Active'];
-            stats.forEach((stat, i) => {
-                stat.textContent = `${values[i]}+ ${['Members', 'Wallets Connected', 'Active on Twitter/X & Telegram'][i]}`;
-                if (i === 0) values[0] += Math.floor(Math.random() * 10); // Simulate growth
-                if (i === 1) values[1] += Math.floor(Math.random() * 5); // Simulate growth
-            });
         }, 5000); // Update every 5 seconds
     }
 
