@@ -243,29 +243,69 @@ body::after {
     text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
 
+.user-badge {
+    background: rgba(0, 224, 255, 0.1);
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    color: #fff;
+    max-width: 350px;
+    text-align: center;
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.3);
+    animation: badgePulse 3s infinite alternate;
+    margin: 10px auto;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.user-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 224, 255, 0.5);
+}
+
+.user-badge strong {
+    color: var(--neon-cyan);
+    font-weight: bold;
+}
+
+.activity-badge {
+    background: rgba(0, 224, 255, 0.1);
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    color: #fff;
+    max-width: 400px;
+    text-align: center;
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.3);
+    animation: badgePulse 3s infinite alternate;
+    margin: 15px auto;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.activity-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 224, 255, 0.5);
+}
+
+.activity-badge strong {
+    color: var(--neon-cyan);
+    font-weight: bold;
+}
+
+@keyframes badgePulse {
+    0% { box-shadow: 0 0 10px rgba(0, 224, 255, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(0, 224, 255, 0.5); }
+}
+
 .community-stories {
     margin: 20px 0;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    max-width: 600px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.user-story {
-    font-style: italic;
-    color: #ccc;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    text-align: center;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-.user-story:hover {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
 
 .community-activity {
@@ -274,11 +314,6 @@ body::after {
     margin: 10px 0;
     text-align: center;
     animation: pulse 2s infinite alternate;
-}
-
-@keyframes pulse {
-    0% { opacity: 0.8; }
-    100% { opacity: 1; }
 }
 
 /* Your Power Section */
@@ -553,7 +588,7 @@ body::after {
         font-size: 2rem;
     }
 
-    .why-list li, .roadmap-list li, .next-call, .power-story, .bubble, .user-story, .community-activity {
+    .why-list li, .roadmap-list li, .next-call, .power-story, .bubble, .user-badge, .activity-badge {
         font-size: 1rem;
     }
 
@@ -562,7 +597,7 @@ body::after {
         align-items: center;
     }
 
-    .bubble, .user-story {
+    .bubble, .user-badge, .activity-badge {
         max-width: 100%;
         margin: 5px 0;
     }
