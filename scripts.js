@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const powerForm = document.querySelector(".power-form");
     const powerMessage = document.getElementById("power-message");
     const countdown = document.getElementById("countdown");
+    const featureCards = document.querySelectorAll(".feature-card");
 
     // ÉTATS
     let isMenuOpen = false;
@@ -74,21 +75,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (connectWalletBtn) {
         connectWalletBtn.addEventListener("click", async (e) => {
             e.preventDefault();
-            if (window.solana) {
-                try {
-                    const wallet = window.solana;
-                    await wallet.connect();
-                    const publicKey = wallet.publicKey.toString();
-                    connectWalletBtn.textContent = `Connected: ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
-                    connectWalletBtn.disabled = true;
-                    alert(`Wallet connected! Engage with $YOU using ${publicKey}.`);
-                } catch (error) {
-                    alert('Failed to connect wallet. Install Phantom or try again.');
+            if (confirm("Connecting your wallet prepares you for $YOU’s launch and community benefits. Continue?")) {
+                if (window.solana) {
+                    try {
+                        const wallet = window.solana;
+                        await wallet.connect();
+                        const publicKey = wallet.publicKey.toString();
+                        connectWalletBtn.textContent = `Connected: ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
+                        connectWalletBtn.disabled = false; // Keep active for future actions
+                        alert(`Wallet connected! Engage with $YOU using ${publicKey}. Stay tuned for launch perks.`);
+                    } catch (error) {
+                        alert('Failed to connect wallet. Install Phantom or try again.');
+                    }
+                } else {
+                    alert('Please install a Solana wallet like Phantom: https://phantom.app');
+                    window.open('https://phantom.app', '_blank');
                 }
-            } else {
-                alert('Please install a Solana wallet like Phantom: https://phantom.app');
-                window.open('https://phantom.app', '_blank');
             }
+        });
+
+        // Tooltip on hover
+        connectWalletBtn.addEventListener("mouseover", () => {
+            connectWalletBtn.title = "Connect to join $YOU’s movement and prepare for launch benefits!";
         });
     }
 
@@ -110,6 +118,27 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // LOCKED FEATURES HOVER ANIMATION
+    featureCards.forEach(card => {
+        card.addEventListener("mouseover", () => {
+            gsap.to(card, {
+                duration: 0.3,
+                scale: 1.05,
+                boxShadow: `0 0 15px ${getComputedStyle(card).borderColor}`,
+                overwrite: true
+            });
+        });
+
+        card.addEventListener("mouseleave", () => {
+            gsap.to(card, {
+                duration: 0.3,
+                scale: 1,
+                boxShadow: `0 0 5px ${getComputedStyle(card).borderColor}`,
+                overwrite: true
+            });
+        });
+    });
 
     // TICKER (MOCK DATA UNTIL COIN LAUNCH)
     const ticker = document.querySelector(".ticker");
