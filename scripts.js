@@ -6,7 +6,7 @@ if (!window.addEventListener) {
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM fully loaded - starting $YOU scripts");
 
-    // ÉLÉMENTS DOM WITH FALLBACKS
+    // DOM ELEMENTS WITH FALLBACKS
     const hamburger = document.getElementById("hamburger") || null;
     const navMenu = document.getElementById("nav-menu") || null;
     const navLinks = document.querySelectorAll(".nav-menu ul li a") || [];
@@ -40,13 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
         communityStories: !!communityStories
     });
 
-    // ÉTATS
+    // STATES
     let isMenuOpen = false;
     let storyIndex = 0;
     let userStoryIndex = 0;
     let walletConnects = 10;
 
-    // LISTE DES COMMENTAIRES DES UTILISATEURS POUR "OUR COMMUNITY" (15 AU TOTAL)
+    // USER STORIES FOR "OUR COMMUNITY" (15 TOTAL)
     const userStories = [
         "I’m leading with $YOU—Sarah’s Wallet",
         "$YOU is my move—Mike’s Power Unleashed",
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "THE movement is mine—Daniel’s Impact"
     ];
 
-    // LISTE DES COMMENTAIRES DES UTILISATEURS POUR "COMMUNITY" (6 AU TOTAL, DIVERSES GÉOGRAPHIQUEMENT)
+    // COMMUNITY STORIES FOR "COMMUNITY" (6 TOTAL, GEOGRAPHICALLY DIVERSE)
     const communityStoriesList = [
         "“$YOU transformed my vision—now I lead my path!” – Rachel, Los Angeles, USA",
         "“I felt the $YOU power instantly—David, Tokyo, Japan”",
@@ -75,10 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "“$YOU’s movement is mine—Nathan, Toronto, Canada”"
     ];
 
-    // GSAP INITIALISATION WITH FALLBACK
-    let gsapLoaded = false;
-    if (typeof window.gsap !== 'undefined') {
-        gsapLoaded = true;
+    // GSAP INITIALIZATION WITH FALLBACK
+    let gsapLoaded = typeof window.gsap !== 'undefined';
+    if (gsapLoaded) {
         console.log("Initializing GSAP");
         gsap.registerPlugin(ScrollTrigger);
     } else {
@@ -97,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("Solana wallet not detected, wallet connection disabled");
     }
 
-    // FERMETURE MENU
+    // CLOSE MENU FUNCTION
     const closeMenu = () => {
         if (hamburger && navMenu) {
             hamburger.classList.remove("active");
@@ -109,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // TOGGLE MENU
+    // TOGGLE MENU FUNCTION
     const toggleMenu = () => {
         if (hamburger && navMenu) {
             hamburger.classList.toggle("active");
@@ -121,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // ROTATE COMMUNITY STORIES
+    // ROTATE COMMUNITY STORIES FUNCTION
     const rotateStories = () => {
         if (stories.length > 0) {
             stories.forEach((story, i) => {
@@ -134,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // ROTATE USER COMMENTS FOR "OUR COMMUNITY"
+    // ROTATE USER COMMENTS FOR "OUR COMMUNITY" FUNCTION
     const rotateUserComments = () => {
         if (userComment && userStories.length > 0) {
             userComment.textContent = `"${userStories[userStoryIndex]}"`;
@@ -145,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // ROTATE USER COMMENTS FOR "COMMUNITY" (SHOW TWO AT A TIME)
+    // ROTATE COMMUNITY STORIES FOR "COMMUNITY" (SHOW TWO AT A TIME) FUNCTION
     const rotateCommunityStories = () => {
         if (communityStories && communityStoriesList.length > 0) {
             const storiesContainer = communityStories;
@@ -182,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, { passive: true });
 
-    // NAVIGATION SMOOTH
+    // NAVIGATION SMOOTH SCROLL
     if (navLinks.length > 0) {
         navLinks.forEach(link => {
             link.addEventListener("click", (e) => {
@@ -288,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     gsap.to(card, {
                         duration: 0.3,
                         scale: 1.05,
-                        box-shadow: `0 0 15px ${getComputedStyle(card).borderColor}`,
+                        boxShadow: `0 0 15px ${getComputedStyle(card).borderColor}`,
                         overwrite: true
                     });
                     console.log("Feature card hovered");
@@ -302,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     gsap.to(card, {
                         duration: 0.3,
                         scale: 1,
-                        box-shadow: `0 0 5px ${getComputedStyle(card).borderColor}`,
+                        boxShadow: `0 0 5px ${getComputedStyle(card).borderColor}`,
                         overwrite: true
                     });
                     console.log("Feature card left");
@@ -439,7 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.innerHTML += '<p style="color: red;">User comment element not found—check HTML.</p>';
     }
 
-    // ROTATE USER COMMENTS FOR "COMMUNITY" (SHOW TWO AT A TIME)
+    // ROTATE COMMUNITY STORIES FOR "COMMUNITY" (SHOW TWO AT A TIME)
     if (communityStories) {
         setInterval(rotateCommunityStories, 5000); // Rotate every 5 seconds
         rotateCommunityStories(); // Start immediately
