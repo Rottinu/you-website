@@ -6,21 +6,39 @@ if (!window.addEventListener) {
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM fully loaded - starting $YOU scripts");
 
-    // ÉLÉMENTS DOM
-    const hamburger = document.getElementById("hamburger");
-    const navMenu = document.getElementById("nav-menu");
+    // ÉLÉMENTS DOM WITH FALLBACKS
+    const hamburger = document.getElementById("hamburger") || null;
+    const navMenu = document.getElementById("nav-menu") || null;
     const navLinks = document.querySelectorAll(".nav-menu ul li a") || [];
-    const connectWalletBtn = document.getElementById("connect-wallet");
+    const connectWalletBtn = document.getElementById("connect-wallet") || null;
     const sections = document.querySelectorAll(".section, .community") || [];
     const stories = document.querySelectorAll(".story") || [];
-    const powerForm = document.querySelector(".power-form");
-    const powerMessage = document.getElementById("power-message");
-    const countdown = document.getElementById("countdown");
+    const powerForm = document.querySelector(".power-form") || null;
+    const powerMessage = document.getElementById("power-message") || null;
+    const countdown = document.getElementById("countdown") || null;
     const featureCards = document.querySelectorAll(".feature-card") || [];
     const visuals = document.querySelectorAll(".section-visual.large") || [];
-    const userComment = document.getElementById("user-comment");
-    const walletCounter = document.getElementById("wallet-counter");
-    const communityStories = document.getElementById("community-stories");
+    const userComment = document.getElementById("user-comment") || null;
+    const walletCounter = document.getElementById("wallet-counter") || null;
+    const communityStories = document.getElementById("community-stories") || null;
+
+    // Log DOM elements for debugging
+    console.log({
+        hamburger: !!hamburger,
+        navMenu: !!navMenu,
+        navLinks: navLinks.length,
+        connectWalletBtn: !!connectWalletBtn,
+        sections: sections.length,
+        stories: stories.length,
+        powerForm: !!powerForm,
+        powerMessage: !!powerMessage,
+        countdown: !!countdown,
+        featureCards: featureCards.length,
+        visuals: visuals.length,
+        userComment: !!userComment,
+        walletCounter: !!walletCounter,
+        communityStories: !!communityStories
+    });
 
     // ÉTATS
     let isMenuOpen = false;
@@ -65,6 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
     } else {
         console.error("GSAP not loaded, animations disabled");
+    }
+
+    // CONFETTI CHECK
+    const confettiLoaded = typeof confetti === 'function';
+    if (!confettiLoaded) {
+        console.warn("Confetti not loaded, power claim animation disabled");
+    }
+
+    // SOLANA WALLET CHECK
+    const solanaLoaded = typeof window.solana !== 'undefined';
+    if (!solanaLoaded) {
+        console.warn("Solana wallet not detected, wallet connection disabled");
     }
 
     // FERMETURE MENU
@@ -136,10 +166,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // EVENT LISTENERS WITH FALLBACKS
     if (hamburger) {
-        hamburger.addEventListener("click", toggleMenu, false);
+        hamburger.addEventListener("click", toggleMenu, { passive: true });
         console.log("Hamburger menu event listener added");
     } else {
         console.warn("Hamburger not found");
+        document.body.innerHTML += '<p style="color: red;">Hamburger menu not found—check HTML.</p>';
     }
 
     document.addEventListener("click", (e) => {
@@ -149,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             console.log("Click event, menu state:", isMenuOpen);
         }
-    }, false);
+    }, { passive: true });
 
     // NAVIGATION SMOOTH
     if (navLinks.length > 0) {
@@ -168,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn(`Target section ${targetId} not found`);
                 }
-            }, false);
+            }, { passive: true });
         });
     } else {
         console.warn("No navigation links found");
@@ -187,36 +218,44 @@ document.addEventListener("DOMContentLoaded", () => {
                         const publicKey = wallet.publicKey.toString();
                         connectWalletBtn.textContent = `Connected: ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
                         connectWalletBtn.disabled = false;
+                        connectWalletBtn.classList.remove('disabled');
                         console.log(`Wallet connected: ${publicKey}`);
                         alert(`Wallet connected! Engage with $YOU using ${publicKey}. Stay tuned for launch perks.`);
                     } catch (error) {
                         console.error("Wallet connection error:", error);
                         alert('Failed to connect wallet. Install Phantom or try again.');
+                        connectWalletBtn.disabled = true;
+                        connectWalletBtn.classList.add('disabled');
                     }
                 } else {
                     console.warn("Solana wallet not detected");
                     alert('Please install a Solana wallet like Phantom: https://phantom.app');
                     window.open('https://phantom.app', '_blank');
+                    connectWalletBtn.disabled = true;
+                    connectWalletBtn.classList.add('disabled');
                 }
             }
-        }, false);
+        }, { passive: true });
 
         connectWalletBtn.addEventListener("mouseover", () => {
             connectWalletBtn.title = "Connect to join $YOU’s movement and prepare for launch benefits!";
             console.log("Wallet button hover");
-        }, false);
+        }, { passive: true });
     } else {
         console.warn("Connect wallet button not found");
+        document.body.innerHTML += '<p style="color: red;">Connect wallet button not found—check HTML.</p>';
     }
 
     // YOUR POWER INTERACTION
     if (powerForm) {
         powerForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const userInput = document.getElementById("user-name").value.trim();
+            const userInput = document.getElementById("user-name")?.value.trim() || '';
             if (userInput) {
-                powerMessage.textContent = `${userInput}, your power in $YOU is unleashed!`;
-                if (typeof confetti === 'function') {
+                if (powerMessage) {
+                    powerMessage.textContent = `${userInput}, your power in $YOU is unleashed!`;
+                }
+                if (confettiLoaded) {
                     confetti({
                         particleCount: 100,
                         spread: 70,
@@ -226,13 +265,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("Confetti not loaded");
                 }
-                powerForm.reset();
+                if (powerForm) {
+                    powerForm.reset();
+                }
                 console.log("Power claimed for:", userInput);
             } else {
-                powerMessage.textContent = "Please enter your name or wallet address.";
+                if (powerMessage) {
+                    powerMessage.textContent = "Please enter your name or wallet address.";
+                }
                 console.warn("No user input for power claim");
             }
-        }, false);
+        }, { passive: true });
     } else {
         console.warn("Power form not found");
     }
@@ -252,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("GSAP not loaded for feature card hover");
                 }
-            }, false);
+            }, { passive: true });
 
             card.addEventListener("mouseleave", () => {
                 if (gsapLoaded) {
@@ -266,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("GSAP not loaded for feature card leave");
                 }
-            }, false);
+            }, { passive: true });
         });
     } else {
         console.warn("No feature cards found");
@@ -282,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("GSAP not loaded for visual hover");
                 }
-            }, false);
+            }, { passive: true });
 
             visual.addEventListener("mouseleave", () => {
                 if (gsapLoaded) {
@@ -291,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("GSAP not loaded for visual leave");
                 }
-            }, false);
+            }, { passive: true });
         });
     } else {
         console.warn("No visuals found");
@@ -307,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("GSAP not loaded for interactive element hover");
                 }
-            }, false);
+            }, { passive: true });
 
             element.addEventListener("mouseleave", () => {
                 if (gsapLoaded) {
@@ -316,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     console.warn("GSAP not loaded for interactive element leave");
                 }
-            }, false);
+            }, { passive: true });
         });
     } else {
         console.warn("No interactive elements found");
@@ -377,12 +420,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1000);
         } catch (error) {
             console.error("Countdown error:", error);
-            countdown.textContent = "Error loading countdown—please refresh.";
+            countdown.textContent = "Error loading countdown—please refresh or contact support.";
             countdown.style.display = 'block';
             countdown.style.visibility = 'visible';
+            countdown.style.color = 'red';
         }
     } else {
         console.warn("Countdown element not found");
+        document.body.innerHTML += '<p style="color: red;">Countdown element not found—check HTML.</p>';
     }
 
     // ROTATE USER COMMENTS FOR "OUR COMMUNITY"
@@ -391,6 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
         rotateUserComments(); // Start immediately
     } else {
         console.warn("User comment element not found");
+        document.body.innerHTML += '<p style="color: red;">User comment element not found—check HTML.</p>';
     }
 
     // ROTATE USER COMMENTS FOR "COMMUNITY" (SHOW TWO AT A TIME)
@@ -399,6 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
         rotateCommunityStories(); // Start immediately
     } else {
         console.warn("Community stories container not found");
+        document.body.innerHTML += '<p style="color: red;">Community stories container not found—check HTML.</p>';
     }
 
     // HERO ANIMATION
