@@ -227,23 +227,42 @@ body::after {
     margin-right: auto;
 }
 
-.bubble {
+.info-bubble {
     background: rgba(255, 255, 255, 0.05);
     padding: 12px 20px;
     border-radius: 20px;
     font-size: 1.1rem;
-    color: var(--neon-cyan);
+    color: #fff;
     max-width: 300px;
     text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    transition: color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+}
+
+.info-bubble:hover, .info-bubble strong {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.bubble {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 18px 30px; /* Larger padding for bigger size */
+    border-radius: 25px; /* Slightly larger radius for distinction */
+    font-size: 1.2rem; /* Larger font size for emphasis */
+    color: #fff; /* White text as requested */
+    max-width: 400px; /* Larger width for bigger size */
+    text-align: center;
     border: 2px solid var(--neon-cyan);
-    box-shadow: 0 0 10px rgba(0, 224, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.3);
     transition: color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
 }
 
 .bubble:hover, .bubble strong {
-    color: var(--neon-cyan);
-    text-shadow: 0 0 15px rgba(0, 224, 255, 0.7);
-    box-shadow: 0 0 20px rgba(0, 224, 255, 0.5);
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 224, 255, 0.7);
+    box-shadow: 0 0 25px rgba(0, 224, 255, 0.5);
 }
 
 .dynamic-bubbles {
@@ -406,6 +425,7 @@ body::after {
     margin-left: auto;
     margin-right: auto;
     text-align: center; /* Center the text */
+    justify-content: center; /* Ensure centered layout */
 }
 
 .story {
@@ -538,7 +558,7 @@ body::after {
         font-size: 2rem;
     }
 
-    .why-list li, .roadmap-list li, .next-call, .power-story, .bubble {
+    .why-list li, .roadmap-list li, .next-call, .power-story, .info-bubble, .bubble {
         font-size: 1rem;
     }
 
@@ -547,7 +567,7 @@ body::after {
         align-items: center;
     }
 
-    .bubble {
+    .info-bubble, .bubble {
         max-width: 100%;
         margin: 5px 0;
     }
