@@ -257,30 +257,6 @@ body::after {
     margin-right: auto;
 }
 
-.dynamic-badge {
-    background: rgba(0, 224, 255, 0.1);
-    padding: 15px 25px;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    color: var(--neon-cyan);
-    max-width: 350px;
-    text-align: center;
-    border: 2px solid var(--neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 224, 255, 0.3);
-    animation: badgePulse 3s infinite alternate;
-    transition: box-shadow 0.3s, transform 0.3s;
-}
-
-.dynamic-badge:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(0, 224, 255, 0.5);
-}
-
-.dynamic-badge strong {
-    color: var(--neon-cyan);
-    font-weight: bold;
-}
-
 /* Your Power Section */
 .power-form {
     display: flex;
@@ -426,6 +402,10 @@ body::after {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; /* Center the text */
 }
 
 .story {
@@ -558,7 +538,7 @@ body::after {
         font-size: 2rem;
     }
 
-    .why-list li, .roadmap-list li, .next-call, .power-story, .bubble, .dynamic-badge {
+    .why-list li, .roadmap-list li, .next-call, .power-story, .bubble {
         font-size: 1rem;
     }
 
@@ -567,9 +547,13 @@ body::after {
         align-items: center;
     }
 
-    .bubble, .dynamic-badge {
+    .bubble {
         max-width: 100%;
         margin: 5px 0;
+    }
+
+    .community-stories {
+        max-width: 100%;
     }
 
     .features-locked {
