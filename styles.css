@@ -210,21 +210,75 @@ body::after {
     color: #ccc;
 }
 
-/* Our Community */
-.community-stats {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-    flex-wrap: wrap;
+.why-list li:hover, .why-list li strong {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
 
-.stat {
+/* Our Community */
+.community-bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bubble {
     background: rgba(255, 255, 255, 0.05);
-    padding: 10px 20px;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    color: #ccc;
+    max-width: 300px;
+    text-align: center;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.bubble:hover, .bubble strong {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
+.community-stories {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-story {
+    font-style: italic;
+    color: #ccc;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
+    text-align: center;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.user-story:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
+.community-activity {
+    font-size: 1.1rem;
     color: var(--neon-cyan);
-    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
 }
 
 /* Your Power Section */
@@ -255,6 +309,12 @@ body::after {
     font-size: 1.1rem;
     color: #ccc;
     margin: 20px 0;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.power-story:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
 
 .features-locked {
@@ -326,11 +386,22 @@ body::after {
     color: #ccc;
 }
 
+.roadmap-list li:hover, .roadmap-list li strong {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
 /* Next Steps */
 .next-call {
     font-size: 1.1rem;
     color: #ccc;
     margin: 20px 0;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.next-call:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
 
 /* Community Section */
@@ -358,6 +429,12 @@ body::after {
     padding: 10px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.story:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
 }
 
 .cta-container {
@@ -403,6 +480,19 @@ body::after {
     margin: 20px auto;
     opacity: 0.8;
     animation: fade-in 1.5s ease-in-out;
+}
+
+.section-visual.large {
+    max-width: 30%;
+    margin: 20px auto;
+    opacity: 0.8;
+    animation: fade-in 1.5s ease-in-out;
+}
+
+.section-visual.large:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    transition: opacity 0.3s, transform 0.3s;
 }
 
 @keyframes fade-in {
@@ -463,8 +553,18 @@ body::after {
         font-size: 2rem;
     }
 
-    .why-list li, .roadmap-list li, .next-call, .power-story, .stat {
+    .why-list li, .roadmap-list li, .next-call, .power-story, .bubble, .user-story, .community-activity {
         font-size: 1rem;
+    }
+
+    .community-bubbles, .community-stories {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bubble, .user-story {
+        max-width: 100%;
+        margin: 5px 0;
     }
 
     .features-locked {
@@ -475,9 +575,5 @@ body::after {
     .feature-card {
         width: 100%;
         max-width: 300px;
-    }
-
-    .section-visual {
-        max-width: 30%;
     }
 }
