@@ -11,12 +11,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const countdown = document.getElementById("countdown");
     const featureCards = document.querySelectorAll(".feature-card");
     const visuals = document.querySelectorAll(".section-visual.large");
-    const userStories = document.querySelectorAll(".user-story");
+    const userComment = document.getElementById("user-comment");
+    const walletCounter = document.getElementById("wallet-counter");
 
     // ÉTATS
     let isMenuOpen = false;
     let storyIndex = 0;
     let userStoryIndex = 0;
+    let walletConnects = 10;
+
+    // LISTE DES COMMENTAIRES DES UTILISATEURS (15 AU TOTAL)
+    const userStories = [
+        "I’m leading with $YOU—Sarah’s Wallet",
+        "$YOU is my move—Mike’s Power Unleashed",
+        "Joining THE movement—Alex’s Charge",
+        "$YOU empowers me—Emma’s Vision",
+        "I’m shaping my future with $YOU—Liam’s Lead",
+        "THE $YOU movement is mine—Olivia’s Drive",
+        "Leading THE charge with $YOU—Noah’s Power",
+        "My wallet’s in $YOU—Sophia’s Commitment",
+        "$YOU is my project—James’s Rise",
+        "I’m part of THE movement—Isabella’s Spark",
+        "$YOU’s power is mine—Ethan’s Force",
+        "Joining THE future with $YOU—Ava’s Path",
+        "I’m driving $YOU forward—William’s Momentum",
+        "$YOU’s my lead—Charlotte’s Edge",
+        "THE movement is mine—Daniel’s Impact"
+    ];
 
     // GSAP INITIALISATION
     gsap.registerPlugin(ScrollTrigger);
@@ -47,12 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
         storyIndex = (storyIndex + 1) % stories.length;
     };
 
-    // ROTATE USER STORIES
-    const rotateUserStories = () => {
-        userStories.forEach((story, i) => {
-            story.style.display = i === userStoryIndex ? 'block' : 'none';
-        });
-        userStoryIndex = (userStoryIndex + 1) % userStories.length;
+    // ROTATE USER COMMENTS
+    const rotateUserComments = () => {
+        if (userComment) {
+            userComment.textContent = `"${userStories[userStoryIndex]}"`;
+            userStoryIndex = (userStoryIndex + 1) % userStories.length;
+        }
     };
 
     // GESTION ÉVÉNEMENTS
@@ -185,13 +206,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000); // Update every 5 seconds
     }
 
-    // COMMUNITY ACTIVITY (MOCK DATA UNTIL COIN LAUNCH)
-    const activity = document.querySelector(".community-activity");
-    if (activity) {
-        let connects = 10;
+    // WALLET COUNTER (MOCK DATA UNTIL COIN LAUNCH)
+    if (walletCounter) {
         setInterval(() => {
-            connects += Math.floor(Math.random() * 3); // Simulate new connections
-            activity.textContent = `${connects} Wallets Connected Today—Join THE Movement!`;
+            walletConnects += Math.floor(Math.random() * 3); // Simulate new connections
+            walletCounter.textContent = `${walletConnects} Wallets Connected Today—Join THE Movement!`;
         }, 10000); // Update every 10 seconds
     }
 
@@ -248,9 +267,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ROTATE USER STORIES
-    if (userStories.length > 1) {
-        setInterval(rotateUserStories, 5000); // Rotate every 5 seconds
-        rotateUserStories(); // Start immediately
+    // ROTATE USER COMMENTS
+    if (userComment) {
+        setInterval(rotateUserComments, 5000); // Rotate every 5 seconds
+        rotateUserComments(); // Start immediately
     }
 });
