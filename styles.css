@@ -70,11 +70,42 @@ nav.nav ul li a:hover {
     justify-content: center;
     text-align: center;
     padding: 50px;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: particleFlow 10s infinite linear;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes particleFlow {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 20px;
+}
+
+.hero-logo {
+    max-width: 20%;
+    margin-bottom: 20px;
+    animation: neon-pulse 2s infinite alternate;
+}
+
+@keyframes neon-pulse {
+    0% { opacity: 0.9; box-shadow: 0 0 10px var(--neon-cyan); }
+    100% { opacity: 1; box-shadow: 0 0 20px var(--neon-cyan); }
 }
 
 .cta-button {
@@ -92,6 +123,12 @@ nav.nav ul li a:hover {
 .cta-button:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.countdown {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: var(--neon-cyan);
 }
 
 .subtitle {
@@ -113,6 +150,30 @@ nav.nav ul li a:hover {
     color: var(--neon-cyan);
 }
 
+/* Your Power Section */
+.power-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+#user-name {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.power-message {
+    margin-top: 10px;
+    color: var(--neon-cyan);
+    font-weight: bold;
+}
+
 /* Community Section */
 .community {
     padding: 60px 5%;
@@ -123,6 +184,21 @@ nav.nav ul li a:hover {
 .community h2 {
     font-size: 2rem;
     margin-bottom: 20px;
+}
+
+.community-stories {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.story {
+    font-style: italic;
+    color: #ccc;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
 }
 
 .cta-container {
@@ -176,9 +252,17 @@ nav.nav ul li a:hover {
         font-size: 2.5rem;
     }
 
+    .hero-logo {
+        max-width: 40%;
+    }
+
     .cta-button {
         padding: 12px 30px;
         font-size: 1rem;
+    }
+
+    .countdown {
+        font-size: 1.2rem;
     }
 
     .subtitle {
