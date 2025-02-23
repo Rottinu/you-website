@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const powerMessage = document.getElementById("power-message");
     const countdown = document.getElementById("countdown");
     const featureCards = document.querySelectorAll(".feature-card");
+    const stats = document.querySelectorAll(".stat");
 
     // ÉTATS
     let isMenuOpen = false;
@@ -154,6 +155,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000); // Update every 5 seconds
     }
 
+    // COMMUNITY STATS (MOCK DATA UNTIL COIN LAUNCH)
+    if (stats.length) {
+        setInterval(() => {
+            const values = [1234, 500, 'Active'];
+            stats.forEach((stat, i) => {
+                stat.textContent = `${values[i]}+ ${['Members', 'Wallets Connected', 'Active on Twitter/X & Telegram'][i]}`;
+                if (i === 0) values[0] += Math.floor(Math.random() * 10); // Simulate growth
+                if (i === 1) values[1] += Math.floor(Math.random() * 5); // Simulate growth
+            });
+        }, 5000); // Update every 5 seconds
+    }
+
     // COUNTDOWN (SET YOUR LAUNCH DATE)
     if (countdown) {
         const launchDate = new Date("2025-06-01T00:00:00Z").getTime(); // Replace with your launch date
@@ -196,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     duration: 1,
                     ease: "power4.out"
                 });
-                gsap.from(section.querySelectorAll("p"), {
+                gsap.from(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story, .stat"), {
                     opacity: 0,
                     y: 30,
                     stagger: 0.2,
