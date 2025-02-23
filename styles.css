@@ -8,6 +8,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Ensure no overrides */
+    !important;
 }
 
 body {
@@ -17,8 +19,10 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Ensure no overrides */
     overflow-x: hidden;
+    /* Ensure no overrides */
+    position: relative;
+    z-index: 1;
 }
 
 body::after {
@@ -41,7 +45,6 @@ body::after {
     z-index: 1001;
     display: flex;
     align-items: center;
-    /* Ensure responsiveness */
     transition: all 0.3s ease;
 }
 
@@ -52,6 +55,8 @@ body::after {
     cursor: pointer;
     z-index: 1002;
     transition: transform 0.3s ease;
+    /* Ensure clickable */
+    pointer-events: auto;
 }
 
 .hamburger span {
@@ -108,8 +113,9 @@ body::after {
     transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     overflow-y: auto;
-    /* Ensure responsiveness */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Ensure visible */
+    display: block;
 }
 
 .nav-menu.open {
@@ -204,8 +210,9 @@ body::after {
     margin: 20px 0;
     width: auto;
     display: inline-block;
-    /* Ensure responsiveness */
     box-shadow: 0 0 10px rgba(0, 224, 255, 0.3);
+    /* Ensure responsiveness */
+    pointer-events: auto;
 }
 
 .cta-button:hover {
@@ -226,6 +233,9 @@ body::after {
     visibility: visible; /* Additional safeguard */
     width: 100%;
     text-align: center;
+    /* Ensure no overrides */
+    position: relative;
+    z-index: 1;
 }
 
 .subtitle {
@@ -327,6 +337,9 @@ body::after {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    /* Ensure no overrides */
+    position: relative;
+    z-index: 1;
 }
 
 @media (min-width: 769px) {
