@@ -276,6 +276,20 @@ body::after {
     margin-right: auto;
 }
 
+@media (min-width: 769px) {
+    .dynamic-bubbles {
+        flex-direction: row; /* Side by side on desktop */
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .dynamic-bubbles {
+        flex-direction: column; /* Stacked on smartphones */
+        align-items: center;
+    }
+}
+
 /* Your Power Section */
 .power-form {
     display: flex;
