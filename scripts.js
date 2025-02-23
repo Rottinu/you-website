@@ -40,14 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
         "THE movement is mine—Daniel’s Impact"
     ];
 
-    // LISTE DES COMMENTAIRES DES UTILISATEURS POUR "COMMUNITY" (6 AU TOTAL)
+    // LISTE DES COMMENTAIRES DES UTILISATEURS POUR "COMMUNITY" (6 AU TOTAL, DIVERSES GÉOGRAPHIQUEMENT)
     const communityStoriesList = [
-        "“$YOU transformed my vision—now I lead my path!” – Rachel, LA",
-        "“I felt the $YOU power instantly—David, Tokyo”",
-        "“Joining $YOU changed everything—Emma, Paris”",
-        "“$YOU is my future—Lucas, Berlin”",
-        "“Leading with $YOU feels unstoppable—Sophie, Sydney”",
-        "“$YOU’s movement is mine—Nathan, Toronto”"
+        "“$YOU transformed my vision—now I lead my path!” – Rachel, Los Angeles, USA",
+        "“I felt the $YOU power instantly—David, Tokyo, Japan”",
+        "“Joining $YOU changed everything—Emma, Paris, France”",
+        "“$YOU is my future—Lucas, Berlin, Germany”",
+        "“Leading with $YOU feels unstoppable—Sophie, Sydney, Australia”",
+        "“$YOU’s movement is mine—Nathan, Toronto, Canada”"
     ];
 
     // GSAP INITIALISATION
@@ -92,12 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (communityStories && communityStoriesList.length > 0) {
             const storiesContainer = communityStories;
             const totalStories = communityStoriesList.length;
-            const index = Math.floor(Date.now() / 5000) % Math.ceil(totalStories / 2); // Rotate every 5 seconds, show 2 at a time
+            const pairIndex = Math.floor(Date.now() / 5000) % Math.ceil(totalStories / 2); // Rotate every 5 seconds, show 2 at a time
             storiesContainer.innerHTML = ''; // Clear existing stories
-            for (let i = 0; i < 2 && index * 2 + i < totalStories; i++) {
+            for (let i = 0; i < 2 && pairIndex * 2 + i < totalStories; i++) {
                 const storyDiv = document.createElement('div');
                 storyDiv.className = 'story';
-                storyDiv.textContent = communityStoriesList[index * 2 + i];
+                storyDiv.textContent = communityStoriesList[pairIndex * 2 + i];
                 storiesContainer.appendChild(storyDiv);
             }
         }
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const interactiveElements = document.querySelectorAll(".why-list li, .roadmap-list li, .next-call, .power-story, .bubble");
+    const interactiveElements = document.querySelectorAll(".why-list li, .roadmap-list li, .next-call, .power-story, .info-bubble");
     interactiveElements.forEach(element => {
         element.addEventListener("mouseover", () => {
             gsap.to(element, { duration: 0.3, color: '#fff', textShadow: '0 0 10px rgba(0, 224, 255, 0.5)', overwrite: true });
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // COUNTDOWN (SET YOUR LAUNCH DATE)
     if (countdown) {
-        const launchDate = new Date("2025-06-01T00:00:00Z").getTime(); // Replace with your launch date
+        const launchDate = new Date("2025-06-01T00:00:00Z").getTime(); // Restore launch date
         const updateCountdown = setInterval(() => {
             const now = new Date().getTime();
             const distance = launchDate - now;
