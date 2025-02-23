@@ -10,10 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const powerMessage = document.getElementById("power-message");
     const countdown = document.getElementById("countdown");
     const featureCards = document.querySelectorAll(".feature-card");
+    const visuals = document.querySelectorAll(".section-visual.large");
+    const userStories = document.querySelectorAll(".user-story");
 
     // ÉTATS
     let isMenuOpen = false;
     let storyIndex = 0;
+    let userStoryIndex = 0;
 
     // GSAP INITIALISATION
     gsap.registerPlugin(ScrollTrigger);
@@ -42,6 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
             story.style.display = i === storyIndex ? 'block' : 'none';
         });
         storyIndex = (storyIndex + 1) % stories.length;
+    };
+
+    // ROTATE USER STORIES
+    const rotateUserStories = () => {
+        userStories.forEach((story, i) => {
+            story.style.display = i === userStoryIndex ? 'block' : 'none';
+        });
+        userStoryIndex = (userStoryIndex + 1) % userStories.length;
     };
 
     // GESTION ÉVÉNEMENTS
@@ -140,6 +151,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // VISUALS AND TEXT HOVER EFFECTS
+    visuals.forEach(visual => {
+        visual.addEventListener("mouseover", () => {
+            gsap.to(visual, { duration: 0.3, scale: 1.05, opacity: 1, overwrite: true });
+        });
+        visual.addEventListener("mouseleave", () => {
+            gsap.to(visual, { duration: 0.3, scale: 1, opacity: 0.8, overwrite: true });
+        });
+    });
+
+    const interactiveElements = document.querySelectorAll(".why-list li, .roadmap-list li, .next-call, .power-story, .bubble");
+    interactiveElements.forEach(element => {
+        element.addEventListener("mouseover", () => {
+            gsap.to(element, { duration: 0.3, color: '#fff', textShadow: '0 0 10px rgba(0, 224, 255, 0.5)', overwrite: true });
+        });
+        element.addEventListener("mouseleave", () => {
+            gsap.to(element, { duration: 0.3, color: '#ccc', textShadow: 'none', overwrite: true });
+        });
+    });
+
     // TICKER (MOCK DATA UNTIL COIN LAUNCH)
     const ticker = document.querySelector(".ticker");
     if (ticker) {
@@ -152,6 +183,16 @@ document.addEventListener("DOMContentLoaded", () => {
             holders += Math.floor(Math.random() * 5) - 2; // Simulate holder change
             ticker.textContent = `$YOU Price: $${price.toFixed(4)} | Volume (24h): $${volume.toFixed(2)} | Holders: ${holders}`;
         }, 5000); // Update every 5 seconds
+    }
+
+    // COMMUNITY ACTIVITY (MOCK DATA UNTIL COIN LAUNCH)
+    const activity = document.querySelector(".community-activity");
+    if (activity) {
+        let connects = 10;
+        setInterval(() => {
+            connects += Math.floor(Math.random() * 3); // Simulate new connections
+            activity.textContent = `${connects} Wallets Connected Today—Join THE Movement!`;
+        }, 10000); // Update every 10 seconds
     }
 
     // COUNTDOWN (SET YOUR LAUNCH DATE)
@@ -206,4 +247,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // ROTATE USER STORIES
+    if (userStories.length > 1) {
+        setInterval(rotateUserStories, 5000); // Rotate every 5 seconds
+        rotateUserStories(); // Start immediately
+    }
 });
