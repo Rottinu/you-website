@@ -54,7 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // GSAP INITIALISATION
     console.log("Initializing GSAP");
-    gsap.registerPlugin(ScrollTrigger);
+    if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    } else {
+        console.error("GSAP not loaded");
+    }
 
     // FERMETURE MENU
     const closeMenu = () => {
@@ -63,6 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
             navMenu.classList.remove("open");
             isMenuOpen = false;
             console.log("Menu closed");
+        } else {
+            console.warn("Hamburger or nav menu not found");
         }
     };
 
@@ -73,6 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
             navMenu.classList.toggle("open");
             isMenuOpen = !isMenuOpen;
             console.log(`Menu ${isMenuOpen ? 'opened' : 'closed'}`);
+        } else {
+            console.warn("Hamburger or nav menu not found for toggle");
         }
     };
 
@@ -128,8 +136,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.addEventListener("click", (e) => {
-        if (isMenuOpen && !hamburger?.contains(e.target) && !navMenu?.contains(e.target)) {
+        if (isMenuOpen && hamburger && navMenu && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
             closeMenu();
+            console.log("Clicked outside menu, closing");
+        } else {
+            console.log("Click event, menu state:", isMenuOpen);
         }
     });
 
@@ -199,11 +210,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const userInput = document.getElementById("user-name").value.trim();
             if (userInput) {
                 powerMessage.textContent = `${userInput}, your power in $YOU is unleashed!`;
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                    console.log("Confetti triggered for:", userInput);
+                } else {
+                    console.warn("Confetti not loaded");
+                }
                 powerForm.reset();
                 console.log("Power claimed for:", userInput);
             } else {
@@ -219,23 +235,31 @@ document.addEventListener("DOMContentLoaded", () => {
     if (featureCards.length > 0) {
         featureCards.forEach(card => {
             card.addEventListener("mouseover", () => {
-                gsap.to(card, {
-                    duration: 0.3,
-                    scale: 1.05,
-                    box-shadow: `0 0 15px ${getComputedStyle(card).borderColor}`,
-                    overwrite: true
-                });
-                console.log("Feature card hovered");
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(card, {
+                        duration: 0.3,
+                        scale: 1.05,
+                        box-shadow: `0 0 15px ${getComputedStyle(card).borderColor}`,
+                        overwrite: true
+                    });
+                    console.log("Feature card hovered");
+                } else {
+                    console.warn("GSAP not loaded for feature card hover");
+                }
             });
 
             card.addEventListener("mouseleave", () => {
-                gsap.to(card, {
-                    duration: 0.3,
-                    scale: 1,
-                    box-shadow: `0 0 5px ${getComputedStyle(card).borderColor}`,
-                    overwrite: true
-                });
-                console.log("Feature card left");
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(card, {
+                        duration: 0.3,
+                        scale: 1,
+                        box-shadow: `0 0 5px ${getComputedStyle(card).borderColor}`,
+                        overwrite: true
+                    });
+                    console.log("Feature card left");
+                } else {
+                    console.warn("GSAP not loaded for feature card leave");
+                }
             });
         });
     } else {
@@ -246,12 +270,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (visuals.length > 0) {
         visuals.forEach(visual => {
             visual.addEventListener("mouseover", () => {
-                gsap.to(visual, { duration: 0.3, scale: 1.05, opacity: 1, overwrite: true });
-                console.log("Visual hovered");
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(visual, { duration: 0.3, scale: 1.05, opacity: 1, overwrite: true });
+                    console.log("Visual hovered");
+                } else {
+                    console.warn("GSAP not loaded for visual hover");
+                }
             });
             visual.addEventListener("mouseleave", () => {
-                gsap.to(visual, { duration: 0.3, scale: 1, opacity: 0.8, overwrite: true });
-                console.log("Visual left");
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(visual, { duration: 0.3, scale: 1, opacity: 0.8, overwrite: true });
+                    console.log("Visual left");
+                } else {
+                    console.warn("GSAP not loaded for visual leave");
+                }
             });
         });
     } else {
@@ -262,12 +294,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (interactiveElements.length > 0) {
         interactiveElements.forEach(element => {
             element.addEventListener("mouseover", () => {
-                gsap.to(element, { duration: 0.3, color: '#fff', textShadow: '0 0 10px rgba(0, 224, 255, 0.5)', overwrite: true });
-                console.log("Interactive element hovered");
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(element, { duration: 0.3, color: '#fff', textShadow: '0 0 10px rgba(0, 224, 255, 0.5)', overwrite: true });
+                    console.log("Interactive element hovered");
+                } else {
+                    console.warn("GSAP not loaded for interactive element hover");
+                }
             });
             element.addEventListener("mouseleave", () => {
-                gsap.to(element, { duration: 0.3, color: '#ccc', textShadow: 'none', overwrite: true });
-                console.log("Interactive element left");
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(element, { duration: 0.3, color: '#ccc', textShadow: 'none', overwrite: true });
+                    console.log("Interactive element left");
+                } else {
+                    console.warn("GSAP not loaded for interactive element leave");
+                }
             });
         });
     } else {
@@ -355,14 +395,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // HERO ANIMATION
     if (document.querySelector(".hero-content h1")) {
-        gsap.to(".hero-content h1", {
-            duration: 2,
-            repeat: -1,
-            yoyo: true,
-            textShadow: `0 0 15px ${getComputedStyle(document.documentElement).getPropertyValue('--neon-cyan').trim()}`,
-            ease: "power1.inOut",
-            onComplete: () => console.log("Hero animation complete")
-        });
+        if (typeof gsap !== 'undefined') {
+            gsap.to(".hero-content h1", {
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                textShadow: `0 0 15px ${getComputedStyle(document.documentElement).getPropertyValue('--neon-cyan').trim()}`,
+                ease: "power1.inOut",
+                onComplete: () => console.log("Hero animation complete")
+            });
+        } else {
+            console.warn("GSAP not loaded for hero animation");
+        }
     } else {
         console.warn("Hero content h1 not found");
     }
@@ -370,29 +414,33 @@ document.addEventListener("DOMContentLoaded", () => {
     // SECTION ANIMATIONS
     if (sections.length > 0) {
         sections.forEach((section) => {
-            gsap.set(section, { opacity: 0, y: 60 });
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top 80%",
-                once: true,
-                onEnter: () => {
-                    gsap.to(section, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1,
-                        ease: "power4.out",
-                        onComplete: () => console.log(`Section ${section.id} animated`)
-                    });
-                    gsap.from(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story, .stat"), {
-                        opacity: 0,
-                        y: 30,
-                        stagger: 0.2,
-                        duration: 0.6,
-                        delay: 0.2,
-                        onComplete: () => console.log(`Section ${section.id} elements animated`)
-                    });
-                }
-            });
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.set(section, { opacity: 0, y: 60 });
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top 80%",
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(section, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            ease: "power4.out",
+                            onComplete: () => console.log(`Section ${section.id} animated`)
+                        });
+                        gsap.from(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story, .stat"), {
+                            opacity: 0,
+                            y: 30,
+                            stagger: 0.2,
+                            duration: 0.6,
+                            delay: 0.2,
+                            onComplete: () => console.log(`Section ${section.id} elements animated`)
+                        });
+                    }
+                });
+            } else {
+                console.warn("GSAP or ScrollTrigger not loaded for section animations");
+            }
         });
     } else {
         console.warn("No sections found");
