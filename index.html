@@ -10,7 +10,7 @@
     <meta property="og:description" content="Join the $YOU movement and take control of your destiny on Solana.">
     <meta property="og:image" content="https://youonsol.space/background.webp">
     <meta property="og:url" content="https://youonsol.space">
-    <link rel="stylesheet" href="./styles.css" onerror="console.error('Styles.css failed to load')"> <!-- Relative path, adjust if needed -->
+    <link rel="stylesheet" href="./styles.css?v=1.4" onerror="console.error('Styles.css failed to load'); document.body.innerHTML += '<p style=\"color: red;\">Styles.css failed to load. Check file path or server.</p>'">
 </head>
 <body>
     <!-- Hamburger Menu -->
@@ -38,9 +38,9 @@
     <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <img src="you-logo.png" alt="$YOU Logo" class="hero-logo" onerror="console.error('Logo image failed to load')" />
+            <img src="you-logo.png" alt="$YOU Logo" class="hero-logo" onerror="console.error('Logo image failed to load'); this.style.display = 'none';">
             <h1>YOU Decide. $YOU Leads.</h1>
-            <div class="countdown" id="countdown">Loading countdown...</div> <!-- Default text for debugging -->
+            <div class="countdown" id="countdown">Loading countdown...</div>
             <button class="cta-button" id="connect-wallet">Connect Wallet</button>
             <p class="subtitle">Join the movement—connect now to prepare for $YOU’s launch and unlock your power!</p>
         </div>
@@ -141,14 +141,15 @@
     <!-- Scripts with Fallbacks and Debugging -->
     <script>
         console.log("Starting script checks");
-        window.addEventListener = window.addEventListener || window.attachEvent; // Fallback for old IE
+        window.addEventListener = window.addEventListener || window.attachEvent || function() { console.error("Browser does not support events"); };
         if (!window.addEventListener) {
-            console.error("Browser does not support addEventListener/attachEvent");
+            console.error("Critical: Browser lacks event support. Please update your browser.");
+            document.body.innerHTML += '<p style="color: red;">Critical error: Browser too old. Update or use Chrome/Firefox.</p>';
         }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" 
             onload="console.log('GSAP loaded')" 
-            onerror="console.error('GSAP failed to load'); this.remove();"></script>
+            onerror="console.error('GSAP failed to load'); this.remove(); document.body.innerHTML += '<p style=\"color: red;\">GSAP failed to load. Check network or script URL.</p>'"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" 
             onload="console.log('ScrollTrigger loaded')" 
             onerror="console.error('ScrollTrigger failed to load'); this.remove();"></script>
@@ -158,8 +159,8 @@
     <script src="https://unpkg.com/@solana/wallet-adapter@0.15.4/dist/wallet-adapter.umd.min.js" 
             onload="console.log('Wallet Adapter loaded')" 
             onerror="console.error('Wallet Adapter failed to load'); this.remove();"></script>
-    <script src="./scripts.js" 
+    <script src="./scripts.js?v=1.4" 
             onload="console.log('Scripts.js loaded')" 
-            onerror="console.error('Scripts.js failed to load')"></script>
+            onerror="console.error('Scripts.js failed to load'); document.body.innerHTML += '<p style=\"color: red;\">Scripts.js failed to load. Check file path or server.</p>'"></script>
 </body>
 </html>
