@@ -176,6 +176,7 @@ body::after {
     margin: 20px 0;
     color: var(--neon-cyan);
     display: block; /* Ensure visibility */
+    visibility: visible; /* Additional safeguard */
 }
 
 .subtitle {
@@ -281,6 +282,7 @@ body::after {
     .dynamic-bubbles {
         flex-direction: row; /* Side by side on desktop */
         align-items: center;
+        justify-content: center; /* Ensure centered alignment */
     }
 }
 
