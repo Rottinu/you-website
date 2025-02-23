@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     // ÉLÉMENTS DOM
     const hamburger = document.getElementById("hamburger");
-    const nav = document.querySelector(".nav");
-    const navLinks = document.querySelectorAll(".nav ul li a");
+    const navMenu = document.getElementById("nav-menu");
+    const navLinks = document.querySelectorAll(".nav-menu ul li a");
     const connectWalletBtn = document.getElementById("connect-wallet");
     const sections = document.querySelectorAll(".section, .community");
     const stories = document.querySelectorAll(".story");
@@ -21,18 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // FERMETURE MENU
     const closeMenu = () => {
-        if (hamburger && nav) {
+        if (hamburger && navMenu) {
             hamburger.classList.remove("active");
-            nav.classList.remove("open");
+            navMenu.classList.remove("open");
             isMenuOpen = false;
         }
     };
 
     // TOGGLE MENU
     const toggleMenu = () => {
-        if (hamburger && nav) {
+        if (hamburger && navMenu) {
             hamburger.classList.toggle("active");
-            nav.classList.toggle("open");
+            navMenu.classList.toggle("open");
             isMenuOpen = !isMenuOpen;
         }
     };
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.addEventListener("click", (e) => {
-        if (isMenuOpen && !hamburger?.contains(e.target) && !nav?.contains(e.target)) {
+        if (isMenuOpen && !hamburger?.contains(e.target) && !navMenu?.contains(e.target)) {
             closeMenu();
         }
     });
