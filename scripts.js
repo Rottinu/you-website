@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navMenu = document.getElementById("nav-menu") || null;
     const navLinks = document.querySelectorAll(".nav-menu ul li a") || [];
     const connectWalletBtn = document.getElementById("connect-wallet") || null;
+    const buyTokenBtn = document.getElementById("buy-token") || null;
     const sections = document.querySelectorAll(".section, .community") || [];
     const stories = document.querySelectorAll(".story") || [];
     const powerForm = document.querySelector(".power-form") || null;
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navMenu: !!navMenu,
         navLinks: navLinks.length,
         connectWalletBtn: !!connectWalletBtn,
+        buyTokenBtn: !!buyTokenBtn,
         sections: sections.length,
         stories: stories.length,
         powerForm: !!powerForm,
@@ -245,6 +247,37 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.innerHTML += '<p style="color: red;">Connect wallet button not found—check HTML.</p>';
     }
 
+    // BUY $YOU TOKEN
+    if (buyTokenBtn) {
+        buyTokenBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log("Buy $YOU Token button clicked");
+            if (confirm("The $YOU token has not launched yet. Would you like to explore Jupiter or Pump.fun to prepare for the launch?")) {
+                const jupiterUrl = "https://jup.ag/swap/SOL-YOU";
+                const pumpFunUrl = "https://pump.fun/YOU";
+                const newWindow = window.open(jupiterUrl, '_blank');
+                if (newWindow) {
+                    newWindow.focus();
+                    setTimeout(() => {
+                        window.open(pumpFunUrl, '_blank');
+                    }, 1000); // Open Pump.fun after 1 second to avoid popup blockers
+                } else {
+                    console.error("Popup blocked. Redirecting to Jupiter directly.");
+                    window.location.href = jupiterUrl;
+                }
+                alert("Note: $YOU token is not yet launched. Use these platforms to prepare or explore Solana swaps and launches.");
+            }
+        }, { passive: true });
+
+        buyTokenBtn.addEventListener("mouseover", () => {
+            buyTokenBtn.title = "Explore Jupiter and Pump.fun to prepare for buying $YOU token after launch!";
+            console.log("Buy token button hover");
+        }, { passive: true });
+    } else {
+        console.warn("Buy $YOU Token button not found");
+        document.body.innerHTML += '<p style="color: red;">Buy $YOU Token button not found—check HTML.</p>';
+    }
+
     // YOUR POWER INTERACTION
     if (powerForm) {
         powerForm.addEventListener("submit", (e) => {
@@ -314,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("No feature cards found");
     }
 
-    // VISUALS AND TEXT HOVER EFFECTS
+    // VISUALS AND TEXT HOVER EFFECTS (Placeholders for future images)
     if (visuals.length > 0) {
         visuals.forEach(visual => {
             visual.addEventListener("mouseover", () => {
@@ -328,7 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             visual.addEventListener("mouseleave", () => {
                 if (gsapLoaded) {
-                    gsap.to(visual, { duration: 0.3, scale: 1, opacity: 0.8, overwrite: true });
+                    gsap.to(visual, { duration: 0.3, scale: 1, opacity: 0.7, overwrite: true });
                     console.log("Visual left");
                 } else {
                     console.warn("GSAP not loaded for visual leave");
