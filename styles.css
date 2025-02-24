@@ -156,6 +156,8 @@ body::after {
     text-align: center;
     padding: 50px;
     position: relative;
+    /* Placeholder for future background image */
+    background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
 }
 
 .hero::after {
@@ -172,9 +174,11 @@ body::after {
     z-index: -1;
 }
 
-@keyframes particleFlow {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .hero-content h1 {
@@ -188,11 +192,6 @@ body::after {
     animation: neon-pulse 2s infinite alternate;
 }
 
-@keyframes neon-pulse {
-    0% { opacity: 0.9; box-shadow: 0 0 10px var(--neon-cyan); }
-    100% { opacity: 1; box-shadow: 0 0 20px var(--neon-cyan); }
-}
-
 .cta-button {
     background: var(--neon-cyan);
     color: #000;
@@ -202,7 +201,7 @@ body::after {
     cursor: pointer;
     border-radius: 25px;
     transition: transform 0.3s, box-shadow 0.3s;
-    margin: 20px 0;
+    margin: 10px 0;
     width: auto;
     display: inline-block;
     box-shadow: 0 0 10px rgba(0, 224, 255, 0.3);
@@ -215,6 +214,32 @@ body::after {
 }
 
 .cta-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.buy-token {
+    background: var(--neon-cyan);
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 10px 0;
+    width: auto;
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.3);
+    pointer-events: auto;
+}
+
+.buy-token:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.buy-token:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
@@ -239,14 +264,32 @@ body::after {
 }
 
 /* Sections */
-.section {
+.section, .community {
     min-height: 80vh;
     padding: 80px 5%;
     text-align: center;
     background: rgba(0, 0, 0, 0.8);
+    position: relative;
+    /* Placeholder for future background images */
 }
 
-.section h2 {
+.section::after, .community::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Overlay for text readability */
+    z-index: 0;
+}
+
+.section > *, .community > * {
+    position: relative;
+    z-index: 1;
+}
+
+.section h2, .community h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: var(--neon-cyan);
@@ -334,27 +377,28 @@ body::after {
     z-index: 1;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
     .dynamic-bubbles {
-        flex-direction: row; /* Force side by side on desktop */
+        flex-direction: row;
         align-items: center;
         justify-content: center;
     }
 
-    .bubble {
-        flex: 1; /* Allow bubbles to grow and share space equally */
-        max-width: 45%; /* Limit width to prevent overcrowding */
+    .dynamic-bubbles .bubble {
+        flex: 1;
+        max-width: 45%;
+        min-width: 300px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
     .dynamic-bubbles {
-        flex-direction: column; /* Stacked on mobile */
+        flex-direction: column;
         align-items: center;
     }
 
-    .bubble {
-        width: 100%; /* Full width on mobile */
+    .dynamic-bubbles .bubble {
+        width: 100%;
     }
 }
 
@@ -487,17 +531,6 @@ body::after {
 }
 
 /* Community Section */
-.community {
-    padding: 60px 5%;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.community h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
 .community-stories {
     margin: 20px 0;
     display: flex;
@@ -550,36 +583,44 @@ body::after {
     color: #fff;
     background: rgba(0, 0, 0, 0.9);
     border-top: 2px solid var(--neon-cyan);
+    position: relative;
 }
 
-.footer a {
-    color: var(--neon-cyan);
-    text-decoration: none;
+.footer-logo {
+    max-width: 100px;
+    margin: 10px auto;
+    display: block;
 }
 
-.footer a:hover {
-    text-decoration: underline;
-}
-
-/* Section Visuals */
-.section-visual {
-    max-width: 15%;
+/* Section Visuals (Placeholders for future images) */
+.section-visual, .footer-logo {
+    background: rgba(0, 224, 255, 0.1);
+    border: 2px dashed var(--neon-cyan);
+    height: 200px; /* Placeholder height */
     margin: 20px auto;
-    opacity: 0.8;
-    animation: fade-in 1.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    opacity: 0.7;
+    transition: opacity 0.3s;
 }
 
 .section-visual.large {
     max-width: 30%;
-    margin: 20px auto;
-    opacity: 0.8;
-    animation: fade-in 1.5s ease-in-out;
+    height: 300px; /* Larger placeholder for large visuals */
 }
 
-.section-visual.large:hover {
+.section-visual:hover, .footer-logo:hover {
     opacity: 1;
-    transform: scale(1.05);
-    transition: opacity 0.3s, transform 0.3s;
+}
+
+.section-visual[data-placeholder]:after, .footer-logo[data-placeholder]:after {
+    content: attr(data-placeholder);
+    font-size: 0.8rem;
+    color: #ccc;
 }
 
 @keyframes fade-in {
@@ -623,7 +664,7 @@ body::after {
         max-width: 40%;
     }
 
-    .cta-button {
+    .cta-button, .buy-token {
         padding: 12px 30px;
         font-size: 1rem;
         width: 100%;
@@ -638,7 +679,7 @@ body::after {
         font-size: 1.2rem;
     }
 
-    .section h2 {
+    .section h2, .community h2 {
         font-size: 2rem;
     }
 
@@ -669,4 +710,22 @@ body::after {
         width: 100%;
         max-width: 300px;
     }
+
+    .section-visual, .footer-logo {
+        height: 150px; /* Smaller placeholders on mobile */
+    }
+
+    .section-visual.large {
+        height: 200px; /* Smaller large placeholders on mobile */
+    }
+}
+
+@keyframes particleFlow {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+@keyframes neon-pulse {
+    0% { opacity: 0.9; box-shadow: 0 0 10px var(--neon-cyan); }
+    100% { opacity: 1; box-shadow: 0 0 20px var(--neon-cyan); }
 }
