@@ -20,18 +20,6 @@
     position: relative;
 }
 
-.site-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* Reduced opacity for less darkening */
-    z-index: 0;
-    pointer-events: none; /* Ensures content remains interactive */
-}
-
 body {
     font-family: 'Poppins', sans-serif;
     color: #fff;
@@ -135,30 +123,17 @@ body::after {
     text-align: center;
     padding: 50px;
     position: relative;
+    background: none; /* Remove any default background */
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* Reduced opacity for less darkening */
-    z-index: 0;
-    pointer-events: none; /* Ensures content remains interactive */
+.hero[data-background="true"] {
+    background: rgba(0, 0, 0, 0); /* Initial transparent state */
+    transition: background 0.5s ease; /* Smooth transition for opacity */
 }
 
-.hero-content { position: relative; z-index: 1; }
-
-.hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
-.hero-logo { max-width: 20%; margin-bottom: 20px; animation: neon-pulse 2s infinite alternate; }
-.cta-button { background: var(--neon-cyan); color: #000; border: none; padding: 15px 40px; font-size: 1.2rem; cursor: pointer; border-radius: 25px; transition: transform 0.3s, box-shadow 0.3s; margin: 10px 0; width: auto; display: inline-block; box-shadow: 0 0 10px rgba(0, 224, 255, 0.3); pointer-events: auto; }
-.cta-button:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--neon-cyan); }
-.cta-button:disabled { opacity: 0.6; cursor: not-allowed; }
-.countdown { font-size: 1.5rem; margin: 20px 0; color: var(--neon-cyan); display: block; visibility: visible; width: 100%; text-align: center; position: relative; z-index: 1; }
-.subtitle { font-size: 1.5rem; margin-top: 10px; width: 100%; text-align: center; }
-.ticker { font-size: 1.2rem; color: var(--text-light); margin: 10px 0; }
+.hero[data-background="true"].visible {
+    background: rgba(0, 0, 0, 0.5); /* Darker when visible, no content darkening */
+}
 
 /* Sections */
 .section, .community {
@@ -166,22 +141,25 @@ body::after {
     padding: 80px 5%;
     text-align: center;
     position: relative;
+    background: none; /* Remove any default background */
 }
 
-.section::after, .community::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* Reduced opacity for less darkening */
-    z-index: 0;
-    pointer-events: none; /* Ensures content remains interactive */
+.section[data-background="true"], .community[data-background="true"] {
+    background: rgba(0, 0, 0, 0); /* Initial transparent state */
+    transition: background 0.5s ease; /* Smooth transition for opacity */
 }
 
-.section > *, .community > * { position: relative; z-index: 1; }
-.section h2, .community h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--neon-cyan); }
+.section[data-background="true"].visible, .community[data-background="true"].visible {
+    background: rgba(0, 0, 0, 0.5); /* Darker when visible, no content darkening */
+}
+
+/* Content Styling (Ensures Content Isn't Affected) */
+.hero-content, .section > *, .community > * {
+    position: relative;
+    z-index: 1; /* Keeps content above any background changes */
+    background: none; /* Ensures content stays bright */
+    color: var(--text-light); /* Keeps text bright */
+}
 
 /* Why $YOU? */
 .why-list { list-style: none; margin: 20px 0; padding: 0; text-align: center; }
@@ -240,7 +218,24 @@ body::after {
 .cta-link:hover { background: rgba(0, 224, 255, 0.1); }
 
 /* Footer */
-.footer { padding: 20px; text-align: center; color: #fff; background: rgba(0, 0, 0, 0.9); border-top: 2px solid var(--neon-cyan); position: relative; }
+.footer {
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 2px solid var(--neon-cyan);
+    position: relative;
+}
+
+.footer[data-background="true"] {
+    background: rgba(0, 0, 0, 0); /* Initial transparent state */
+    transition: background 0.5s ease; /* Smooth transition for opacity */
+}
+
+.footer[data-background="true"].visible {
+    background: rgba(0, 0, 0, 0.5); /* Darker when visible, no content darkening */
+}
+
 .footer-logo { max-width: 100px; margin: 10px auto; display: block; }
 
 /* Section Visuals */
@@ -293,6 +288,15 @@ body::after {
     .feature-card { width: 100%; max-width: 300px; }
     .section-visual, .footer-logo { height: 150px; }
     .section-visual.large { height: 200px; }
+}
+
+/* Desktop Background Adjustments */
+@media (min-width: 769px) {
+    .site-wrapper {
+        background-size: contain; /* Fits naturally on desktop, no zooming */
+        background-repeat: no-repeat;
+        background-position: center top;
+    }
 }
 
 /* Mobile-Specific Background Adjustments */
