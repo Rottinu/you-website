@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM fully loaded - starting $YOU scripts");
 
-    // DOM Elements with Centralized Management
+    // DOM Elements
     const elements = {
         hamburger: document.getElementById("hamburger"),
         navMenu: document.getElementById("nav-menu"),
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         powerForm: document.querySelector(".power-form"),
         powerMessage: document.getElementById("power-message"),
         countdown: document.getElementById("countdown"),
-        ticker: document.getElementById("ticker"), // Updated to match HTML ID
+        ticker: document.getElementById("ticker"),
         featureCards: document.querySelectorAll(".feature-card"),
         visuals: document.querySelectorAll(".section-visual.large"),
         userComment: document.getElementById("user-comment"),
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let userStoryIndex = 0;
     let walletConnects = 10;
 
-    // User Stories for "Our Community"
+    // User Stories
     const userStories = [
         "I’m leading with $YOU—Sarah’s Wallet",
         "$YOU is my move—Mike’s Power Unleashed",
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "THE movement is mine—Daniel’s Impact"
     ];
 
-    // Community Stories for "Community"
+    // Community Stories
     const communityStoriesList = [
         "“$YOU transformed my vision—now I lead my path!” – Rachel, Los Angeles, USA",
         "“I felt the $YOU power instantly—David, Tokyo, Japan”",
@@ -70,9 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("GSAP not loaded, animations disabled");
     }
-
-    const confettiLoaded = typeof confetti === 'function';
-    if (!confettiLoaded) console.warn("Confetti not loaded");
 
     const solanaLoaded = typeof window.solana !== 'undefined' || typeof window.Solflare !== 'undefined';
     if (!solanaLoaded) console.warn("Solana wallet not detected");
@@ -105,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Rotate Community Stories (Show Two at a Time)
+    // Rotate Community Stories
     const rotateCommunityStories = () => {
         if (elements.communityStories && communityStoriesList.length > 0) {
             const pairIndex = Math.floor(Date.now() / 5000) % Math.ceil(communityStoriesList.length / 2);
@@ -179,20 +176,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     }
 
-    // Power Form
+    // Power Form (Fixed for Confetti and No 405 Error)
     if (elements.powerForm) {
         elements.powerForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const userInput = document.getElementById("user-name")?.value.trim() || '';
+            e.preventDefault(); // Ensure no server submission
+            const userInput = document.getElementById("user-name")?.value.trim();
             if (userInput) {
                 elements.powerMessage.textContent = `${userInput}, your power in $YOU is unleashed!`;
-                if (confettiLoaded) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                    console.log("Confetti fired for:", userInput);
+                } else {
+                    console.warn("Confetti library not loaded—animation skipped.");
+                }
                 elements.powerForm.reset();
-                console.log("Power claimed for:", userInput);
             } else {
                 elements.powerMessage.textContent = "Please enter your name or wallet address.";
             }
-        }, { passive: true });
+        });
+    } else {
+        console.error("Power form not found in DOM.");
     }
 
     // Feature Cards Animation
