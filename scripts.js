@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM fully loaded - starting $YOU scripts");
 
-    // DOM Elements
+    // DOM Elements with Centralized Management
     const elements = {
         hamburger: document.getElementById("hamburger"),
         navMenu: document.getElementById("nav-menu"),
         navLinks: document.querySelectorAll(".nav-menu ul li a"),
         connectWalletBtn: document.getElementById("connect-wallet"),
         buyTokenBtn: document.getElementById("buy-token"),
-        sections: document.querySelectorAll(".section, .community, .hero, .footer"),
+        sections: document.querySelectorAll(".section, .community"),
         powerForm: document.querySelector(".power-form"),
         powerMessage: document.getElementById("power-message"),
         countdown: document.getElementById("countdown"),
-        ticker: document.getElementById("ticker"),
+        ticker: document.getElementById("ticker"), // Updated to match HTML ID
         featureCards: document.querySelectorAll(".feature-card"),
         visuals: document.querySelectorAll(".section-visual.large"),
         userComment: document.getElementById("user-comment"),
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let userStoryIndex = 0;
     let walletConnects = 10;
 
-    // User Stories
+    // User Stories for "Our Community"
     const userStories = [
         "I’m leading with $YOU—Sarah’s Wallet",
         "$YOU is my move—Mike’s Power Unleashed",
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "THE movement is mine—Daniel’s Impact"
     ];
 
-    // Community Stories
+    // Community Stories for "Community"
     const communityStoriesList = [
         "“$YOU transformed my vision—now I lead my path!” – Rachel, Los Angeles, USA",
         "“I felt the $YOU power instantly—David, Tokyo, Japan”",
@@ -70,6 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("GSAP not loaded, animations disabled");
     }
+
+    const confettiLoaded = typeof confetti === 'function';
+    if (!confettiLoaded) console.warn("Confetti not loaded");
 
     const solanaLoaded = typeof window.solana !== 'undefined' || typeof window.Solflare !== 'undefined';
     if (!solanaLoaded) console.warn("Solana wallet not detected");
@@ -102,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Rotate Community Stories
+    // Rotate Community Stories (Show Two at a Time)
     const rotateCommunityStories = () => {
         if (elements.communityStories && communityStoriesList.length > 0) {
             const pairIndex = Math.floor(Date.now() / 5000) % Math.ceil(communityStoriesList.length / 2);
@@ -180,26 +183,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elements.powerForm) {
         elements.powerForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const userInput = document.getElementById("user-name")?.value.trim();
+            const userInput = document.getElementById("user-name")?.value.trim() || '';
             if (userInput) {
                 elements.powerMessage.textContent = `${userInput}, your power in $YOU is unleashed!`;
-                if (typeof confetti === 'function') {
-                    confetti({
-                        particleCount: 100,
-                        spread: 70,
-                        origin: { y: 0.6 }
-                    });
-                    console.log("Confetti fired for:", userInput);
-                } else {
-                    console.warn("Confetti library not loaded—animation skipped.");
-                }
+                if (confettiLoaded) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
                 elements.powerForm.reset();
+                console.log("Power claimed for:", userInput);
             } else {
                 elements.powerMessage.textContent = "Please enter your name or wallet address.";
             }
-        });
-    } else {
-        console.error("Power form not found in DOM.");
+        }, { passive: true });
     }
 
     // Feature Cards Animation
@@ -300,26 +293,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Section Background Animation (Dark Opacity on Appear)
+    // Section Animations
     if (elements.sections.length > 0 && gsapLoaded && typeof ScrollTrigger !== 'undefined') {
         elements.sections.forEach((section) => {
-            gsap.set(section, { 
-                opacity: 0, 
-                y: 60,
-                background: 'rgba(0, 0, 0, 0)' // Start transparent
-            });
+            gsap.set(section, { opacity: 0, y: 60 });
             ScrollTrigger.create({
                 trigger: section,
                 start: "top 80%",
                 once: true,
                 onEnter: () => {
-                    gsap.to(section, { 
-                        opacity: 1, 
-                        y: 0, 
-                        duration: 1, 
-                        ease: "power4.out",
-                        background: 'rgba(0, 0, 0, 0.5)' // Darken on appear, no content effect
-                    });
+                    gsap.to(section, { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
                     gsap.from(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story"), {
                         opacity: 0,
                         y: 30,
