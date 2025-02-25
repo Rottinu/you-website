@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         countdown: document.getElementById("countdown"),
         ticker: document.getElementById("ticker"),
         featureCards: document.querySelectorAll(".feature-card"),
-        visuals: document.querySelectorAll(".section-visual.large, .footer-logo"), // Updated to include footer-logo
+        visuals: document.querySelectorAll(".section-visual.large, .footer-logo"),
         userComment: document.getElementById("user-comment"),
         walletCounter: document.getElementById("wallet-counter"),
         communityStories: document.getElementById("community-stories")
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // New Function 1: Initialize Wallet Adapter
+    // Initialize Wallet Adapter
     const initializeWalletAdapter = () => {
         if (solanaWalletAdapterLoaded) {
             const walletAdapter = new window.WalletAdapter();
@@ -129,13 +129,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // New Function 2: Load Dynamic Placeholder Images
+    // Load Dynamic Placeholder Images
     const loadDynamicImages = () => {
         if (elements.visuals.length > 0) {
             elements.visuals.forEach(visual => {
                 const placeholder = visual.dataset.placeholder;
-                // Simulate checking for real images; replace with actual logic (e.g., file existence check)
-                const realImageExists = false; // Placeholder condition—update with real check
+                const realImageExists = false; // Replace with actual logic when images are available
                 if (realImageExists) {
                     visual.style.backgroundImage = `url('/images/${placeholder}')`;
                     visual.style.border = 'none';
@@ -149,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // New Function 3: Update Dynamic Content (Combined Intervals)
+    // Update Dynamic Content
     const updateDynamicContent = () => {
         rotateUserComments();
         rotateCommunityStories();
@@ -204,7 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         alert("Failed to connect. Ensure a Solana wallet is installed.");
                     }
                 } else {
-                    // Fallback to basic wallet check
                     const wallet = window.solana || window.Solflare;
                     if (wallet) {
                         try {
@@ -319,9 +317,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Initialize New Functions
-    loadDynamicImages(); // Load placeholder images on startup
-    setInterval(updateDynamicContent, 5000); // Combined dynamic updates every 5 seconds
-    updateDynamicContent(); // Initial call to set content immediately
+    loadDynamicImages();
+    setInterval(updateDynamicContent, 5000);
+    updateDynamicContent();
 
     // Hero Animation
     if (document.querySelector(".hero-content h1") && gsapLoaded) {
