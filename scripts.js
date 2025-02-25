@@ -289,6 +289,17 @@ document.addEventListener("DOMContentLoaded", () => {
         rotateCommunityStories();
     }
 
+    // Hero Animation
+    if (document.querySelector(".hero-content h1") && gsapLoaded) {
+        gsap.to(".hero-content h1", {
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            textShadow: "0 0 15px var(--neon-cyan)",
+            ease: "power1.inOut"
+        });
+    }
+
     // Section Animations
     if (elements.sections.length > 0 && gsapLoaded && typeof ScrollTrigger !== 'undefined') {
         elements.sections.forEach((section) => {
