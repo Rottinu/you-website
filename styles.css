@@ -107,7 +107,9 @@ body {
     text-align: center;
     padding: 50px;
     position: relative;
-    background: url('header-background.png') center/cover no-repeat, linear-gradient(to bottom, #0a0a0a, #1a1a1a); /* Updated to .png */
+    background: url('/header-background.png') center/cover no-repeat, linear-gradient(to bottom, #0a0a0a, #1a1a1a); /* Optimized for scaling */
+    background-size: cover; /* Ensures proper scaling for large images */
+    background-position: center; /* Centers the image */
 }
 
 .hero::after {
