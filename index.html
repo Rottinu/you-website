@@ -10,7 +10,7 @@
     <meta property="og:description" content="Join the $YOU movement and take control of your destiny on Solana.">
     <meta property="og:image" content="https://youonsol.space/background.webp">
     <meta property="og:url" content="https://youonsol.space">
-    <link rel="stylesheet" href="styles.css?v=1.8" onerror="console.error('Styles.css failed to load. Check file path or GitHub Pages config at:', this.href)">
+    <link rel="stylesheet" href="styles.css?v=1.9" onerror="console.error('Styles.css failed to load. Check file path or GitHub Pages config at:', this.href)">
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -50,11 +50,10 @@
         </div>
     </section>
 
-    <!-- Why $YOU? -->
-    <section id="why-you" class="section" data-placeholder="why-you-image.jpg">
+    <!-- Why $YOU? (Updated with Background) -->
+    <section id="why-you" class="section" style="background-image: url('why-you-image.webp');">
         <h2>Why $YOU?</h2>
         <p>You start it. You act. No promises, no rigid roadmap—just your community power.</p>
-        <div class="section-visual large" data-placeholder="why-you-image.jpg"></div>
         <ul class="why-list">
             <li>Empower yourself with $YOU—your decisions shape your future.</li>
             <li>Join THE decentralized movement on Solana, where you’re free of limits.</li>
@@ -80,10 +79,9 @@
     <!-- Your Power -->
     <section id="your-power" class="section" data-placeholder="your-power-image.jpg">
         <h2>Your Power</h2>
-        <div class="section-visual large" data-placeholder="your-power-image.jpg"></div>
         <p>The future of $YOU is in your hands. Claim your power now and make it yours!</p>
         <p class="power-story">Every action you take with $YOU builds your community—stake, vote, and lead like it’s your project.</p>
-        <form class="power-form" method="post" action=""> <!-- Added action="" to ensure client-side only -->
+        <form class="power-form" method="post" action="">
             <input type="text" id="user-name" placeholder="Enter your name or wallet address" required>
             <button type="submit" class="cta-button">Claim Power</button>
         </form>
@@ -107,10 +105,9 @@
         </div>
     </section>
 
-    <!-- Roadmap/Vision -->
+    <!-- Roadmap/Our Vision -->
     <section id="roadmap" class="section" data-placeholder="roadmap-image.jpg">
         <h2>Our Vision</h2>
-        <div class="section-visual large" data-placeholder="roadmap-image.jpg"></div>
         <p>$YOU’s path is shaped by you. Here’s your flexible, community-driven direction:</p>
         <ul class="roadmap-list">
             <li><strong>Pre-Launch:</strong> Build your community, connect your wallet, and empower yourself as an early adopter.</li>
@@ -122,7 +119,7 @@
     <!-- Next Steps -->
     <section id="next-steps" class="section" data-placeholder="next-steps-image.jpg">
         <h2>Next Steps</h2>
-        <div class="section-visual large" data-placeholder="next-steps-image.jpg"></div>
+        <div class="section-visual large"><img src="next-steps-image.webp" alt="Next Steps Visual" style="width: 100%; height: 100%; object-fit: cover;"></div>
         <p>Nobody knows what’s next. That’s the beauty of $YOU. Watch, join, and lead—make it your move.</p>
         <p class="next-call">Connect your wallet now, join our community on Twitter/X and Telegram, and stay tuned for $YOU’s launch—it’s your moment!</p>
     </section>
@@ -130,7 +127,7 @@
     <!-- Community -->
     <section id="community" class="community" data-placeholder="community-image.jpg">
         <h2>Join the $YOU Community</h2>
-        <div class="section-visual large" data-placeholder="community-image.jpg"></div>
+        <div class="section-visual large"><img src="community-image.webp" alt="Community Visual" style="width: 100%; height: 100%; object-fit: cover;"></div>
         <div class="community-stories" id="community-stories">
             <div class="story">“$YOU changed my perspective—now I lead my future!” – Jane, NY</div>
             <div class="story">“Joined $YOU and felt the power instantly!” – Mike, London</div>
@@ -163,6 +160,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onload="console.log('ScrollTrigger loaded')" onerror="console.error('ScrollTrigger failed to load'); this.remove();"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" onload="console.log('Confetti loaded')" onerror="console.error('Confetti failed to load'); this.remove();"></script>
     <script src="https://unpkg.com/@solana/wallet-adapter@latest/dist/umd/wallet-adapter.umd.min.js" onload="console.log('Wallet Adapter loaded')" onerror="console.error('Wallet Adapter failed to load'); this.remove();"></script>
-    <script src="scripts.js?v=1.8" onload="console.log('Scripts.js loaded')" onerror="console.error('Scripts.js failed to load'); document.body.innerHTML += '<p style=\"color: red;\">Scripts.js failed to load. Check file path or server.</p>'"></script>
+    <script src="scripts.js?v=1.9" onload="console.log('Scripts.js loaded')" onerror="console.error('Scripts.js failed to load'); document.body.innerHTML += '<p style=\"color: red;\">Scripts.js failed to load. Check file path or server.</p>'"></script>
 </body>
 </html>
