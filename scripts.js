@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (elements.hamburger && elements.navMenu) {
             elements.hamburger.classList.remove("active");
             elements.navMenu.classList.remove("open");
+            elements.hamburger.setAttribute("aria-expanded", "false");
             isMenuOpen = false;
             console.log("Menu closed");
         }
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             elements.hamburger.classList.toggle("active");
             elements.navMenu.classList.toggle("open");
             isMenuOpen = !isMenuOpen;
+            elements.hamburger.setAttribute("aria-expanded", isMenuOpen ? "true" : "false");
             console.log(`Menu ${isMenuOpen ? 'opened' : 'closed'}`);
         }
     };
@@ -352,5 +354,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+    }
+
+    // Button Entrance Animation
+    if (gsapLoaded) {
+        gsap.from(".cta-button", { duration: 0.5, y: 20, opacity: 0, stagger: 0.2, ease: "bounce.out" });
     }
 });
