@@ -10,8 +10,10 @@
     <meta property="og:description" content="Join the $YOU movement and take control of your destiny on Solana.">
     <meta property="og:image" content="https://youonsol.space/background.webp">
     <meta property="og:url" content="https://youonsol.space">
-    <link rel="stylesheet" href="styles.css?v=1.6" onerror="console.error('Styles.css failed to load. Check file path or GitHub Pages config at:', this.href)">
-    <link rel="icon" type="image/png" href="favicon.png"> <!-- Optional: Add if you have a favicon -->
+    <link rel="stylesheet" href="styles.css?v=1.7" onerror="console.error('Styles.css failed to load. Check file path or GitHub Pages config at:', this.href)">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Added Google Fonts for Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Hamburger Menu -->
@@ -23,7 +25,7 @@
         </div>
     </div>
 
-    <!-- Navigation (Hidden by Default, Toggles with Hamburger) -->
+    <!-- Navigation -->
     <nav class="nav-menu" id="nav-menu">
         <ul>
             <li><a href="#home">Home</a></li>
@@ -36,14 +38,15 @@
         </ul>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero (Added Ticker) -->
     <section id="home" class="hero">
         <div class="hero-content">
             <img src="you-logo.png" alt="$YOU Logo" class="hero-logo" onerror="console.error('Logo image failed to load'); this.style.display = 'none';">
             <h1>YOU Decide. $YOU Leads.</h1>
             <div class="countdown" id="countdown">Loading countdown...</div>
+            <div class="ticker" id="ticker"></div> <!-- Added ticker -->
             <button class="cta-button" id="connect-wallet">Connect Wallet</button>
-            <button class="cta-button buy-token" id="buy-token">Buy $YOU Token</button>
+            <button class="cta-button" id="buy-token">Buy $YOU Token</button> <!-- Removed .buy-token class -->
             <p class="subtitle">Join the movement—connect now to prepare for $YOU’s launch and unlock your power!</p>
         </div>
     </section>
@@ -75,13 +78,13 @@
         </div>
     </section>
 
-    <!-- Your Power -->
+    <!-- Your Power (Added method) -->
     <section id="your-power" class="section" data-placeholder="your-power-image.jpg">
         <h2>Your Power</h2>
         <div class="section-visual large" data-placeholder="your-power-image.jpg"></div>
         <p>The future of $YOU is in your hands. Claim your power now and make it yours!</p>
         <p class="power-story">Every action you take with $YOU builds your community—stake, vote, and lead like it’s your project.</p>
-        <form class="power-form">
+        <form class="power-form" method="post">
             <input type="text" id="user-name" placeholder="Enter your name or wallet address" required>
             <button type="submit" class="cta-button">Claim Power</button>
         </form>
@@ -139,14 +142,16 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (Structured with div) -->
     <footer class="footer" data-placeholder="footer-logo.png">
-        <div class="footer-logo" data-placeholder="footer-logo.png"></div>
-        <p>Contract: <a href="https://solscan.io/your-token-address" target="_blank">Solscan</a> | Audit: <a href="your-audit-link" target="_blank">View Audit</a> | Partnerships: Exploring Solana Ecosystem</p>
-        <p>Built by YOU | © 2025 $YOU</p>
+        <div class="footer-content">
+            <div class="footer-logo" data-placeholder="footer-logo.png"></div>
+            <p>Contract: <a href="#" title="Coming Soon">Solscan</a> | Audit: <a href="#" title="Coming Soon">View Audit</a> | Partnerships: Exploring Solana Ecosystem</p>
+            <p>Built by YOU | © 2025 $YOU</p>
+        </div>
     </footer>
 
-    <!-- Scripts with Fallbacks and Debugging -->
+    <!-- Scripts -->
     <script>
         console.log("Starting script checks");
         window.addEventListener = window.addEventListener || window.attachEvent || function() { console.error("Browser does not support events"); };
@@ -155,20 +160,10 @@
             document.body.innerHTML += '<p style="color: red;">Critical error: Browser too old. Update or use Chrome/Firefox.</p>';
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" 
-            onload="console.log('GSAP loaded')" 
-            onerror="console.error('GSAP failed to load'); this.remove(); document.body.innerHTML += '<p style=\"color: red;\">GSAP failed to load. Check network or script URL.</p>'"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" 
-            onload="console.log('ScrollTrigger loaded')" 
-            onerror="console.error('ScrollTrigger failed to load'); this.remove();"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" 
-            onload="console.log('Confetti loaded')" 
-            onerror="console.error('Confetti failed to load'); this.remove();"></script>
-    <script src="https://unpkg.com/@solana/wallet-adapter@latest/dist/umd/wallet-adapter.umd.min.js" 
-            onload="console.log('Wallet Adapter loaded')" 
-            onerror="console.error('Wallet Adapter failed to load'); this.remove();"></script>
-    <script src="scripts.js?v=1.6" 
-            onload="console.log('Scripts.js loaded')" 
-            onerror="console.error('Scripts.js failed to load'); document.body.innerHTML += '<p style=\"color: red;\">Scripts.js failed to load. Check file path or server.</p>'"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onload="console.log('GSAP loaded')" onerror="console.error('GSAP failed to load'); this.remove();"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onload="console.log('ScrollTrigger loaded')" onerror="console.error('ScrollTrigger failed to load'); this.remove();"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" onload="console.log('Confetti loaded')" onerror="console.error('Confetti failed to load'); this.remove();"></script>
+    <script src="https://unpkg.com/@solana/wallet-adapter@latest/dist/umd/wallet-adapter.umd.min.js" onload="console.log('Wallet Adapter loaded')" onerror="console.error('Wallet Adapter failed to load'); this.remove();"></script>
+    <script src="scripts.js?v=1.7" onload="console.log('Scripts.js loaded')" onerror="console.error('Scripts.js failed to load'); document.body.innerHTML += '<p style=\"color: red;\">Scripts.js failed to load. Check file path or server.</p>'"></script>
 </body>
 </html>
