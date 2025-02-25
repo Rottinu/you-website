@@ -176,10 +176,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     }
 
-    // Power Form (Fixed for Confetti and No 405 Error)
+    // Power Form
     if (elements.powerForm) {
         elements.powerForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Ensure no server submission
+            e.preventDefault();
             const userInput = document.getElementById("user-name")?.value.trim();
             if (userInput) {
                 elements.powerMessage.textContent = `${userInput}, your power in $YOU is unleashed!`;
