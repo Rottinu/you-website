@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const placeholder = visual.dataset.placeholder;
                 const realImageExists = false; // Replace with actual logic when images are available
                 if (realImageExists) {
-                    visual.style.backgroundImage = `url('/${placeholder}')`;
+                    visual.style.backgroundImage = `url('/images/${placeholder}')`;
                     visual.style.border = 'none';
                     visual.style.backgroundSize = 'cover';
                     visual.style.backgroundPosition = 'center';
@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
             visual.addEventListener("mouseover", () => {
                 gsap.to(visual, { duration: 0.3, scale: 1.05, opacity: 1, overwrite: true });
             }, { passive: true });
-            visual.addEventListener("mouseleave", () => {
+            card.addEventListener("mouseleave", () => {
                 gsap.to(visual, { duration: 0.3, scale: 1, opacity: 0.7, overwrite: true });
             }, { passive: true });
         });
@@ -334,33 +334,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Section Animations (Restored with Neon Cyan Glow)
+    // Section Animations
     if (elements.sections.length > 0 && gsapLoaded && typeof ScrollTrigger !== 'undefined') {
         elements.sections.forEach((section) => {
-            gsap.set(section, { opacity: 0, y: 60, boxShadow: "0 0 0 var(--neon-cyan)" });
+            gsap.set(section, { opacity: 0, y: 60 });
             ScrollTrigger.create({
                 trigger: section,
                 start: "top 80%",
                 once: true,
                 onEnter: () => {
-                    gsap.to(section, { 
-                        opacity: 1, 
-                        y: 0, 
-                        duration: 1, 
-                        ease: "power4.out",
-                        boxShadow: "0 0 15px var(--neon-cyan)" // Neon cyan glow on reveal
-                    });
+                    gsap.to(section, { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
                     gsap.from(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story"), {
                         opacity: 0,
                         y: 30,
                         stagger: 0.2,
                         duration: 0.6,
-                        delay: 0.2,
-                        color: "var(--text-light)", // Start with lighter text
-                        onComplete: () => gsap.to(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story"), { 
-                            color: "#fff", 
-                            textShadow: "0 0 10px rgba(0, 224, 255, 0.5)" // End with neon cyan text shadow
-                        })
+                        delay: 0.2
                     });
                 }
             });
