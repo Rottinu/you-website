@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         countdown: document.getElementById("countdown"),
         ticker: document.getElementById("ticker"),
         featureCards: document.querySelectorAll(".feature-card"),
-        visuals: document.querySelectorAll(".section-visual.large"),
+        visuals: document.querySelectorAll(".section-visual.large, .footer-logo"), // Updated to include footer-logo
         userComment: document.getElementById("user-comment"),
         walletCounter: document.getElementById("wallet-counter"),
         communityStories: document.getElementById("community-stories")
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isMenuOpen = false;
     let userStoryIndex = 0;
     let walletConnects = 10;
+    let price = 0.01, volume = 0, holders = 1234;
 
     // User Stories
     const userStories = [
@@ -71,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("GSAP not loaded, animations disabled");
     }
 
-    const solanaLoaded = typeof window.solana !== 'undefined' || typeof window.Solflare !== 'undefined';
-    if (!solanaLoaded) console.warn("Solana wallet not detected");
+    const solanaWalletAdapterLoaded = typeof window.WalletAdapter !== 'undefined';
+    if (!solanaWalletAdapterLoaded) console.warn("Solana Wallet Adapter not loaded");
 
     // Menu Functions
     const closeMenu = () => {
@@ -117,6 +118,50 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // New Function 1: Initialize Wallet Adapter
+    const initializeWalletAdapter = () => {
+        if (solanaWalletAdapterLoaded) {
+            const walletAdapter = new window.WalletAdapter();
+            return walletAdapter;
+        } else {
+            console.warn("Wallet Adapter not available, falling back to basic wallet check.");
+            return null;
+        }
+    };
+
+    // New Function 2: Load Dynamic Placeholder Images
+    const loadDynamicImages = () => {
+        if (elements.visuals.length > 0) {
+            elements.visuals.forEach(visual => {
+                const placeholder = visual.dataset.placeholder;
+                // Simulate checking for real images; replace with actual logic (e.g., file existence check)
+                const realImageExists = false; // Placeholder condition—update with real check
+                if (realImageExists) {
+                    visual.style.backgroundImage = `url('/images/${placeholder}')`;
+                    visual.style.border = 'none';
+                    visual.style.backgroundSize = 'cover';
+                    visual.style.backgroundPosition = 'center';
+                    console.log(`Loaded real image for ${placeholder}`);
+                } else {
+                    console.log(`No real image found for ${placeholder}, keeping placeholder`);
+                }
+            });
+        }
+    };
+
+    // New Function 3: Update Dynamic Content (Combined Intervals)
+    const updateDynamicContent = () => {
+        rotateUserComments();
+        rotateCommunityStories();
+        walletConnects += Math.floor(Math.random() * 3);
+        elements.walletCounter.textContent = `${walletConnects} Wallets Connected Today—Join THE Movement!`;
+        price += Math.random() * 0.001 - 0.0005;
+        volume += Math.random() * 100 - 50;
+        holders += Math.floor(Math.random() * 5) - 2;
+        elements.ticker.textContent = `$YOU Price: $${price.toFixed(4)} | Volume: $${volume.toFixed(2)} | Holders: ${holders}`;
+        console.log("Updated all dynamic content");
+    };
+
     // Event Listeners
     if (elements.hamburger) elements.hamburger.addEventListener("click", toggleMenu, { passive: true });
 
@@ -141,25 +186,40 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Wallet Connect
+    // Wallet Connect with Wallet Adapter
     if (elements.connectWalletBtn) {
+        const walletAdapter = initializeWalletAdapter();
         elements.connectWalletBtn.addEventListener("click", async (e) => {
             e.preventDefault();
             if (confirm("Connect your wallet for $YOU’s launch benefits. Continue?")) {
-                const wallet = window.solana || window.Solflare;
-                if (wallet) {
+                if (walletAdapter) {
                     try {
-                        await wallet.connect();
-                        const publicKey = wallet.publicKey.toString();
+                        await walletAdapter.connect();
+                        const publicKey = walletAdapter.publicKey.toString();
                         elements.connectWalletBtn.textContent = `Connected: ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
                         alert(`Wallet connected: ${publicKey}. Stay tuned!`);
+                        console.log("Wallet connected via adapter:", publicKey);
                     } catch (error) {
                         console.error("Wallet connection failed:", error);
-                        alert("Failed to connect. Install a Solana wallet.");
+                        alert("Failed to connect. Ensure a Solana wallet is installed.");
                     }
                 } else {
-                    alert("No Solana wallet detected. Install Phantom or Solflare.");
-                    window.open("https://phantom.app", "_blank");
+                    // Fallback to basic wallet check
+                    const wallet = window.solana || window.Solflare;
+                    if (wallet) {
+                        try {
+                            await wallet.connect();
+                            const publicKey = wallet.publicKey.toString();
+                            elements.connectWalletBtn.textContent = `Connected: ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
+                            alert(`Wallet connected: ${publicKey}. Stay tuned!`);
+                        } catch (error) {
+                            console.error("Wallet connection failed:", error);
+                            alert("Failed to connect. Install a Solana wallet.");
+                        }
+                    } else {
+                        alert("No Solana wallet detected. Install Phantom or Solflare.");
+                        window.open("https://phantom.app", "_blank");
+                    }
                 }
             }
         }, { passive: true });
@@ -176,10 +236,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     }
 
-    // Power Form (Fixed for Confetti and No 405 Error)
+    // Power Form
     if (elements.powerForm) {
         elements.powerForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Ensure no server submission
+            e.preventDefault();
             const userInput = document.getElementById("user-name")?.value.trim();
             if (userInput) {
                 elements.powerMessage.textContent = `${userInput}, your power in $YOU is unleashed!`;
@@ -239,27 +299,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Ticker
-    if (elements.ticker) {
-        let price = 0.01, volume = 0, holders = 1234;
-        setInterval(() => {
-            price += Math.random() * 0.001 - 0.0005;
-            volume += Math.random() * 100 - 50;
-            holders += Math.floor(Math.random() * 5) - 2;
-            elements.ticker.textContent = `$YOU Price: $${price.toFixed(4)} | Volume: $${volume.toFixed(2)} | Holders: ${holders}`;
-            console.log("Ticker updated");
-        }, 5000);
-    }
-
-    // Wallet Counter
-    if (elements.walletCounter) {
-        setInterval(() => {
-            walletConnects += Math.floor(Math.random() * 3);
-            elements.walletCounter.textContent = `${walletConnects} Wallets Connected Today—Join THE Movement!`;
-            console.log("Wallet counter updated:", walletConnects);
-        }, 10000);
-    }
-
     // Countdown
     if (elements.countdown) {
         const launchDate = new Date("2025-06-01T00:00:00Z").getTime();
@@ -279,15 +318,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
     }
 
-    // Rotate Comments and Stories
-    if (elements.userComment) {
-        setInterval(rotateUserComments, 5000);
-        rotateUserComments();
-    }
-    if (elements.communityStories) {
-        setInterval(rotateCommunityStories, 5000);
-        rotateCommunityStories();
-    }
+    // Initialize New Functions
+    loadDynamicImages(); // Load placeholder images on startup
+    setInterval(updateDynamicContent, 5000); // Combined dynamic updates every 5 seconds
+    updateDynamicContent(); // Initial call to set content immediately
 
     // Hero Animation
     if (document.querySelector(".hero-content h1") && gsapLoaded) {
