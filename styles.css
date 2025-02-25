@@ -15,8 +15,7 @@
 }
 
 .site-wrapper {
-    background: url('full-site-background.webp') no-repeat center top / 100% auto;
-    background-size: cover;
+    background: url('full-site-background.webp') no-repeat center top / cover;
     min-height: 100vh;
     position: relative;
 }
@@ -28,8 +27,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+    background: rgba(0, 0, 0, 0.3); /* Reduced opacity for less darkening */
     z-index: 0;
+    pointer-events: none; /* Ensures content remains interactive */
 }
 
 body {
@@ -144,8 +144,9 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Match section overlay for consistency */
+    background: rgba(0, 0, 0, 0.3); /* Reduced opacity for less darkening */
     z-index: 0;
+    pointer-events: none; /* Ensures content remains interactive */
 }
 
 .hero-content { position: relative; z-index: 1; }
@@ -174,8 +175,9 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+    background: rgba(0, 0, 0, 0.3); /* Reduced opacity for less darkening */
     z-index: 0;
+    pointer-events: none; /* Ensures content remains interactive */
 }
 
 .section > *, .community > * { position: relative; z-index: 1; }
@@ -296,9 +298,9 @@ body::after {
 /* Mobile-Specific Background Adjustments */
 @media (max-width: 768px) {
     .site-wrapper {
-        background-size: contain; /* Scales down to fit mobile width, maintaining height */
-        background-repeat: no-repeat;
+        background-size: auto 100%; /* Scales height to full viewport on mobile, maintaining width */
         background-position: center top;
+        background-repeat: no-repeat;
     }
 }
 
