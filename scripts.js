@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
             visual.addEventListener("mouseover", () => {
                 gsap.to(visual, { duration: 0.3, scale: 1.05, opacity: 1, overwrite: true });
             }, { passive: true });
-            card.addEventListener("mouseleave", () => {
+            visual.addEventListener("mouseleave", () => {
                 gsap.to(visual, { duration: 0.3, scale: 1, opacity: 0.7, overwrite: true });
             }, { passive: true });
         });
