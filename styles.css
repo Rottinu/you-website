@@ -141,7 +141,7 @@ body::after {
 .hero-content { display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
 .hero-logo { max-width: 20%; margin-bottom: 20px; animation: neon-pulse 2s infinite alternate; }
-.cta-button { background: var(--neon-cyan); color: #000; border: none; padding: 15px 40px; font-size: 1.2rem; cursor: pointer; border-radius: 25px; transition: transform 0.3s, box-shadow 0.3s; margin: 10px 0; width: auto; display: inline-block; box-shadow: 0 0 10px rgba(0, 224, 255, 0.3); pointer-events: auto; }
+.cta-button { background: var(--neon-cyan); color: #000; border: none; padding: 15px 40px; font-size: 1.2rem; cursor: pointer; border-radius: 25px; transition: transform 0.3s, box-shadow 0.3s; margin: 10px 0; width: auto; display: inline-block; box-shadow: 0 0 10px rgba(0, 224, 255, 0.3); pointer-events: auto; text-decoration: none; }
 .cta-button:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--neon-cyan); }
 .cta-button:disabled { opacity: 0.6; cursor: not-allowed; }
 .countdown { font-size: 1.5rem; margin: 20px 0; color: var(--neon-cyan); display: block; visibility: visible; width: 100%; text-align: center; position: relative; z-index: 1; }
@@ -207,8 +207,6 @@ body::after {
 .story { font-style: italic; color: var(--text-light); padding: 10px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; transition: color 0.3s, text-shadow 0.3s; }
 .story:hover { color: #fff; text-shadow: 0 0 10px rgba(0, 224, 255, 0.5); }
 .cta-container { display: flex; justify-content: center; gap: 20px; }
-.cta-link { color: var(--neon-cyan); text-decoration: none; padding: 10px 30px; border: 2px solid var(--neon-cyan); border-radius: 25px; transition: background 0.3s; }
-.cta-link:hover { background: rgba(0, 224, 255, 0.1); }
 
 /* Footer */
 .footer { padding: 20px; text-align: center; color: #fff; background: rgba(0, 0, 0, 0.9); border-top: 2px solid var(--neon-cyan); position: relative; }
