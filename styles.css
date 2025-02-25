@@ -14,13 +14,27 @@
     box-sizing: border-box;
 }
 
+.site-wrapper {
+    background: url('full-site-background.webp') no-repeat center top / 100% auto;
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+}
+
+.site-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
+    z-index: 0;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     color: #fff;
-    background: url('full-site-background.webp') no-repeat center top / 100% auto;
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
     overflow-x: hidden;
     position: relative;
     z-index: 1;
@@ -277,6 +291,15 @@ body::after {
     .feature-card { width: 100%; max-width: 300px; }
     .section-visual, .footer-logo { height: 150px; }
     .section-visual.large { height: 200px; }
+}
+
+/* Mobile-Specific Background Adjustments */
+@media (max-width: 768px) {
+    .site-wrapper {
+        background-size: contain; /* Scales down to fit mobile width, maintaining height */
+        background-repeat: no-repeat;
+        background-position: center top;
+    }
 }
 
 @keyframes particleFlow { 0% { background-position: 0 0; } 100% { background-position: 50px 50px; } }
