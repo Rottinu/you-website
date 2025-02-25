@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navLinks: document.querySelectorAll(".nav-menu ul li a"),
         connectWalletBtn: document.getElementById("connect-wallet"),
         buyTokenBtn: document.getElementById("buy-token"),
-        sections: document.querySelectorAll(".section, .community"),
+        sections: document.querySelectorAll(".section, .community, .hero, .footer"),
         powerForm: document.querySelector(".power-form"),
         powerMessage: document.getElementById("power-message"),
         countdown: document.getElementById("countdown"),
@@ -300,16 +300,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Section Animations
+    // Section Background Animation (Dark Opacity on Appear)
     if (elements.sections.length > 0 && gsapLoaded && typeof ScrollTrigger !== 'undefined') {
         elements.sections.forEach((section) => {
-            gsap.set(section, { opacity: 0, y: 60 });
+            gsap.set(section, { 
+                opacity: 0, 
+                y: 60,
+                background: 'rgba(0, 0, 0, 0)' // Start transparent
+            });
             ScrollTrigger.create({
                 trigger: section,
                 start: "top 80%",
                 once: true,
                 onEnter: () => {
-                    gsap.to(section, { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
+                    gsap.to(section, { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 1, 
+                        ease: "power4.out",
+                        background: 'rgba(0, 0, 0, 0.5)' // Darken on appear, no content effect
+                    });
                     gsap.from(section.querySelectorAll("p, .why-list li, .roadmap-list li, .next-call, .power-story"), {
                         opacity: 0,
                         y: 30,
